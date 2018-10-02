@@ -7,6 +7,8 @@ import pprint
 import shutil
 import xmltodict
 
+PP = pprint.PrettyPrinter(indent=1)
+
 DD_DIR = "/Users/peter/Library/Application Support/Steam/steamapps/common/Dungeons of Dredmor/Dungeons of Dredmor.app/Contents/MacOS"
 
 IMAGE_PREFIX = "game_images/"
@@ -34,7 +36,7 @@ WEAPON_TYPES = {
 
 PRIMARY_STATS = {
     0: "burliness",
-    1: "Sagacity",
+    1: "sagacity",
     2: "nimbleness",
     3: "caddishness",
     4: "stubborness",
@@ -122,6 +124,32 @@ def copy_images(html):
             os.makedirs(os.path.dirname(dest_img))
         shutil.copyfile(os.path.join(DD_DIR, source), dest_img)
 
+def change_dict_naming_convention(d, convert_function):
+    """
+    Convert a nested dictionary from one convention to another.
+    Args:
+        d (dict): dictionary (nested or not) to be converted.
+        convert_function (func): function that takes the string in one convention and returns it in the other one.
+    Returns:
+        Dictionary with the new keys.
+    """
+    new = {}
+    for k, v in d.items():
+        new_v = v
+        if isinstance(v, dict):
+            new_v = change_dict_naming_convention(v, convert_function)
+        elif isinstance(v, list):
+            new_v = list()
+            for x in v:
+                new_v.append(change_dict_naming_convention(x, convert_function))
+        new[convert_function(k)] = new_v
+    return new
+
+def normalize_key(key_str):
+    if key_str.startswith("@"):
+        return key_str[1:].lower()
+    else:
+        return key_str.lower()
 
 def main():
     itemDBs = []
@@ -130,8 +158,11 @@ def main():
             itemDB = xmltodict.parse(file_.read())
             itemDB["mod_dir"] = mod
 
-            # Normalize some of the input
-            for item in itemDB["itemDB"]["item"]:
+            # Make all keys lowercase
+            itemDB = change_dict_naming_convention(itemDB, normalize_key)
+
+            # Make primary/secondarybuff always a list even if there's only one
+            for item in itemDB["itemdb"]["item"]:
                 if "primarybuff" in item:
                     if not isinstance(item["primarybuff"], list):
                         item["primarybuff"] = [item["primarybuff"]]
@@ -140,8 +171,8 @@ def main():
                         item["secondarybuff"] = [item["secondarybuff"]]
 
             itemDBs.append(itemDB)
-    pp = pprint.PrettyPrinter(indent=1)
-#    pp.pprint(itemDBs)
+
+#    PP.pprint(itemDBs)
 
     # Templatize!!!
     j2_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."),

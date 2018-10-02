@@ -92,28 +92,28 @@
         </thead>
         <tbody class="list">
           {% for itemDB in itemDBs %}
-          {% for item in itemDB["itemDB"]["item"] %}
-          <tr id="{{item['@name']}}">
-            <td class="item-name" data-name="{{item['@name']}}">
-              <img src="game_images/{{itemDB.mod_dir}}/{{item['@iconFile']}}">
-              {{item["@name"]}}
+          {% for item in itemDB["itemdb"]["item"] %}
+          <tr id="{{item.name}}">
+            <td class="item-name" data-name="{{item.name}}">
+              <img src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
+              {{item.name}}
             </td>
-            {% if "@level" in item or "armour" in item or "trap" in item%}
-            {% if "@level" in item %}
-              {% set level = item["@level"]|int %}
+            {% if "level" in item or "armour" in item or "trap" in item%}
+            {% if "level" in item %}
+              {% set level = item.level|int %}
             {% elif "armour" in item %}
-              {% set level = item.armour["@level"]|int %}
+              {% set level = item.armour.level|int %}
             {% elif "trap" in item %}
-              {% set level = item.trap["@level"]|int %}
+              {% set level = item.trap.level|int %}
             {% endif %}
             <td class="level">{{level}}</td>
             {% else %}
             <td class="level">
             </td>
             {% endif %}
-            <td class="price">{{item["price"]["@amount"] if "price" in item else ""}}</td>
+            <td class="price">{{item.price.amount if "price" in item else ""}}</td>
             {% if "artifact" in item %}
-            <td class="artifact">{{item["artifact"]["@quality"]}}</td>
+            <td class="artifact">{{item.artifact.quality}}</td>
             {% else %}
             <td class="artifact">
             </td>
@@ -121,35 +121,34 @@
             <td class="stats"
                 {% if "resistbuff" in item %}
                 {% for damageType, amount in item.resistbuff.items() %}
-                {% set damageType = damageType | replace("@","") %}
-                data-resist-{{damageType|replace("@","")}}="{{amount}}"
+                data-resist-{{damageType}}="{{amount}}"
                 {% endfor %}
                 {% endif %}
             >
               {% if "weapon" in item %}
               {% for damageType, amount in item.weapon.items() %}
-              {% set damageType = damageType | replace("@","") %}
+              {% set damageType = damageType %}
               {% if damageType == "hit" %}{% continue %}{% endif %}
               {% if damageType == "thrown" %}{% continue %}{% endif %}
-              {% if damageType|lower == "cantargetfloor" %}{% continue %}{% endif %}
+              {% if damageType == "cantargetfloor" %}{% continue %}{% endif %}
               <img src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage">{{amount}}
               {% endfor %}
               {% endif %}
 
               {% if "resistbuff" in item %}
               {% for damageType, amount in item.resistbuff.items() %}
-              {% set damageType = damageType | replace("@","") %}
+              {% set damageType = damageType %}
               <img src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance">{{amount}}
               {% endfor %}
               {% endif %}
 
               {% for buff in item.primarybuff %}
-              {% set stat = PRIMARY_STATS[buff["@id"]|int] %}
-              <img src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}">{{buff["@amount"]}}
+              {% set stat = PRIMARY_STATS[buff.id|int] %}
+              <img src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}">{{buff.amount}}
               {% endfor %}
               {% for buff in item.secondarybuff %}
-              {% set stat = SECONDARY_STATS[buff["@id"]|int] %}
-              <img src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}">{{buff["@amount"]}}
+              {% set stat = SECONDARY_STATS[buff.id|int] %}
+              <img src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}">{{buff.amount}}
               {% endfor %}
             </td>
             <td>
@@ -162,7 +161,7 @@
             <td>
             </td>
             <td>
-              {% if "weapon" in item and "@hit" in item.weapon %}
+              {% if "weapon" in item and "hit" in item.weapon %}
               ON HIT: ???
               {% endif %}
             </td>
