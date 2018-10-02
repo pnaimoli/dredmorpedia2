@@ -20,6 +20,55 @@ IMAGE_CORRECTION_MAP = {
         "dmg_necromantic.png": "dmg_necromatic.png",
         }
 
+WEAPON_TYPES = {
+    0: "SWORD",
+    1: "AXE",
+    2: "MACE",
+    3: "STAFF",
+    4: "BOW",
+    5: "THROWN",
+    6: "BOLT",
+    7: "DAGGER",
+    8: "POLEARM",
+}
+
+PRIMARY_STATS = {
+    0: "burliness",
+    1: "Sagacity",
+    2: "nimbleness",
+    3: "caddishness",
+    4: "stubborness",
+    5: "savvy",
+}
+
+SECONDARY_STATS = {
+    0:  ("life", "Life"),
+    1:  ("mana", "Mana"),
+    2:  ("meleepower", "Melee Power"),
+    3:  ("magicpower", "Magic Power"),
+    4:  ("crit", "Crit"),
+    5:  ("haywire", "Haywire"),
+    6:  ("dodge", "Dodge"),
+    7:  ("block", "Block"),
+    8:  ("counter", "Counter"),
+    9:  ("edr", "Enemy Dodge Reduction"),
+    10: ("armourabsorption", "Armour Absorption"),
+    11: ("magicresistance", "Magic Resistance"),
+    12: ("sneakiness", "Sneakiness"),
+    13: ("liferegen", "Life Regen"),
+    14: ("manaregen", "Mana Regen"),
+    15: ("wandburn", "Wand Affinity"),
+    16: ("traplevel", "Trap Affinity"),
+    17: ("trapsense", "Trap Sight Radius"),
+    18: ("sight", "Sight Radius"),
+    19: ("smithing", "Smithing"),
+    20: ("tinkerer", "Tinkering"),
+    21: ("alchemy", "Alchemy"),
+    22: ("reflection", "Magic Reflection"),
+    23: ("wandburn", "Wand Crafting"),
+}
+
+
 def write_first_sprite_frame(spr_infilename, png_outfilename):
     pass
 
@@ -80,6 +129,16 @@ def main():
         with open(os.path.join(DD_DIR, mod, "game", "itemDB.xml")) as file_:
             itemDB = xmltodict.parse(file_.read())
             itemDB["mod_dir"] = mod
+
+            # Normalize some of the input
+            for item in itemDB["itemDB"]["item"]:
+                if "primarybuff" in item:
+                    if not isinstance(item["primarybuff"], list):
+                        item["primarybuff"] = [item["primarybuff"]]
+                if "secondarybuff" in item:
+                    if not isinstance(item["secondarybuff"], list):
+                        item["secondarybuff"] = [item["secondarybuff"]]
+
             itemDBs.append(itemDB)
     pp = pprint.PrettyPrinter(indent=1)
 #    pp.pprint(itemDBs)
@@ -89,7 +148,9 @@ def main():
                                 extensions=['jinja2.ext.loopcontrols'],
                                 lstrip_blocks=True, trim_blocks=True)
     template = j2_env.get_template("index.html.j2")
-    html = template.render(itemDBs=itemDBs)
+    html = template.render(itemDBs=itemDBs,
+                           PRIMARY_STATS=PRIMARY_STATS,
+                           SECONDARY_STATS=SECONDARY_STATS)
     print(html)
 
     # Copy over all of the images
