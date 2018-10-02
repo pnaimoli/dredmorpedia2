@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content="HTML Tidy for HTML5 for Apple macOS version 5.7.16">
+  <title>Dredmorpedia 2</title>
+  <link href='slate/stylesheets/monokai.css' rel="stylesheet" media="screen">
+  <link href='slate/stylesheets/screen.css' rel="stylesheet" media="screen">
+  <link href='slate/stylesheets/print.css' rel="stylesheet" media="print">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <style>
+    .sort {
+      padding:8px 30px;
+      border-radius: 6px;
+      border:none;
+      display:inline-block;
+      color:#fff;
+      text-decoration: none;
+      background-color: #28a8e0;
+      height:30px;
+    }
+    .sort:hover {
+      text-decoration: none;
+      background-color:#1b8aba;
+    }
+    .sort:focus {
+      outline:none;
+    }
+    .sort:after {
+      display:inline-block;
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      content:"";
+      position: relative;
+      top:-10px;
+      right:-5px;
+    }
+    .sort.asc:after {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid #fff;
+      content:"";
+      position: relative;
+      top:4px;
+      right:-5px;
+    }
+    .sort.desc:after {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid #fff;
+      content:"";
+      position: relative;
+      top:-4px;
+      right:-5px;
+    }
+  </style>
+</head>
+<body>
+  <a href="#" id="nav-button"><span>NAV <img src='slate/images/navbar.png'></span></a>
+  <div class="tocify-wrapper">
+    <img src='slate/images/logo.png'>
+    <div class="lang-selector">
+      <a href="#" data-language-name="go">Go</a> <a href="#" data-language-name="shell">Shell</a> <a href="#" data-language-name="ruby">Ruby</a> <a href="#" data-language-name="python">Python</a> <a href="#" data-language-name="javascript">Javascript</a>
+    </div>
+    <div class="search">
+      <input type="text" class="search" id="input-search" placeholder='Search'>
+    </div>
+    <ul class="search-results"></ul>
+    <div id="toc"></div>
+    <div class="toc-footer">
+      <h3 class="translations-title">Translation</h3>
+      <ul>
+        <li>
+          <a href="//localhost:1313/nn/">Nynorsk</a>
+        </li>
+      </ul>
+    </div>
+    <ul class="toc-footer">
+      <li>
+        <a href='#'>Sign Up for a Developer Key</a>
+      </li>
+      <li>Documentation Powered by <a href="https://github.com/bep/docuapi" target="_blank">DocuAPI</a>
+      </li>
+      <li>Hugo Theme by <a href="https://github.com/bep" target="_blank">bep</a>
+      </li>
+    </ul>
+  </div>
+  <div class="page-wrapper">
+    <div class="content" id="itemDB">
+      <h1 id="ASDF">Items</h1>
+      <table>
+        <thead>
+          <tr>
+            <th class="sort" data-sort="itemName">Item</th>
+            <th>Level</th>
+            <th><img src="game_images/items/cash1.png"></th>
+            <th>Artifact</th>
+            <th>Stats</th>
+            <th>Ingredients</th>
+            <th>Used To Craft</th>
+            <th>Effects</th>
+          </tr>
+        </thead>
+        <tbody class="list">
+          {% for itemDB in itemDBs %}
+          {% for item in itemDB["itemDB"]["item"] %}
+          <tr id="{{item["@name"]}}">
+            <td class="itemName">
+                <img src="game_images/{{itemDB.mod_dir}}/{{item["@iconFile"]}}">
+              {{item["@name"]}}
+            </td>
+            {% if "@level" in item or "armour" in item or "trap" in item%}
+            {% if "@level" in item %}
+              {% set level = item["@level"]|int %}
+            {% elif "armour" in item %}
+              {% set level = item.armour["@level"]|int %}
+            {% elif "trap" in item %}
+              {% set level = item.trap["@level"]|int %}
+            {% endif %}
+            <td id="level" data-level="{{level}}">
+                <div class="level" style="font-size:0"> <!-- So there are no spaces between the stars -->
+                {% for i in range(0, [10, level]|min) %}
+                <img src="game_images/ui/quality_star_full.png">
+                {% endfor %}
+                {% for i in range(level, 10) %}<img src="game_images/ui/quality_star_empty.png">{% endfor %}
+              </div>
+            </td>
+            {% else %}
+            <td id="level">
+            </td>
+            {% endif %}
+            <td id="price">{{item["price"]["@amount"] if "price" in item else ""}}</td>
+            {% if "artifact" in item %}
+            <td id="artifact">{{item["artifact"]["@quality"]}}</td>
+            {% else %}
+            <td id="artifact">
+            </td>
+            {% endif %}
+            <td 
+            <td class="stats"
+                {% if "resistbuff" in item %}
+                {% for damageType, amount in item.resistbuff.items() %}
+                {% set damageType = damageType | replace("@","") %}
+                data-resist-{{damageType|replace("@","")}}="{{amount}}"
+                {% endfor %}
+                {% endif %}
+            >
+              {% if "weapon" in item %}
+              {% for damageType, amount in item.weapon.items() %}
+              {% set damageType = damageType | replace("@","") %}
+              {% if damageType == "hit" %}{% continue %}{% endif %}
+              {% if damageType == "thrown" %}{% continue %}{% endif %}
+              {% if damageType|lower == "cantargetfloor" %}{% continue %}{% endif %}
+              <img src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage">{{amount}}
+              {% endfor %}
+              {% endif %}
+
+              {% if "resistbuff" in item %}
+              {% for damageType, amount in item.resistbuff.items() %}
+              {% set damageType = damageType | replace("@","") %}
+              <img src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance">{{amount}}
+              {% endfor %}
+              {% endif %}
+
+              {% if primarybuff in item %}
+              {% endif %}
+              {% if secondarybuff in item %}
+              {% for buffID, buffAmount in item.secondarybuff %}
+              {% endfor %}
+              {% endif %}
+            </td>
+            <td>
+              <img src="game_images/ui/icons/stat_tinkerer.png">7
+              <a class="ref" href="#Clockwork Bolt-thrower"><img src="game_images/items/crossbow_clockwork.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
+              <a class="ref" href="#APC"><img src="game_images/items/component_aetheric_power.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
+              <a class="ref" href="#SSSB"><img src="game_images/items/component_stem_bolt.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
+              <a class="ref" href="#SBD"><img src="game_images/items/component_bronze_discs.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
+            </td>
+            <td>
+            </td>
+            <td>
+              {% if "weapon" in item and "@hit" in item.weapon %}
+              ON HIT: ???
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="content" id="skillDB">
+      <h1 class="FDSA">Skills</h1>
+    </div>
+  </div>
+</body>
+<script>
+var options = {
+  valueNames: [
+    'itemName',
+    { name: "piercing-damage", attr: "data-piercing-damage" },
+    { name: "bashing-damage", attr: "data-bashing-damage" },
+  ]
+};
+
+var itemTable = new List('itemDB', options);
+</script>
+</html>
