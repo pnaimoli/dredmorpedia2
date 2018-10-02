@@ -6,6 +6,7 @@
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Dredmorpedia 2</title>
+
   <style>
     .sort:after {
       display:inline-block;
@@ -39,16 +40,44 @@
       top:-4px;
       right:-5px;
     }
+    table.itemDB td.item-name {
+      max-width: 200px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    table.tooltip-ref td {
+      padding: 5px;
+    }
+    img.item {
+      vertical-align:middle
+    }
+    img.stat {
+      vertical-align:middle;
+    }
+    div.stat-group, div.recipe-group {
+      display: inline-block;
+      white-space: nowrap;
+    }
+    h1 {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0px;
+    }
   </style>
+
   <link href="slate/stylesheets/monokai.css" rel="stylesheet" media="screen">
   <link href="slate/stylesheets/screen.css" rel="stylesheet" media="screen">
   <link href="slate/stylesheets/print.css" rel="stylesheet" media="print">
   <script src="slate/javascripts/all.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
   <a href="#" id="nav-button"><span>NAV <img src="slate/images/navbar.png" alt="Navbar"></span></a>
+
   <div class="toc-wrapper">
     <img src="static/logo.png" class="logo" alt="Logo">
     <div class="search">
@@ -74,10 +103,12 @@
       </li>
     </ul>
   </div>
+
   <div class="page-wrapper">
     <div class="content">
       <h1 id="items">Items</h1>
-      <table id="itemDB">
+      <table id="itemDB" class="itemDB">
+
         <thead>
           <tr>
             <th class="sort" data-sort="item-name">Item</th>
@@ -85,19 +116,23 @@
             <th class="sort" data-sort="price"><img src="game_images/items/cash1.png"></th>
             <th class="sort" data-sort="artifact">Artifact</th>
             <th>Stats</th>
-            <th>Ingredients</th>
+            <th>Recipes</th>
             <th>Used To Craft</th>
             <th>Effects</th>
           </tr>
         </thead>
+
         <tbody class="list">
           {% for itemDB in itemDBs %}
           {% for item in itemDB["itemdb"]["item"] %}
-          <tr id="{{item.name}}">
+          <tr id="{{item.name|replace(" ", "")}}">
+            {# ====== Item Name ====== #}
             <td class="item-name" data-name="{{item.name}}">
-              <img src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
+              <img class="item" src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
               {{item.name}}
             </td>
+
+            {# ====== Item Level ====== #}
             {% if "level" in item or "armour" in item or "trap" in item%}
             {% if "level" in item %}
               {% set level = item.level|int %}
@@ -111,52 +146,79 @@
             <td class="level">
             </td>
             {% endif %}
+
+            {# ====== Price ====== #}
             <td class="price">{{item.price.amount if "price" in item else ""}}</td>
+
+            {# ====== Artifact Quality ====== #}
             {% if "artifact" in item %}
             <td class="artifact">{{item.artifact.quality}}</td>
             {% else %}
             <td class="artifact">
             </td>
             {% endif %}
-            <td class="stats"
-                {% if "resistbuff" in item %}
-                {% for damageType, amount in item.resistbuff.items() %}
-                data-resist-{{damageType}}="{{amount}}"
-                {% endfor %}
-                {% endif %}
-            >
+
+            {# ====== Stats ====== #}
+            <td class="stats">
               {% if "weapon" in item %}
-              {% for damageType, amount in item.weapon.items() %}
+              <div class="stat-group">
+              {% for damageType, amount in item.weapon|dictsort %}
               {% set damageType = damageType %}
               {% if damageType == "hit" %}{% continue %}{% endif %}
               {% if damageType == "thrown" %}{% continue %}{% endif %}
               {% if damageType == "cantargetfloor" %}{% continue %}{% endif %}
-              <img src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage">{{amount}}
+                <img class="stat" data-damage-{{damageType}}="{{amount}}" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
               {% endfor %}
+              </div>
               {% endif %}
 
               {% if "resistbuff" in item %}
-              {% for damageType, amount in item.resistbuff.items() %}
+              <div class="stat-group">
+              {% for damageType, amount in item.resistbuff|dictsort %}
               {% set damageType = damageType %}
-              <img src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance">{{amount}}
+                <img class="stat" data-resist-{{damageType}}="{{amount}}" src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance"> {{amount}}
               {% endfor %}
+              </div>
               {% endif %}
 
-              {% for buff in item.primarybuff %}
+              {% for buff in item.primarybuff|sort(attribute="id") %}
               {% set stat = PRIMARY_STATS[buff.id|int] %}
-              <img src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}">{{buff.amount}}
+              {% if loop.first %}
+              <div class="stat-group">
+              {% endif %}
+                <img class="stat" data-{{stat}}="{{buff.amount}}" src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}"> {{buff.amount}}
+              {% if loop.last %}
+              </div>
+              {% endif %}
               {% endfor %}
-              {% for buff in item.secondarybuff %}
+
+              {% for buff in item.secondarybuff|sort(attribute="id")  %}
               {% set stat = SECONDARY_STATS[buff.id|int] %}
-              <img src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}">{{buff.amount}}
+              {% if loop.first %}
+              <div class="stat-group">
+              {% endif %}
+                <img class="stat" data-{{stat}}="{{buff.amount}}" src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}"> {{buff.amount}}
+              {% if loop.last %}
+              </div>
+              {% endif %}
               {% endfor %}
+
+              {% if "armour" in item and item.armour.randoms == "1" %}
+              <div class="stat-group">
+                <img class="stat" data-random="1" src="static/random.png" width="16px" height="16px" title="Random Stats">
+              </div>
+              {% endif %}
             </td>
+
+            {# ====== Crafting Recipe ====== #}
             <td>
-              <img src="game_images/ui/icons/stat_tinkerer.png">7
-              <a class="ref" href="#Clockwork Bolt-thrower"><img src="game_images/items/crossbow_clockwork.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
-              <a class="ref" href="#APC"><img src="game_images/items/component_aetheric_power.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
-              <a class="ref" href="#SSSB"><img src="game_images/items/component_stem_bolt.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
-              <a class="ref" href="#SBD"><img src="game_images/items/component_bronze_discs.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
+              <div class="recipe-group">
+                <img class="stat" src="game_images/ui/icons/stat_tinkerer.png"> 7
+                <a class="ref" href="#ClockworkBolt-thrower"><img class="item" src="game_images/items/crossbow_clockwork.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
+                <a class="ref" href="#Absinthe"><img class="item" src="game_images/items/component_aetheric_power.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
+                <a class="ref" href="#SSSB"><img class="item" src="game_images/items/component_stem_bolt.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
+                <a class="ref" href="#SBD"><img class="item" src="game_images/items/component_bronze_discs.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
+              </div>
             </td>
             <td>
             </td>
@@ -173,6 +235,10 @@
       <h1 id="skills">Skills</h1>
       <p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
       <p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
       <p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API's documentation.</p>
     </div>
   </div>
@@ -195,6 +261,51 @@
     var searchString = $(this).val();
     itemTable.search(searchString, [ "item-name" ]);
   });
+
+$("a.ref").tooltip({
+    items: "[href]",
+    content: function() {
+        // Get the element we're referencing
+        var element_id = $(this).attr("href");
+        var element = $(element_id);
+
+        // Build HTML - checking if we need to wrap
+        var html = element.html();
+
+        if (element.is('tr')) {
+            html = '<table class="itemDB tooltip-ref"><tbody><tr>' + html + '</tr></tbody></table>';
+        }
+        return html;
+    },
+    open: function(event, ui)
+    {
+        if (typeof(event.originalEvent) === 'undefined')
+        {
+            return false;
+        }
+
+        var $id = $(ui.tooltip).attr('id');
+
+        // close any lingering tooltips
+        $('div.ui-tooltip').not('#' + $id).remove();
+
+        // ajax function to pull in data and add it to the tooltip goes here
+    },
+    close: function(event, ui) {
+        ui.tooltip.hover(function()
+        {
+            $(this).stop(true).fadeTo(400, 1); 
+        },
+        function()
+        {
+            $(this).fadeOut('400', function()
+            {
+                $(this).remove();
+            });
+        });
+    },
+    showURL: false
+});
 
   </script>
 </body>
