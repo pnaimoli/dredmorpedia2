@@ -56,7 +56,6 @@
       vertical-align:middle;
     }
     div.stat-group, div.recipe-group {
-      display: inline-block;
       white-space: nowrap;
     }
     h1 {
@@ -72,8 +71,8 @@
   <script src="slate/javascripts/all.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <link href="static/tooltipster-master/css/tooltipster.bundle.css" rel="stylesheet">
+  <script src="static/tooltipster-master/js/tooltipster.bundle.js"></script>
 </head>
 <body>
   <a href="#" id="nav-button"><span>NAV <img src="slate/images/navbar.png" alt="Navbar"></span></a>
@@ -262,51 +261,46 @@
     itemTable.search(searchString, [ "item-name" ]);
   });
 
-$("a.ref").tooltip({
-    items: "[href]",
-    content: function() {
-        // Get the element we're referencing
-        var element_id = $(this).attr("href");
-        var element = $(element_id);
-
-        // Build HTML - checking if we need to wrap
-        var html = element.html();
-
-        if (element.is('tr')) {
-            html = '<table class="itemDB tooltip-ref"><tbody><tr>' + html + '</tr></tbody></table>';
-        }
-        return html;
+  $("a.ref").tooltipster({
+    content: "Loading...",
+    trigger: 'custom',
+    triggerOpen: {
+        mouseenter: true
     },
-    open: function(event, ui)
-    {
-        if (typeof(event.originalEvent) === 'undefined')
-        {
-            return false;
-        }
-
-        var $id = $(ui.tooltip).attr('id');
-
-        // close any lingering tooltips
-        $('div.ui-tooltip').not('#' + $id).remove();
-
-        // ajax function to pull in data and add it to the tooltip goes here
+    triggerClose: {
+        click: true
     },
-    close: function(event, ui) {
-        ui.tooltip.hover(function()
-        {
-            $(this).stop(true).fadeTo(400, 1); 
+    functionBefore: function(instance, helper) {
+      var element_id = $(helper.origin).attr("href");
+      var element = $(element_id);
+  
+      // Build HTML - checking if we need to wrap
+      var html = element.html();
+  
+      if (!element.is('tr')) {
+        return;
+      }
+  
+      html_text = '<table class="itemDB tooltip-ref"><tbody><tr>' + html + '</tr></tbody></table>';
+      html = $(html)
+      html.find("a.ref").tooltipster({
+        content: "Loading2...",
+        trigger: 'custom',
+        triggerOpen: {
+            mouseenter: true
         },
-        function()
-        {
-            $(this).fadeOut('400', function()
-            {
-                $(this).remove();
-            });
-        });
+        triggerClose: {
+            click: true
+        },
+        functionBefore: instance.__options.functionBefore,
+        interactive: true
+      });
+      
+      instance.content($(html));
+      instance.content()
     },
-    showURL: false
-});
-
+    interactive: true,
+  });
   </script>
 </body>
 </html>
