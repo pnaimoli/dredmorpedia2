@@ -46,6 +46,9 @@
       text-overflow: ellipsis;
       overflow: hidden;
     }
+    th {
+      white-space: nowrap;
+    }
     table.tooltip-ref td {
       padding: 5px;
     }
@@ -54,6 +57,9 @@
     }
     img.stat {
       vertical-align:middle;
+    }
+    div.stat {
+      display:inline-block;
     }
     div.stat-group, div.recipe-group {
       white-space: nowrap;
@@ -83,6 +89,7 @@
       <input type="text" class="search" id="input-search" placeholder="Search">
     </div>
     <ul class="search-results"></ul>
+
     <ul id="toc" class="toc-list-h1">
       <li>
         <a href="#items" class="toc-h1 toc-link active" data-title="Items">Items</a>
@@ -91,6 +98,12 @@
         <a href="#skills" class="toc-h1 toc-link" data-title="Skills">Skills</a>
       </li>
     </ul>
+
+    <div class="toc-footer">
+      <img class="stat_filter" data-stat-class="damage" data-stat-type="acidic" src="game_images/ui/icons/dmg_acidic.png">
+      <img class="stat_filter" data-stat-class="damage" data-stat-type="conflagratory" src="game_images/ui/icons/dmg_conflagratory.png">
+    </div>
+
     <ul class="toc-footer">
       <li>
         <a href="https://github.com/pnaimoli/dredmorpedia2">Report Issues on GitHub</a>
@@ -114,7 +127,7 @@
             <th class="sort" data-sort="level">Level</th>
             <th class="sort" data-sort="price"><img src="game_images/items/cash1.png"></th>
             <th class="sort" data-sort="artifact">Artifact</th>
-            <th>Stats</th>
+            <th class="sort" data-sort="stats">Stats</th>
             <th>Recipes</th>
             <th>Used To Craft</th>
             <th>Effects</th>
@@ -166,7 +179,9 @@
               {% if damageType == "hit" %}{% continue %}{% endif %}
               {% if damageType == "thrown" %}{% continue %}{% endif %}
               {% if damageType == "cantargetfloor" %}{% continue %}{% endif %}
-                <img class="stat" data-damage-{{damageType}}="{{amount}}" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
+                <div class="stat" data-stat-class="damage" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
+                </div>
               {% endfor %}
               </div>
               {% endif %}
@@ -175,7 +190,9 @@
               <div class="stat-group">
               {% for damageType, amount in item.resistbuff|dictsort %}
               {% set damageType = damageType %}
-                <img class="stat" data-resist-{{damageType}}="{{amount}}" src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance"> {{amount}}
+                <div class="stat" data-stat-class="resist" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance"> {{amount}}
+                </div>
               {% endfor %}
               </div>
               {% endif %}
@@ -185,7 +202,9 @@
               {% if loop.first %}
               <div class="stat-group">
               {% endif %}
-                <img class="stat" data-{{stat}}="{{buff.amount}}" src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}"> {{buff.amount}}
+                <div class="stat" data-stat-class="primary" data-stat-type="{{stat}}" data-stat-value="{{buff.amount}}">
+                  <img class="stat" src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}"> {{buff.amount}}
+                </div>
               {% if loop.last %}
               </div>
               {% endif %}
@@ -196,7 +215,9 @@
               {% if loop.first %}
               <div class="stat-group">
               {% endif %}
-                <img class="stat" data-{{stat}}="{{buff.amount}}" src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}"> {{buff.amount}}
+                <div class="stat" data-stat-class="secondary" data-stat-type="{{stat[0]}}" data-stat-value="{{buff.amount}}">
+                  <img class="stat" src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}"> {{buff.amount}}
+                </div>
               {% if loop.last %}
               </div>
               {% endif %}
@@ -248,8 +269,7 @@
     "level",
     "price",
     "artifact",
-    { name: "damage-piercing", attr: "data-damage-piercing" },
-    { name: "damage-bashing", attr: "data-damage-bashing" },
+    "stats",
   ]
   };
 
@@ -261,9 +281,23 @@
     itemTable.search(searchString, [ "item-name" ]);
   });
 
+  $(".stat_filter").click(function() {
+    var attr_selector = "[data-stat-class=" + $(this).attr("data-stat-class") + "]" +
+                        "[data-stat-type="  + $(this).attr("data-stat-type") + "]";
+    $(this).toggleClass("filtered");
+    if ($(this).hasClass("filtered")) {
+      itemTable.filter(function(item) {
+        return $(item.elm).has("div" + attr_selector + "").length > 0;
+      });
+    } else {
+      itemTable.filter();
+    }
+  });
+
+
   $("a.ref").tooltipster({
     content: "Loading...",
-    trigger: 'custom',
+    trigger: "custom",
     triggerOpen: {
         mouseenter: true
     },
@@ -277,7 +311,7 @@
       // Build HTML - checking if we need to wrap
       var html = element.html();
   
-      if (!element.is('tr')) {
+      if (!element.is("tr")) {
         return;
       }
   
@@ -285,7 +319,7 @@
       html = $(html)
       html.find("a.ref").tooltipster({
         content: "Loading2...",
-        trigger: 'custom',
+        trigger: "custom",
         triggerOpen: {
             mouseenter: true
         },
@@ -300,6 +334,39 @@
       instance.content()
     },
     interactive: true,
+  });
+
+  sum_stats = function(elem, selector) {
+    var total = 0;
+    $(elem).find(selector).each(function() {
+      total += parseInt($(this).attr("data-stat-value"), 10);
+    });
+    return total;
+  };
+
+  $("th.sort[data-sort=stats]").click(function() {
+    var order = "desc";
+    if ($(this).hasClass("desc")) {
+      order = "desc";
+    } else if ($(this).hasClass("asc")) {
+      order = "asc";
+    }
+    itemTable.sort("stats", {
+      order: order,
+      sortFunction: function(a, b) {
+        var selector = "div[data-stat-class=damage]," +
+                       "div[data-stat-class=resist]," +
+                       "div[data-stat-class=secondary]," +
+                       "div[data-stat-class=primary]";
+
+        var a_stats = sum_stats(a.elm, selector);
+        var b_stats = sum_stats(b.elm, selector);
+        if (a_stats == b_stats) {
+          return $(a.elm).attr("id") > $(b.elm).attr("id") ? 1 : -1;
+        }
+        return a_stats > b_stats ? 1 : -1;
+      }
+    });
   });
   </script>
 </body>
