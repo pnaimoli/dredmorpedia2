@@ -5,7 +5,7 @@ import os
 import pdb
 import pprint
 import shutil
-import SpriteReader
+import sprite_reader
 import xmltodict
 
 PP = pprint.PrettyPrinter(indent=1)
@@ -115,7 +115,7 @@ def spr_to_png(dest_img):
     if not os.path.exists(os.path.join(DD_DIR, src_img)):
         src_img = src_img.split("/", 1)[-1]
 
-    images = SpriteReader.read(os.path.join(DD_DIR, src_img))
+    images = sprite_reader.read(os.path.join(DD_DIR, src_img))
     images[0].save(dest_img)
 
 def copy_images(html):
