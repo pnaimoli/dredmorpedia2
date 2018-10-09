@@ -40,7 +40,7 @@
       top:-4px;
       right:-5px;
     }
-    table.itemDB td.item-name {
+    table.itemDB td.name {
       max-width: 200px;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -126,7 +126,7 @@
 
         <thead>
           <tr>
-            <th class="sort" data-sort="item-name">Item</th>
+            <th class="sort" data-sort="name">Item</th>
             <th class="sort" data-sort="level">Level</th>
             <th class="sort" data-sort="price"><img src="game_images/items/cash1.png"></th>
             <th class="sort" data-sort="artifact">Artifact</th>
@@ -140,9 +140,9 @@
         <tbody class="list">
           {% for itemDB in itemDBs %}
           {% for item in itemDB.itemdb.item %}
-          <tr id="{{item.name|replace(" ", "")}}">
+          <tr id="{{item.name|replace(" ", "")|replace("'", "")}}">
             {# ====== Item Name ====== #}
-            <td class="item-name" data-name="{{item.name}}">
+            <td class="name" data-name="{{item.name}}">
               <img class="item" src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
               {{item.name}}
             </td>
@@ -257,20 +257,18 @@
       </table>
 
       <h1 id="skills">Skills</h1>
-      <p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-      <p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-      <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
-      <p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API's documentation.</p>
 
       <h1 id="monsters">Monsters</h1>
       <table id="monDB" class="monDB">
 
         <thead>
           <tr>
-            <th class="sort" data-sort="item-name">Monster</th>
+            <th>Sprite</th>
+            <th class="sort" data-sort="name">Name</th>
+            <th class="sort" data-sort="taxonomy">Taxonomy</th>
+            <th class="sort" data-sort="level">Level</th>
+            <th class="sort" data-sort="special">Special</th>
+            <th class="sort" data-sort="hell">Hell?</th>
             <th class="sort" data-sort="stats">Stats</th>
             <th>Spells</th>
           </tr>
@@ -279,23 +277,47 @@
         <tbody class="list">
           {% for monDB in monDBs %}
           {% for monster in monDB.mondb.monster %}
-          <tr id="{{monster.name|replace(" ", "")}}">
+          <tr id="{{monster.name|replace(" ", "")|replace("'", "")}}">
+            {# ====== Sprite ====== #}
+            <td class="sprite">
+              <img class="monster" 
+                {% if "palette" in monster %}
+                style="filter: hue-rotate({{monster.palette.tint}}deg);"
+                {% endif %}
+                src="game_images/{{monDB.mod_dir}}/{{monster.idlesprite.down}}{% if monster.idlesprite.down.endswith(".spr") %}.png{% endif %}">
+            </td>
+
             {# ====== Monster Name ====== #}
-            <td class="monster-name" data-name="{{monster.name}}">
-              {% if monster.idlesprite.down.endswith(".spr") %}
-              <img class="item" src="game_images/{{monDB.mod_dir}}/{{monster.idlesprite.down}}.png">
-              {% else %}
-              <img class="item" src="game_images/{{monDB.mod_dir}}/{{monster.idlesprite.down}}">
-              {% endif %}
+            <td class="name">
               {{monster.name}}
             </td>
 
+            {# ====== Taxonomy ====== #}
+            <td class="taxonomy">
+              {{monster.taxa|capitalize}}
+            </td>
+
+            {# ====== Level ====== #}
+            <td class="level">
+              {{monster.level}}
+            </td>
+
+            {# ====== Special ====== #}
+            <td class="special">
+              {{monster.special}}
+            </td>
+
+            {# ====== Diggle Hell? ====== #}
+            <td class="hell">
+              {{monster.diggleHell}}
+            </td>
+
             {# ====== Stats ====== #}
-            <td class="monster-stats">
+            <td class="stats">
             </td>
 
             {# ====== Spells ====== #}
-            <td class="monster-spells">
+            <td class="spells">
             </td>
 
           </tr>
@@ -306,7 +328,7 @@
   <script>
   var options = {
   valueNames: [
-    { name: "item-name", attr: "data-name" },
+    { name: "name", attr: "data-name" },
     "level",
     "price",
     "artifact",
@@ -315,11 +337,26 @@
   };
 
   var itemTable = new List("itemDB", options);
-  itemTable.sort("item-name", { order: "asc"});
+  itemTable.sort("name", { order: "asc"});
+
+  options = {
+  valueNames: [
+    "name",
+    "taxonomy",
+    "level",
+    "special",
+    "hell",
+    "stats",
+  ]
+  };
+
+  var monTable = new List("monDB", options);
+  monTable.sort("level", { order: "asc"});
 
   $("#input-search").keyup(function() {
     var searchString = $(this).val();
-    itemTable.search(searchString, [ "item-name" ]);
+    itemTable.search(searchString, [ "name" ]);
+    monTable.search(searchString, [ "name" ]);
   });
 
   $(".stat_filter").click(function() {
