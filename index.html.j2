@@ -64,11 +64,6 @@
     div.stat-group, div.recipe-group {
       white-space: nowrap;
     }
-    h1 {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0px;
-    }
   </style>
 
   <link href="static/layout.css" rel="stylesheet">
@@ -76,26 +71,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href="static/tooltipster-master/css/tooltipster.bundle.css" rel="stylesheet">
   <script src="static/tooltipster-master/js/tooltipster.bundle.js"></script>
+  <script src="static/toc.js"></script>
 </head>
 <body>
   <div class="toc-wrapper">
     <img src="static/logo.png" class="logo" alt="Logo">
+
     <div class="search">
       <input type="text" class="search" id="input-search" placeholder="Search">
     </div>
-    <ul class="search-results"></ul>
 
-    <ul id="toc" class="toc-list-h1">
-      <li>
-        <a href="#items" class="toc-h1 toc-link active" data-title="Items">Items</a>
-      </li>
-      <li>
-        <a href="#skills" class="toc-h1 toc-link" data-title="Skills">Skills</a>
-      </li>
-      <li>
-        <a href="#monsters" class="toc-h1 toc-link" data-title="Monsters">Monsters</a>
-      </li>
-    </ul>
+    <div id="toc"></div>
 
     <div class="toc-footer">
       <img class="stat_filter" data-stat-class="damage" data-stat-type="acidic" src="game_images/ui/icons/dmg_acidic.png">
@@ -442,5 +428,6 @@
     });
   });
   </script>
+  <script>$('#toc').toc();</script>
 </body>
 </html>
