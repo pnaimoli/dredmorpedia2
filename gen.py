@@ -1,10 +1,11 @@
-#!/usr/local/bin/python3
+#!/usr/bin/env python3
 from html.parser import HTMLParser
 import jinja2
 import os
 import pdb
 import pprint
 import shutil
+import SpriteReader
 import xmltodict
 
 PP = pprint.PrettyPrinter(indent=1)
@@ -105,24 +106,40 @@ def get_images(html):
 
     return images
 
+def spr_to_png(dest_img):
+    # Remove IMAGE_PREFIX from the beginning and ".png" from the end to
+    # get the original ".spr" filename
+    src_img = dest_img[len(IMAGE_PREFIX):(len(dest_img) - 4)]
+
+    # Some files are inherited from the base directory
+    if not os.path.exists(os.path.join(DD_DIR, src_img)):
+        src_img = src_img.split("/", 1)[-1]
+
+    images = SpriteReader.read(os.path.join(DD_DIR, src_img))
+    images[0].save(dest_img)
+
 def copy_images(html):
     # Copy images over
     for dest_img in get_images(html):
-        source = dest_img[len(IMAGE_PREFIX):]
-        filename = os.path.basename(source) 
+        if dest_img.endswith(".spr.png"):
+            spr_to_png(dest_img)
+            continue
+
+        src_img = dest_img[len(IMAGE_PREFIX):]
 
         # Some files are spelled wrong
+        filename = os.path.basename(src_img)
         if filename in IMAGE_CORRECTION_MAP:
-            source = os.path.join(os.path.dirname(source), IMAGE_CORRECTION_MAP[filename])
+            src_img = os.path.join(os.path.dirname(src_img), IMAGE_CORRECTION_MAP[filename])
 
-        # Some files are in the wrong place
-        if not os.path.exists(os.path.join(DD_DIR, source)):
-            source = source.split("/", 1)[-1]
+        # Some files are inherited from the base directory
+        if not os.path.exists(os.path.join(DD_DIR, src_img)):
+            src_img = src_img.split("/", 1)[-1]
 
         # Copy everything over!
         if not os.path.exists(os.path.dirname(dest_img)):
             os.makedirs(os.path.dirname(dest_img))
-        shutil.copyfile(os.path.join(DD_DIR, source), dest_img)
+        shutil.copyfile(os.path.join(DD_DIR, src_img), dest_img)
 
 def change_dict_naming_convention(d, convert_function):
     """
@@ -153,7 +170,9 @@ def normalize_key(key_str):
 
 def main():
     itemDBs = []
+    monDBs = []
     for mod in [".", "expansion", "expansion2", "expansion3"]:
+        # Process each itemDB.xml
         with open(os.path.join(DD_DIR, mod, "game", "itemDB.xml")) as file_:
             itemDB = xmltodict.parse(file_.read())
             itemDB["mod_dir"] = mod
@@ -172,7 +191,36 @@ def main():
 
             itemDBs.append(itemDB)
 
-#    PP.pprint(itemDBs)
+        # Process each monDB.xml
+        with open(os.path.join(DD_DIR, mod, "game", "monDB.xml")) as file_:
+            monDB = xmltodict.parse(file_.read())
+            monDB["mod_dir"] = mod
+
+            # Make all keys lowercase
+            monDB = change_dict_naming_convention(monDB, normalize_key)
+
+            # Replace xml of the "down" idlesprite with the first frame
+            for monster in monDB["mondb"]["monster"]:
+                if "idlesprite" in monster:
+                    spr_filename = monster["idlesprite"]["down"]
+                    if not spr_filename.endswith(".xml"):
+                        continue
+
+                    # Some files are inherited from the base directory
+                    spr_full_filename = os.path.join(DD_DIR, mod, spr_filename)
+                    if not os.path.exists(spr_full_filename):
+                        spr_full_filename = os.path.join(DD_DIR, spr_filename)
+
+                    with open(spr_full_filename) as spr_file:
+                        spr_xml = xmltodict.parse(spr_file.read())
+                        png_filename = spr_xml["sprite"]["frame"][0]["#text"]
+                        monster["idlesprite"]["down"] = os.path.join(
+                                os.path.dirname(spr_filename),
+                                png_filename)
+
+            monDBs.append(monDB)
+
+#    PP.pprint(monDBs)
 
     # Templatize!!!
     j2_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."),
@@ -180,6 +228,7 @@ def main():
                                 lstrip_blocks=True, trim_blocks=True)
     template = j2_env.get_template("index.html.j2")
     html = template.render(itemDBs=itemDBs,
+                           monDBs=monDBs,
                            PRIMARY_STATS=PRIMARY_STATS,
                            SECONDARY_STATS=SECONDARY_STATS)
     print(html)

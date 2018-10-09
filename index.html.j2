@@ -97,6 +97,9 @@
       <li>
         <a href="#skills" class="toc-h1 toc-link" data-title="Skills">Skills</a>
       </li>
+      <li>
+        <a href="#monsters" class="toc-h1 toc-link" data-title="Monsters">Monsters</a>
+      </li>
     </ul>
 
     <div class="toc-footer">
@@ -136,7 +139,7 @@
 
         <tbody class="list">
           {% for itemDB in itemDBs %}
-          {% for item in itemDB["itemdb"]["item"] %}
+          {% for item in itemDB.itemdb.item %}
           <tr id="{{item.name|replace(" ", "")}}">
             {# ====== Item Name ====== #}
             <td class="item-name" data-name="{{item.name}}">
@@ -252,6 +255,7 @@
           {% endfor %}
         </tbody>
       </table>
+
       <h1 id="skills">Skills</h1>
       <p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
       <p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
@@ -260,6 +264,43 @@
       <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
       <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
       <p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API's documentation.</p>
+
+      <h1 id="monsters">Monsters</h1>
+      <table id="monDB" class="monDB">
+
+        <thead>
+          <tr>
+            <th class="sort" data-sort="item-name">Monster</th>
+            <th class="sort" data-sort="stats">Stats</th>
+            <th>Spells</th>
+          </tr>
+        </thead>
+
+        <tbody class="list">
+          {% for monDB in monDBs %}
+          {% for monster in monDB.mondb.monster %}
+          <tr id="{{monster.name|replace(" ", "")}}">
+            {# ====== Monster Name ====== #}
+            <td class="monster-name" data-name="{{monster.name}}">
+              {% if monster.idlesprite.down.endswith(".spr") %}
+              <img class="item" src="game_images/{{monDB.mod_dir}}/{{monster.idlesprite.down}}.png">
+              {% else %}
+              <img class="item" src="game_images/{{monDB.mod_dir}}/{{monster.idlesprite.down}}">
+              {% endif %}
+              {{monster.name}}
+            </td>
+
+            {# ====== Stats ====== #}
+            <td class="monster-stats">
+            </td>
+
+            {# ====== Spells ====== #}
+            <td class="monster-spells">
+            </td>
+
+          </tr>
+          {% endfor %}
+          {% endfor %}
     </div>
   </div>
   <script>
