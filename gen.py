@@ -71,6 +71,37 @@ SECONDARY_STATS = {
     23: ("wandburn", "Wand Crafting"),
 }
 
+DAMAGE_TYPES = [
+    "acidic",
+    "aethereal",
+    "asphyxiative",
+    "blasting",
+    "conflagratory",
+    "crushing",
+    "existential",
+    "hyperborean",
+    "necromantic",
+    "piercing",
+    "putrefying",
+    "righteous",
+    "slashing",
+    "toxic",
+    "transmutative",
+    "voltaic",
+]
+
+WEAPON_TYPES = {
+    0: "sword",
+    1: "axe",
+    2: "mace",
+    3: "staff",
+    4: "bow",
+    5: "thrown",
+    6: "bolt",
+    7: "dagger",
+    8: "polearm",
+}
+
 
 def write_first_sprite_frame(spr_infilename, png_outfilename):
     pass
@@ -229,6 +260,8 @@ def main():
     template = j2_env.get_template("index.html.j2")
     html = template.render(itemDBs=itemDBs,
                            monDBs=monDBs,
+                           WEAPON_TYPES=WEAPON_TYPES,
+                           DAMAGE_TYPES=DAMAGE_TYPES,
                            PRIMARY_STATS=PRIMARY_STATS,
                            SECONDARY_STATS=SECONDARY_STATS)
     print(html)

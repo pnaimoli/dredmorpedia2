@@ -46,6 +46,9 @@
       text-overflow: ellipsis;
       overflow: hidden;
     }
+    #itemDB th.type, #itemDB td.type {
+      display: none;
+    }
     th {
       white-space: nowrap;
     }
@@ -63,6 +66,13 @@
     }
     div.stat-group, div.recipe-group {
       white-space: nowrap;
+    }
+    span.stat-filter-group {
+      display: inline-block;
+      vertical-align: top;
+    }
+    span.stat-filter-group:first-of-type {
+      padding-left: 15px;
     }
   </style>
 
@@ -84,8 +94,34 @@
     <div id="toc"></div>
 
     <div class="toc-footer">
-      <img class="stat_filter" data-stat-class="damage" data-stat-type="acidic" src="game_images/ui/icons/dmg_acidic.png">
-      <img class="stat_filter" data-stat-class="damage" data-stat-type="conflagratory" src="game_images/ui/icons/dmg_conflagratory.png">
+      <span class="stat-filter-group">
+        {% for damage_type in DAMAGE_TYPES %}
+        <img class="stat-filter" title="{{damage_type|capitalize}} Damage" data-stat-class="damage" data-stat-type="{{damage_type}}" src="game_images/ui/icons/dmg_{{damage_type}}.png">
+        <img class="stat-filter" title="{{damage_type|capitalize}} Resistance" data-stat-class="resist" data-stat-type="{{damage_type}}" src="game_images/ui/icons/dmg_{{damage_type}}_resist.png">
+        {% if not loop.last %}
+        <br>
+        {% endif %}
+        {% endfor %}
+      </span>
+
+      <span class="stat-filter-group">
+        {% for i, type in PRIMARY_STATS.items() %}
+        <img class="stat-filter" title="{{type|capitalize}}" data-stat-class="primary" data-stat-type="{{type}}" src="game_images/ui/icons/stat_{{type}}.png">
+        {% if not loop.last %}
+        <br>
+        {% endif %}
+        {% endfor %}
+      </span>
+
+      <span class="stat-filter-group">
+        {% for i, (type, name) in SECONDARY_STATS.items() %}
+        <img class="stat-filter" title="{{name}}" data-stat-class="secondary" data-stat-type="{{type}}" src="game_images/ui/icons/stat_{{type}}.png">
+        {% if not loop.last and loop.index % 2 == 0%}
+        <br>
+        {% endif %}
+        {% endfor %}
+      </span>
+
     </div>
 
     <ul class="toc-footer">
@@ -107,11 +143,12 @@
 
         <thead>
           <tr>
-            <th class="sort" data-sort="name">Item</th>
-            <th class="sort" data-sort="level">Level</th>
-            <th class="sort" data-sort="price"><img src="game_images/items/cash1.png"></th>
-            <th class="sort" data-sort="artifact">Artifact</th>
-            <th class="sort" data-sort="stats">Stats</th>
+            <th class="name sort" data-sort="name">Item</th>
+            <th class="type sort" data-sort="type">Type</th>
+            <th class="level sort" data-sort="level">Level</th>
+            <th class="price sort" data-sort="price"><img src="game_images/items/cash1.png"></th>
+            <th class="artifact sort" data-sort="artifact">Artifact</th>
+            <th class="stats sort" data-sort="stats">Stats</th>
             <th>Recipes</th>
             <th>Used To Craft</th>
             <th>Effects</th>
@@ -126,6 +163,24 @@
             <td class="name" data-name="{{item.name}}">
               <img class="item" src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
               {{item.name}}
+            </td>
+
+            {# ====== Item Type ====== #}
+            {% if "armour" in item %}{% set item_type = item.armour.type|lower %}
+            {% elif "food" in item and "hp" in item.food %}{% set item_type = "food" %}
+            {% elif "food" in item and "mp" in item.food %}{% set item_type = "booze" %}
+            {% elif "potion" in item %}{% set item_type = "potion" %}
+            {% elif "trap" in item %}{% set item_type = "trap" %}
+            {% elif "gem" in item %}{% set item_type = "gem" %}
+            {% elif "wand" in item %}{% set item_type = "wand" %}
+            {% elif "toolkit" in item %}{% set item_type = "toolkit" %}
+            {% elif "mushroom" in item %}{% set item_type = "mushroom" %}
+            {% elif "weapon" in item %}{% set item_type = WEAPON_TYPES[item.type|int] %}
+            {% elif "alchemical" in item %}{% set item_type = "alchemical" %}
+            {% else %}{% set item_type = "unknown" %}
+            {% endif %}
+            <td class="type" data-type="{{item_type}}">
+              {{item_type|capitalize}}
             </td>
 
             {# ====== Item Level ====== #}
@@ -163,6 +218,17 @@
               {% if damageType == "hit" %}{% continue %}{% endif %}
               {% if damageType == "thrown" %}{% continue %}{% endif %}
               {% if damageType == "cantargetfloor" %}{% continue %}{% endif %}
+                <div class="stat" data-stat-class="damage" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
+                </div>
+              {% endfor %}
+              </div>
+              {% endif %}
+
+              {% if "damagebuff" in item %}
+              <div class="stat-group">
+              {% for damageType, amount in item.damagebuff|dictsort %}
+              {% set damageType = damageType %}
                 <div class="stat" data-stat-class="damage" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
                   <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
                 </div>
@@ -230,6 +296,16 @@
               {% if "weapon" in item and "hit" in item.weapon %}
               ON HIT: ???
               {% endif %}
+              {% if "targethiteffectbuff" in item %}
+              ON HIT: ???
+              {% endif %}
+              {% if "crossbowshotbuff" in item %}
+              ON HIT: ???
+              {% endif %}
+              {% if "playerhiteffectbuff" in item %}
+              ON HIT: ???
+              {% endif %}
+
             </td>
           </tr>
           {% endfor %}
@@ -310,6 +386,7 @@
   var options = {
   valueNames: [
     { name: "name", attr: "data-name" },
+    { name: "type", attr: "data-type" },
     "level",
     "price",
     "artifact",
@@ -340,7 +417,7 @@
     monTable.search(searchString, [ "name" ]);
   });
 
-  $(".stat_filter").click(function() {
+  $(".stat-filter").click(function() {
     var attr_selector = "[data-stat-class=" + $(this).attr("data-stat-class") + "]" +
                         "[data-stat-type="  + $(this).attr("data-stat-type") + "]";
     $(this).toggleClass("filtered");
