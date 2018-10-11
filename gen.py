@@ -2,8 +2,8 @@
 from html.parser import HTMLParser
 import jinja2
 import os
-import pdb
 import pprint
+import re
 import shutil
 import sprite_reader
 import xmltodict
@@ -103,24 +103,10 @@ WEAPON_TYPES = {
 }
 
 
-def write_first_sprite_frame(spr_infilename, png_outfilename):
-    pass
-
-def normalize_first_xml_sprite_name(xml_infilename):
-    pass
-
-def convert_xml_to_yaml(xml_infilename, yaml_outfilename):
-    pass
-
-def prepare_mod(directory):
-    # Convert all xml files to yaml and copy them over
-    # craftDB, monDB, itemDB, encrustDB, skillDB, and spellDB
-
-    # Copy over all required images and sprite files, making sure everything
-    # is a png file
-    pass
-
-def get_images(html):
+def get_images(html_str):
+    """ Retrieves all <img/> tags and returns the value of the
+        'src' attribute
+    """
     class MyParse(HTMLParser):
         def __init__(self, *args, **kwargs):
             self.images = set()
@@ -131,13 +117,16 @@ def get_images(html):
                 self.images.add(dict(attrs)["src"])
 
     h=MyParse()
-    h.feed(html)
+    h.feed(html_str)
 
     images = (img for img in h.images if img.startswith(IMAGE_PREFIX))
 
     return images
 
 def spr_to_png(dest_img):
+    """ Takes a .spr image and writes it out to the provided path
+        in .png format.
+    """
     # Remove IMAGE_PREFIX from the beginning and ".png" from the end to
     # get the original ".spr" filename
     src_img = dest_img[len(IMAGE_PREFIX):(len(dest_img) - 4)]
@@ -147,9 +136,14 @@ def spr_to_png(dest_img):
         src_img = src_img.split("/", 1)[-1]
 
     images = sprite_reader.read(os.path.join(DD_DIR, src_img))
+    if not os.path.exists(os.path.dirname(dest_img)):
+        os.makedirs(os.path.dirname(dest_img))
     images[0].save(dest_img)
 
 def copy_images(html):
+    """ Parses some html and copies over all of the required images
+        from the main dungeons of dredmor directory.
+    """
     # Copy images over
     for dest_img in get_images(html):
         if dest_img.endswith(".spr.png"):
@@ -202,29 +196,29 @@ def normalize_key(key_str):
 def main():
     itemDBs = []
     monDBs = []
+    craftDBs = []
+    encrustDBs = []
     for mod in [".", "expansion", "expansion2", "expansion3"]:
         # Process each itemDB.xml
         with open(os.path.join(DD_DIR, mod, "game", "itemDB.xml")) as file_:
-            itemDB = xmltodict.parse(file_.read())
+            def force_list(path, key, value):
+                return key.lower() == "primarybuff" or \
+                       key.lower() == "secondarybuff"
+
+            itemDB = xmltodict.parse(file_.read(), force_list=force_list)
             itemDB["mod_dir"] = mod
 
             # Make all keys lowercase
             itemDB = change_dict_naming_convention(itemDB, normalize_key)
 
-            # Make primary/secondarybuff always a list even if there's only one
-            for item in itemDB["itemdb"]["item"]:
-                if "primarybuff" in item:
-                    if not isinstance(item["primarybuff"], list):
-                        item["primarybuff"] = [item["primarybuff"]]
-                if "secondarybuff" in item:
-                    if not isinstance(item["secondarybuff"], list):
-                        item["secondarybuff"] = [item["secondarybuff"]]
-
             itemDBs.append(itemDB)
 
         # Process each monDB.xml
         with open(os.path.join(DD_DIR, mod, "game", "monDB.xml")) as file_:
-            monDB = xmltodict.parse(file_.read())
+            def force_list(path, key, value):
+                return key.lower() == "monster"
+
+            monDB = xmltodict.parse(file_.read(), force_list=force_list)
             monDB["mod_dir"] = mod
 
             # Make all keys lowercase
@@ -251,15 +245,51 @@ def main():
 
             monDBs.append(monDB)
 
-#    PP.pprint(monDBs)
+        # Process each craftDB.xml
+        with open(os.path.join(DD_DIR, mod, "game", "craftDB.xml")) as file_:
+            def force_list(path, key, value):
+                return key.lower() == "input" or \
+                       key.lower() == "output"
+
+            craftDB = xmltodict.parse(file_.read(), force_list=force_list)
+
+            # Make all keys lowercase
+            craftDB = change_dict_naming_convention(craftDB, normalize_key)
+
+            craftDBs.append(craftDB)
+
+        # Process each encrustDB.xml
+        xml_filename = os.path.join(DD_DIR, mod, "game", "encrustDB.xml")
+        if os.path.exists(xml_filename):
+            with open(xml_filename) as file_:
+                def force_list(path, key, value):
+                    return key.lower() == "primarybuff" or \
+                           key.lower() == "secondarybuff" or \
+                           key.lower() == "input" or \
+                           key.lower() == "slot"
+
+                encrustDB = xmltodict.parse(file_.read(), force_list=force_list)
+
+                # Make all keys lowercase
+                encrustDB = change_dict_naming_convention(encrustDB, normalize_key)
+
+                encrustDBs.append(encrustDB)
+
+#    PP.pprint(encrustDBs)
 
     # Templatize!!!
     j2_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."),
-                                extensions=['jinja2.ext.loopcontrols'],
+                                extensions=["jinja2.ext.loopcontrols", "jinja2.ext.do"],
                                 lstrip_blocks=True, trim_blocks=True)
+
+    def nametoid(input_str):
+        return re.sub("[ '-]", "", input_str).lower()
+    j2_env.filters["nametoid"] = nametoid
+
     template = j2_env.get_template("index.html.j2")
     html = template.render(itemDBs=itemDBs,
                            monDBs=monDBs,
+                           craftDBs=craftDBs,
                            WEAPON_TYPES=WEAPON_TYPES,
                            DAMAGE_TYPES=DAMAGE_TYPES,
                            PRIMARY_STATS=PRIMARY_STATS,

@@ -52,9 +52,6 @@
     th {
       white-space: nowrap;
     }
-    table.tooltip-ref td {
-      padding: 5px;
-    }
     img.item {
       vertical-align:middle
     }
@@ -79,8 +76,6 @@
   <link href="static/layout.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link href="static/tooltipster-master/css/tooltipster.bundle.css" rel="stylesheet">
-  <script src="static/tooltipster-master/js/tooltipster.bundle.js"></script>
   <script src="static/toc.js"></script>
 </head>
 <body>
@@ -158,10 +153,10 @@
         <tbody class="list">
           {% for itemDB in itemDBs %}
           {% for item in itemDB.itemdb.item %}
-          <tr id="{{item.name|replace(" ", "")|replace("'", "")}}">
+          <tr id="{{item.name|nametoid}}">
             {# ====== Item Name ====== #}
             <td class="name" data-name="{{item.name}}">
-              <img class="item" src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
+              <img class="item" title="{{item.name}}" src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
               {{item.name}}
             </td>
 
@@ -282,16 +277,32 @@
 
             {# ====== Crafting Recipe ====== #}
             <td>
-              <div class="recipe-group">
-                <img class="stat" src="game_images/ui/icons/stat_tinkerer.png"> 7
-                <a class="ref" href="#ClockworkBolt-thrower"><img class="item" src="game_images/items/crossbow_clockwork.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
-                <a class="ref" href="#Absinthe"><img class="item" src="game_images/items/component_aetheric_power.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
-                <a class="ref" href="#SSSB"><img class="item" src="game_images/items/component_stem_bolt.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
-                <a class="ref" href="#SBD"><img class="item" src="game_images/items/component_bronze_discs.png" class="icon" onerror="Dredmor.Helper.RecoverImageError(this)"></a>
-              </div>
             </td>
+
             <td>
+              {#
+              {% for craftDB in craftDBs %}
+              {% for craft in craftDB.craftdb.craft %}
+              {% for input in craft.input %}
+              {% if input.name|lower == item.name|lower %}
+              <a class="ref" href="#{{craft.output[0].name|nametoid}}">
+                {% for itemDB in itemDBs %}
+                {% for item in itemDB.itemdb.item %}
+                {% if item.name|nametoid == craft.output[0].name|nametoid %}
+                <img class="item" title="{{item.name}}" src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
+                {% break %}
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+              </a>
+              {% break %}
+              {% endif %}
+              {% endfor %}
+              {% endfor %}
+              {% endfor %}
+              #}
             </td>
+
             <td>
               {% if "weapon" in item and "hit" in item.weapon %}
               ON HIT: ???
@@ -325,7 +336,6 @@
             <th class="sort" data-sort="taxonomy">Taxonomy</th>
             <th class="sort" data-sort="level">Level</th>
             <th class="sort" data-sort="special">Special</th>
-            <th class="sort" data-sort="hell">Hell?</th>
             <th class="sort" data-sort="stats">Stats</th>
             <th>Spells</th>
           </tr>
@@ -333,8 +343,8 @@
 
         <tbody class="list">
           {% for monDB in monDBs %}
-          {% for monster in monDB.mondb.monster %}
-          <tr id="{{monster.name|replace(" ", "")|replace("'", "")}}">
+          {% for monster in monDB.mondb.monster recursive %}
+          <tr id="{{monster.name|nametoid}}">
             {# ====== Sprite ====== #}
             <td class="sprite">
               <img class="monster" 
@@ -364,11 +374,6 @@
               {{monster.special}}
             </td>
 
-            {# ====== Diggle Hell? ====== #}
-            <td class="hell">
-              {{monster.diggleHell}}
-            </td>
-
             {# ====== Stats ====== #}
             <td class="stats">
             </td>
@@ -378,6 +383,16 @@
             </td>
 
           </tr>
+          {% for child_monster in monster.monster %}
+            {% do child_monster.update({"parent": monster}) %}
+            {% if "idlesprite" not in child_monster %}
+              {% do child_monster.update({"idlesprite": {"down": monster.idlesprite.down}}) %}
+            {% endif %}
+            {% if "taxa" not in child_monster %}
+              {% do child_monster.update({"taxa": monster.taxa}) %}
+            {% endif %}
+          {% endfor %}
+          {{ loop(monster.monster) }}
           {% endfor %}
           {% endfor %}
     </div>
@@ -403,7 +418,6 @@
     "taxonomy",
     "level",
     "special",
-    "hell",
     "stats",
   ]
   };
@@ -428,48 +442,6 @@
     } else {
       itemTable.filter();
     }
-  });
-
-
-  $("a.ref").tooltipster({
-    content: "Loading...",
-    trigger: "custom",
-    triggerOpen: {
-        mouseenter: true
-    },
-    triggerClose: {
-        click: true
-    },
-    functionBefore: function(instance, helper) {
-      var element_id = $(helper.origin).attr("href");
-      var element = $(element_id);
-  
-      // Build HTML - checking if we need to wrap
-      var html = element.html();
-  
-      if (!element.is("tr")) {
-        return;
-      }
-  
-      html_text = '<table class="itemDB tooltip-ref"><tbody><tr>' + html + '</tr></tbody></table>';
-      html = $(html)
-      html.find("a.ref").tooltipster({
-        content: "Loading2...",
-        trigger: "custom",
-        triggerOpen: {
-            mouseenter: true
-        },
-        triggerClose: {
-            click: true
-        },
-        functionBefore: instance.__options.functionBefore,
-        interactive: true
-      });
-      
-      instance.content($(html));
-      instance.content()
-    },
-    interactive: true,
   });
 
   sum_stats = function(elem, selector) {
