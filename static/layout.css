@@ -243,12 +243,6 @@ margin-top: 0;
   background-color: #fdfdfd;
 }
 
-.content hr {
-  margin: 2em 0;
-  border-top: 2px solid #2E3336;
-  border-bottom: 2px solid #F3F7F9;
-}
-
 .content table {
   margin-bottom: 1em;
   overflow: auto;
@@ -267,7 +261,7 @@ margin-top: 0;
 }
 
 .content table td {
-  padding: 10px;
+  padding: 2px;
 }
 
 .content table tr:last-child {

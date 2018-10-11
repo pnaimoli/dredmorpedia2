@@ -64,6 +64,9 @@
     div.stat-group, div.recipe-group {
       white-space: nowrap;
     }
+    div.stat-group:not(:first-of-type) {
+      border-top: 1px dotted #8c8b8b;
+    }
     span.stat-filter-group {
       display: inline-block;
       vertical-align: top;
@@ -111,7 +114,7 @@
       <span class="stat-filter-group">
         {% for i, (type, name) in SECONDARY_STATS.items() %}
         <img class="stat-filter" title="{{name}}" data-stat-class="secondary" data-stat-type="{{type}}" src="game_images/ui/icons/stat_{{type}}.png">
-        {% if not loop.last and loop.index % 2 == 0%}
+        {% if not loop.last and loop.index % 2 == 0 %}
         <br>
         {% endif %}
         {% endfor %}
@@ -227,6 +230,9 @@
                 <div class="stat" data-stat-class="damage" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
                   <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
                 </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
               {% endfor %}
               </div>
               {% endif %}
@@ -238,6 +244,9 @@
                 <div class="stat" data-stat-class="resist" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
                   <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance"> {{amount}}
                 </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
               {% endfor %}
               </div>
               {% endif %}
@@ -250,6 +259,9 @@
                 <div class="stat" data-stat-class="primary" data-stat-type="{{stat}}" data-stat-value="{{buff.amount}}">
                   <img class="stat" src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}"> {{buff.amount}}
                 </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
               {% if loop.last %}
               </div>
               {% endif %}
@@ -263,6 +275,9 @@
                 <div class="stat" data-stat-class="secondary" data-stat-type="{{stat[0]}}" data-stat-value="{{buff.amount}}">
                   <img class="stat" src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}"> {{buff.amount}}
                 </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
               {% if loop.last %}
               </div>
               {% endif %}
