@@ -216,7 +216,8 @@ def main():
         # Process each monDB.xml
         with open(os.path.join(DD_DIR, mod, "game", "monDB.xml")) as file_:
             def force_list(path, key, value):
-                return key.lower() == "monster"
+                return key.lower() == "monster" or \
+                       key.lower() == "secondarybuff"
 
             monDB = xmltodict.parse(file_.read(), force_list=force_list)
             monDB["mod_dir"] = mod

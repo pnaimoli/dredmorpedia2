@@ -350,8 +350,11 @@
             <th class="sort" data-sort="name">Name</th>
             <th class="sort" data-sort="taxonomy">Taxonomy</th>
             <th class="sort" data-sort="level">Level</th>
-            <th class="sort" data-sort="special">Special</th>
-            <th class="sort" data-sort="stats">Stats</th>
+            <th class="sort" data-sort="experience">
+              <img title="Experience" src="game_images/ui/icons/xp_medal.png">
+            </th>
+            <th>Base Stats</th>
+            <th>Bonus Stats</th>
             <th>Spells</th>
           </tr>
         </thead>
@@ -384,13 +387,122 @@
               {{monster.level}}
             </td>
 
-            {# ====== Special ====== #}
-            <td class="special">
-              {{monster.special}}
+            {# ====== Level ====== #}
+            <td class="experience">
+              {{(monster.stats|default({})).xpvalue}}
             </td>
 
             {# ====== Stats ====== #}
             <td class="stats">
+              {# Taken from https://web.archive.org/web/20120721034108/http://www.dredmorwiki.com/wiki/Stats #}
+              {% set s = dict() %}
+              {% do s.update({"burliness": ((monster.stats|default({})).numfig|default(0))|int*2 +
+                                   ((monster.stats|default({})).numrog|default(0))|int +
+                                   ((monster.stats|default({})).numwiz|default(0))|int}) %}
+              {% do s.update({"sagacity": ((monster.stats|default({})).numfig|default(0))|int +
+                                   ((monster.stats|default({})).numrog|default(0))|int +
+                                   ((monster.stats|default({})).numwiz|default(0))|int*2}) %}
+              {% do s.update({"nimbleness": ((monster.stats|default({})).numfig|default(0))|int +
+                                   ((monster.stats|default({})).numrog|default(0))|int*2 +
+                                   ((monster.stats|default({})).numwiz|default(0))|int}) %}
+              {% do s.update({"caddishness": ((monster.stats|default({})).numfig|default(0))|int*2 +
+                                   ((monster.stats|default({})).numrog|default(0))|int*2 +
+                                   ((monster.stats|default({})).numwiz|default(0))|int}) %}
+              {% do s.update({"stubborness":
+                                   ((monster.stats|default({})).numfig|default(0))|int*2 +
+                                   ((monster.stats|default({})).numrog|default(0))|int +
+                                   ((monster.stats|default({})).numwiz|default(0))|int*2}) %}
+              {% do s.update({"savvy": ((monster.stats|default({})).numfig|default(0))|int +
+                                   ((monster.stats|default({})).numrog|default(0))|int*2 +
+                                   ((monster.stats|default({})).numwiz|default(0))|int*2}) %}
+
+              <div class="stat-group">
+              {% for (stat, value) in s|dictsort %}
+              {% if value > 0 %}
+                <div class="stat" data-stat-class="primary" data-stat-type="{{stat}}" data-stat-value="{{value}}">
+                  <img class="stat" src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}"> {{value}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% endif %}
+              {% endfor %}
+              </div>
+
+              {% set cs = dict() %}
+              {% do cs.update({"meleepower": (s.burliness - 5) / 3}) %}
+              {% do cs.update({"crit": s.caddishness / 2}) %}
+              {% do cs.update({"counter": s.nimbleness/6 + s.caddishness / 6}) %}
+              {% do cs.update({"magicpower": s.sagacity / 2}) %}
+              {% do cs.update({"haywire": s.savvy / 2}) %}
+              {% do cs.update({"magicresistance": s.stubborness / 2}) %}
+              {% do cs.update({"block": s.burliness / 6 + s.stubborness / 6}) %}
+              {% do cs.update({"dodge": s.nimbleness / 2}) %}
+              {% do cs.update({"edr": s.nimbleness / 3}) %}
+              {% do cs.update({"sneakiness": 0.75 * (s.nimbleness + s.savvy) - 20}) %}
+              {% do cs.update({"life": s.burliness + s.caddishness +5}) %}
+              {% do cs.update({"mana": 2*s.sagacity + 5}) %}
+              <div class="stat-group">
+              {% for (stat, value) in cs|dictsort %}
+              {% if value > 0 %}
+                <div class="stat" data-stat-class="secondary" data-stat-type="{{stat}}" data-stat-value="{{value}}">
+                  <img class="stat" src="game_images/ui/icons/stat_{{stat}}.png" title="{% for (i, (s, name)) in SECONDARY_STATS.items() %}{% if s == stat %}{{name}}{%endif%}{%endfor%}"> {{value|round(method='floor')|int}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% endif %}
+              {% endfor %}
+              </div>
+
+              </div>
+            </td>
+
+            {# ====== Bonus Stats ====== #}
+            <td class="bonus-stats">
+              {% if "damage" in monster %}
+              <div class="stat-group">
+              {% for damageType, amount in monster.damage|dictsort %}
+              {% set damageType = damageType %}
+                <div class="stat" data-stat-class="damage" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% endfor %}
+              </div>
+              {% endif %}
+
+              {% if "resistances" in monster %}
+              <div class="stat-group">
+              {% for damageType, amount in monster.resistances|dictsort %}
+              {% set damageType = damageType %}
+                <div class="stat" data-stat-class="resist" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance"> {{amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% endfor %}
+              </div>
+              {% endif %}
+
+              {% for buff in monster.secondarybuff|sort(attribute="id")  %}
+              {% set stat = SECONDARY_STATS[buff.id|int] %}
+              {% if loop.first %}
+              <div class="stat-group">
+              {% endif %}
+                <div class="stat" data-stat-class="secondary" data-stat-type="{{stat[0]}}" data-stat-value="{{buff.amount}}">
+                  <img class="stat" src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}"> {{buff.amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% if loop.last %}
+              </div>
+              {% endif %}
+              {% endfor %}
             </td>
 
             {# ====== Spells ====== #}
@@ -432,8 +544,7 @@
     "name",
     "taxonomy",
     "level",
-    "special",
-    "stats",
+    "experience",
   ]
   };
 
