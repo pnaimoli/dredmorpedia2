@@ -339,6 +339,132 @@
         </tbody>
       </table>
 
+      <h1 id="encrusts">Encrusts</h1>
+      <table id="encrustDB" class="encrustDB">
+        <thead>
+          <tr>
+            <th class="name sort" data-sort="name">Encrust Name</th>
+            <th class="type sort" data-sort="type">Type</th>
+            <th class="instability sort" data-sort="instability">Instability</th>
+            <th class="recipe sort" data-sort="recipe">Recipe</th>
+            <th>Stats</th>
+            <th>Power</th>
+          </tr>
+        </thead>
+
+        <tbody class="list">
+          {% for encrustDB in encrustDBs %}
+          {% for encrust in encrustDB.encrustdb.encrust %}
+          <tr id="{{encrust.name|nametoid}}">
+            {# ====== Encrust Name ====== #}
+            <td class="name" data-name="{{encrust.name}}">
+              {{encrust.name}}
+            </td>
+
+            <td class="type" data-type="">
+              {% for slot in encrust.slot %}
+              <img width="32px" height="32px" src="game_images/{{encrustDB.mod_dir}}/ui/encrusting/encrust_{{slot.type|lower}}.png">
+              {% endfor %}
+            </td>
+
+            <td class="instability">
+              <img class="stat" src="game_images/{{encrustDB.mod_dir}}/ui/encrusting/encrustment_instability.png">
+              {{encrust.instability.amount}}
+            </td>
+
+            {# ====== Crafting Recipe ====== #}
+            <td>
+              {% if encrust.tool.tag == "ingot" %}
+              <img class="stat" width="16px" height="16px" src="game_images/items/tool_ingot_press.png">
+              {% else %}
+              <img class="stat" src="game_images/ui/icons/stat_{{encrust.tool.tag}}.png">
+              {{encrust.skill.level}}
+              {% endif %}
+
+              {% for input in encrust.input %}
+              {{input.name}}
+              {% endfor %}
+            </td>
+
+            {# ====== Stats ====== #}
+            <td class="stats">
+              {% if "damagebuff" in encrust %}
+              <div class="stat-group">
+              {% for damageType, amount in encrust.damagebuff|dictsort %}
+              {% set damageType = damageType %}
+                <div class="stat" data-stat-class="damage" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% endfor %}
+              </div>
+              {% endif %}
+
+              {% if "resistbuff" in encrust %}
+              <div class="stat-group">
+              {% for damageType, amount in encrust.resistbuff|dictsort %}
+              {% set damageType = damageType %}
+                <div class="stat" data-stat-class="resist" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance"> {{amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% endfor %}
+              </div>
+              {% endif %}
+
+              {% for buff in encrust.primarybuff|sort(attribute="id") %}
+              {% set stat = PRIMARY_STATS[buff.id|int] %}
+              {% if loop.first %}
+              <div class="stat-group">
+              {% endif %}
+                <div class="stat" data-stat-class="primary" data-stat-type="{{stat}}" data-stat-value="{{buff.amount}}">
+                  <img class="stat" src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}"> {{buff.amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% if loop.last %}
+              </div>
+              {% endif %}
+              {% endfor %}
+
+              {% for buff in encrust.secondarybuff|sort(attribute="id")  %}
+              {% set stat = SECONDARY_STATS[buff.id|int] %}
+              {% if loop.first %}
+              <div class="stat-group">
+              {% endif %}
+                <div class="stat" data-stat-class="secondary" data-stat-type="{{stat[0]}}" data-stat-value="{{buff.amount}}">
+                  <img class="stat" src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}"> {{buff.amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% if loop.last %}
+              </div>
+              {% endif %}
+              {% endfor %}
+            </td>
+
+            {# ====== Powers ====== #}
+            <td>
+              {% if encrust.power %}
+              {% if encrust.power.chance %}
+              {{(encrust.power.chance|float*100)|int}}% of
+              {% endif %}
+              <b>{{encrust.power.name}}</b>
+              {% endif %}
+            </td>
+
+          </tr>
+          {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
+
       <h1 id="skills">Skills</h1>
 
       <h1 id="monsters">Monsters</h1>
@@ -551,9 +677,21 @@
   var monTable = new List("monDB", options);
   monTable.sort("level", { order: "asc"});
 
+  options = {
+  valueNames: [
+    "name",
+    "type",
+    "instability",
+  ]
+  };
+
+  var encrustTable = new List("encrustDB", options);
+  encrustTable.sort("name", { order: "asc"});
+
   $("#input-search").keyup(function() {
     var searchString = $(this).val();
     itemTable.search(searchString, [ "name" ]);
+    encrustTable.search(searchString, [ "name" ]);
     monTable.search(searchString, [ "name" ]);
   });
 

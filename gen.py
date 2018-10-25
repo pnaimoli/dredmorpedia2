@@ -21,6 +21,15 @@ IMAGE_CORRECTION_MAP = {
         "dmg_blasting.png": "dmg_blast.png",
         "dmg_necromantic_resist.png": "dmg_necromatic_resist.png",
         "dmg_necromantic.png": "dmg_necromatic.png",
+        "encrust_hands.png": "encrust_gauntlets.png",
+        "encrust_legs.png": "encrust_pants.png",
+        "encrust_waist.png": "encrust_belt.png",
+        "encrust_neck.png": "encrust_amulet.png",
+        "encrust_head.png": "encrust_helm.png",
+        "encrust_ranged.png": "encrust_crossbow.png",
+        "encrust_chest.png": "encrust_armour.png",
+        "encrust_feet.png": "encrust_boots.png",
+        "stat_lathe.png": "stat_wandburn.png",
         }
 
 WEAPON_TYPES = {
@@ -270,6 +279,7 @@ def main():
                            key.lower() == "slot"
 
                 encrustDB = xmltodict.parse(file_.read(), force_list=force_list)
+                encrustDB["mod_dir"] = mod
 
                 # Make all keys lowercase
                 encrustDB = change_dict_naming_convention(encrustDB, normalize_key)
@@ -289,6 +299,7 @@ def main():
 
     template = j2_env.get_template("index.html.j2")
     html = template.render(itemDBs=itemDBs,
+                           encrustDBs=encrustDBs,
                            monDBs=monDBs,
                            craftDBs=craftDBs,
                            WEAPON_TYPES=WEAPON_TYPES,
