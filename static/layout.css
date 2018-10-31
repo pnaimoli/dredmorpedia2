@@ -55,6 +55,10 @@ td, th {
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 /*******************************************************************************
  * PAGE LAYOUT AND CODE SAMPLE BACKGROUND
  ******************************************************************************/
@@ -250,7 +254,7 @@ margin-top: 0;
 
 .content table th,.content table td {
   text-align: left;
-  vertical-align: top;
+  vertical-align: middle;
   line-height: 1.6;
 }
 
