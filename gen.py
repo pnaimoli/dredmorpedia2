@@ -32,18 +32,6 @@ IMAGE_CORRECTION_MAP = {
         "stat_lathe.png": "stat_wandburn.png",
         }
 
-WEAPON_TYPES = {
-    0: "SWORD",
-    1: "AXE",
-    2: "MACE",
-    3: "STAFF",
-    4: "BOW",
-    5: "THROWN",
-    6: "BOLT",
-    7: "DAGGER",
-    8: "POLEARM",
-}
-
 PRIMARY_STATS = {
     0: "burliness",
     1: "sagacity",

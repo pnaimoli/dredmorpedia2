@@ -49,6 +49,10 @@
     #itemDB th.type, #itemDB td.type {
       display: none;
     }
+    /* Large enough to fit 4 recipe outputs per line */
+    table.itemDB td.used-in {
+        max-width: 150px;
+    }
     th {
       white-space: nowrap;
     }
@@ -64,7 +68,7 @@
     div.stat-group, div.recipe-group {
       white-space: nowrap;
     }
-    div.stat-group:not(:first-of-type) {
+    div.stat-group:not(:first-of-type), div.recipe-group:not(:first-of-type) {
       border-top: 1px dotted #8c8b8b;
     }
     span.stat-filter-group {
@@ -292,11 +296,46 @@
             </td>
 
             {# ====== Crafting Recipe ====== #}
-            <td>
+            <td class="recipe">
+              {% for craftDB in craftDBs %}
+              {% for craft in craftDB.craftdb.craft %}
+              {% for output in craft.output %}
+              {% if output.name|lower == item.name|lower %}
+              <div class="recipe-group">
+                {% if craft.tool.tag|lower == "ingot" %}
+                <img src="game_images/ui/icons/stat_smithing.png">/<img src="game_images/ui/icons/stat_tinkerer.png"> {{output.skill}}
+                {% elif craft.tool.tag|lower == "still" %}
+                <img class="stat" src="game_images/ui/icons/stat_alchemy.png"> {{output.skill}}
+                {% elif craft.tool.tag|lower == "tinkerer" or
+                      craft.tool.tag|lower == "smithing" or
+                      craft.tool.tag|lower == "alchemy" or
+                      craft.tool.tag|lower == "still" or
+                      craft.tool.tag|lower == "lathe" %}
+                <img class="stat" src="game_images/ui/icons/stat_{{craft.tool.tag|lower}}.png"> {{output.skill}}
+                {% endif %}
+                {% for input in craft.input %}
+                <a class="ref" href="#{{input.name|nametoid}}">
+                  {% for itemDB in itemDBs %}
+                  {% for item in itemDB.itemdb.item %}
+                  {% if item.name|nametoid == input.name|nametoid %}
+                  <img class="item" title="{{item.name}}" src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
+                  {% break %}
+                  {% endif %}
+                  {% endfor %}
+                  {% endfor %}
+                </a>
+              {% endfor %}
+              {% if output.amount|default(1)|int != 1 %}
+              x {{output.amount}}
+              {% endif %}
+              </div>
+              {% endif %}
+              {% endfor %}
+              {% endfor %}
+              {% endfor %}
             </td>
 
-            <td>
-              {#
+            <td class="used-in">
               {% for craftDB in craftDBs %}
               {% for craft in craftDB.craftdb.craft %}
               {% for input in craft.input %}
@@ -311,12 +350,10 @@
                 {% endfor %}
                 {% endfor %}
               </a>
-              {% break %}
               {% endif %}
               {% endfor %}
               {% endfor %}
               {% endfor %}
-              #}
             </td>
 
             <td>
