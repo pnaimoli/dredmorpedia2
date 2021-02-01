@@ -288,7 +288,11 @@
               {% endif %}
               {% endfor %}
 
-              {% if "armour" in item and item.armour.randoms == "1" %}
+              {% if "armour" in item and (item.armour.randoms|default(0)|int == 1 or
+                          (item.armour.type in ["neck", "ring"] and item.armour.randoms|default(1)|int == 1))
+                          %}
+              {# All neckwear/rings are random unless specified otherwise? #}
+              {# https://web.archive.org/web/20210201192922/https://community.gaslampgames.com/threads/artifact-quality-question.2455/ #}
               <div class="stat-group">
                 <img class="stat" data-random="1" src="static/random.png" width="16px" height="16px" title="Random Stats">
               </div>
