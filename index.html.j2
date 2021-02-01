@@ -350,6 +350,8 @@
                 {% endfor %}
                 {% endfor %}
               </a>
+              {# Don't double count if a recipe takes multiple quantities of the same input #}
+              {% break %}
               {% endif %}
               {% endfor %}
               {% endfor %}
