@@ -427,7 +427,14 @@
 
               {% for input in encrust.input %}
               <a href="#{{input.name|nametoid}}">
-                <img class="item" title="{{input.name}}" id="{{input.name|nametoid}}" src="">
+                {% for itemDB in itemDBs %}
+                {% for item in itemDB.itemdb.item %}
+                {% if item.name|nametoid == input.name|nametoid %}
+                <img class="item" title="{{item.name}}" src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
+                {% break %}
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
               </a>
               {% endfor %}
             </td>

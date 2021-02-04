@@ -198,6 +198,9 @@ def main():
     for mod in [".", "expansion", "expansion2", "expansion3"]:
         # Process each itemDB.xml
         with open(os.path.join(DD_DIR, mod, "game", "itemDB.xml")) as file_:
+            # Force our xml parser to make these lists even if there's
+            # only one element that matches these keys.  This is for
+            # consistency because there _could_ be multiple elements.
             def force_list(path, key, value):
                 return key.lower() == "primarybuff" or \
                        key.lower() == "secondarybuff"
@@ -212,6 +215,7 @@ def main():
 
         # Process each monDB.xml
         with open(os.path.join(DD_DIR, mod, "game", "monDB.xml")) as file_:
+            # See force_list comment in itemDB.xml processing
             def force_list(path, key, value):
                 return key.lower() == "monster" or \
                        key.lower() == "secondarybuff"
@@ -245,6 +249,7 @@ def main():
 
         # Process each craftDB.xml
         with open(os.path.join(DD_DIR, mod, "game", "craftDB.xml")) as file_:
+            # See force_list comment in itemDB.xml processing
             def force_list(path, key, value):
                 return key.lower() == "input" or \
                        key.lower() == "output"
@@ -260,6 +265,7 @@ def main():
         xml_filename = os.path.join(DD_DIR, mod, "game", "encrustDB.xml")
         if os.path.exists(xml_filename):
             with open(xml_filename) as file_:
+                # See force_list comment in itemDB.xml processing
                 def force_list(path, key, value):
                     return key.lower() == "primarybuff" or \
                            key.lower() == "secondarybuff" or \
