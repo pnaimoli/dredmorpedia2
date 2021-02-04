@@ -195,6 +195,7 @@ def main():
     monDBs = []
     craftDBs = []
     encrustDBs = []
+    skillDBs = []
     for mod in [".", "expansion", "expansion2", "expansion3"]:
         # Process each itemDB.xml
         with open(os.path.join(DD_DIR, mod, "game", "itemDB.xml")) as file_:
@@ -280,7 +281,22 @@ def main():
 
                 encrustDBs.append(encrustDB)
 
-#    PP.pprint(encrustDBs)
+        # Process each skillDB.xml
+        with open(os.path.join(DD_DIR, mod, "game", "skillDB.xml")) as file_:
+            # See force_list comment in itemDB.xml processing
+            def force_list(path, key, value):
+                return key.lower() == "primarybuff" or \
+                       key.lower() == "secondarybuff" or \
+                       key.lower() == "loadout"
+
+            skillDB = xmltodict.parse(file_.read(), force_list=force_list)
+
+            # Make all keys lowercase
+            skillDB = change_dict_naming_convention(skillDB, normalize_key)
+
+            skillDBs.append(skillDB)
+
+#    PP.pprint(skillDBs)
 
     # Templatize!!!
     j2_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."),
@@ -296,6 +312,7 @@ def main():
                            encrustDBs=encrustDBs,
                            monDBs=monDBs,
                            craftDBs=craftDBs,
+                           skillDBs=skillDBs,
                            WEAPON_TYPES=WEAPON_TYPES,
                            DAMAGE_TYPES=DAMAGE_TYPES,
                            PRIMARY_STATS=PRIMARY_STATS,
