@@ -102,7 +102,7 @@ WEAPON_TYPES = {
 
 def get_images(html_str):
     """ Retrieves all <img/> tags and returns the value of the
-        'src' attribute
+        'src' attribute if they're from our Dredmor directory
     """
     class MyParse(HTMLParser):
         def __init__(self, *args, **kwargs):
@@ -290,6 +290,7 @@ def main():
                        key.lower() == "loadout"
 
             skillDB = xmltodict.parse(file_.read(), force_list=force_list)
+            skillDB["mod_dir"] = mod
 
             # Make all keys lowercase
             skillDB = change_dict_naming_convention(skillDB, normalize_key)
@@ -297,11 +298,16 @@ def main():
             skillDBs.append(skillDB)
 
 #    PP.pprint(skillDBs)
+#    return 0
 
     # Templatize!!!
     j2_env = jinja2.Environment(loader=jinja2.FileSystemLoader("."),
                                 extensions=["jinja2.ext.loopcontrols", "jinja2.ext.do"],
                                 lstrip_blocks=True, trim_blocks=True)
+
+    # raising exceptions in lambdas is "generally" not allowed, so we have to do
+    # it this weird way
+    j2_env.globals['raise'] = lambda msg: (_ for _ in ()).throw(Exception(msg))
 
     def nametoid(input_str):
         return re.sub("[ '-]", "", input_str).lower()

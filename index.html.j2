@@ -40,7 +40,9 @@
       top:-4px;
       right:-5px;
     }
-    table.itemDB td.name, table.monDB td.name {
+    table.itemDB td.name,
+    table.monDB td.name,
+    table.skillDB td.name {
       max-width: 200px;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -62,13 +64,22 @@
     img.stat {
       vertical-align:middle;
     }
+    img.skill {
+      vertical-align:middle;
+      width:32px;
+      height:32px;
+    }
     div.stat {
       display:inline-block;
     }
-    div.stat-group, div.recipe-group {
+    div.stat-group,
+    div.recipe-group,
+    div.loadout-group {
       white-space: nowrap;
     }
-    div.stat-group:not(:first-of-type), div.recipe-group:not(:first-of-type) {
+    div.stat-group:not(:first-of-type),
+    div.recipe-group:not(:first-of-type),
+    div.loadout-group:not(:first-of-type) {
       border-top: 1px dotted #8c8b8b;
     }
     span.stat-filter-group {
@@ -519,6 +530,84 @@
       </table>
 
       <h1 id="skills">Skills</h1>
+      <!-- For a human-generated list of vanilla skills, visit the archived page:
+        https://web.archive.org/web/20130907235710/http://www.dredmorwiki.com/wiki/Skills -->
+      <table id="skillDB" class="skillDB">
+
+        <thead>
+          <tr>
+            <th class="name">Name</th>
+            <th class="type">Type</th>
+            <th>Loadout</th>
+            <th>Flags</th>
+            <th>Abilities</th>
+          </tr>
+        </thead>
+
+        <tbody class="list">
+          {% for skillDB in skillDBs %}
+          {% for skill in skillDB.skilldb.skill %}
+          <tr id="skill{{skill.id}}">
+            <td class="name">
+              <a name="{{skill.name|nametoid}}"> </a>
+              <img class="skill" id="{{skill.name|nametoid}}" title="{{skill.name}}" src="game_images/{{skillDB.mod_dir}}/{{skill.art.icon}}">
+              {{skill.name}}
+            </td>
+            <td>
+              {{skill.type|capitalize}}
+            </td>
+            <td>
+            {% set lockpick_count = namespace(value=0) %}
+            {% for loadout in skill.loadout %}
+
+            {# First add up lockpicks, which are special and not in itemDB.xml #}
+            {% if "subtype" in loadout and loadout.subtype|lower == "lockpick" %}
+            {% set lockpick_count.value = lockpick_count.value + 1 %}
+
+            {# Next find regular items #}
+            {% elif "subtype" in loadout %}
+            {% for itemDB in itemDBs %}
+            {% for item in itemDB.itemdb.item %}
+            {% if item.name|nametoid == loadout.subtype|nametoid %}
+            <div class="loadout-group">
+              <a class="ref" href="#{{item.name|nametoid}}">
+                <img class="item" title="{{item.name}}" src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
+              </a>
+            {% if "amount" in loadout %} x {{loadout.amount}}{% endif %}
+            </div>
+            {% break %}
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+
+            {# Now do the random items#}
+            {% elif "type" in loadout %}
+            <div class="loadout-group">
+                {{loadout.type}}{% if "amount" in loadout %} x {{loadout.amount}} {% endif %}
+            </div>
+            {% else %}
+            {{ raise("Unhandled loadout in skill: " + skill.name) }}
+            {% endif %}
+            {% endfor %}
+            {% if lockpick_count.value > 0 %}
+            <div class="loadout-group">
+              <img class="item" title="Lockpick" src="game_images/items/lockpick.png"> x {{lockpick_count.value}}
+            </div>
+            {% endif %}
+            </td>
+            <td>{{skill.flags}}</td>
+            <td>
+              {% for ability in skillDB.skilldb.ability %}
+              {% if ability.skill != skill.id %}{% continue %}{% endif %}
+              {{ability.name}}
+              {% endfor %}
+            </td>
+          </tr>
+
+          {% endfor %}
+          {% endfor %}
+        </tbody>
+      </table>
 
       <h1 id="monsters">Monsters</h1>
       <table id="monDB" class="monDB">
@@ -552,7 +641,7 @@
             </td>
 
             {# ====== Monster Name ====== #}
-            <td class="name">
+            <td class="name" data-name="{{monster.name|nametoid}}">
               {{monster.name}}
             </td>
 
@@ -745,10 +834,20 @@
   var encrustTable = new List("encrustDB", options);
   encrustTable.sort("name", { order: "asc"});
 
+  options = {
+  valueNames: [
+    "name",
+    "type",
+  ]
+  };
+
+  var skillTable = new List("skillDB", options);
+
   $("#input-search").keyup(function() {
     var searchString = $(this).val();
     itemTable.search(searchString, [ "name" ]);
     encrustTable.search(searchString, [ "name" ]);
+    skillTable.search(searchString, [ "name" ]);
     monTable.search(searchString, [ "name" ]);
   });
 
