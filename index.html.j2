@@ -49,6 +49,13 @@
     #itemDB th.type, #itemDB td.type {
       display: none;
     }
+    table#abilityDB th.name, table#abilityDB td.name {
+      text-overflow: unset;
+      width: 160px;
+    }
+    table#abilityDB th.description, table#abilityDB td.description {
+      width: 400px;
+    }
     /* Large enough to fit 4 recipe outputs per line */
     table.itemDB td.used-in {
         max-width: 150px;
@@ -66,6 +73,17 @@
       vertical-align:middle;
       width:32px;
       height:32px;
+    }
+    img.ability {
+      vertical-align:middle;
+      width:32px;
+      height:32px;
+    }
+    span.ability-name {
+      vertical-align:middle;
+      display:inline-block;
+      white-space:normal;
+      max-width:120px;
     }
     div.stat {
       display:inline-block;
@@ -551,7 +569,7 @@
       <h1 id="skills">Skills</h1>
       <!-- For a human-generated list of vanilla skills, visit the archived page:
         https://web.archive.org/web/20130907235710/http://www.dredmorwiki.com/wiki/Skills -->
-      <table id="skillDB" class="skillDB">
+      <table id="skillDB">
 
         <thead>
           <tr>
@@ -622,11 +640,11 @@
 
             {# ====== Abilities ====== #}
             <td>
-              <table>
+              <table id="abilityDB">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <th class="name">Name</th>
+                    <th class="description">Description</th>
                     <th>Stats</th>
                     <th>Item</th>
                     <th>Spells</th>
@@ -636,72 +654,90 @@
                 {% for ability in skillDB.skilldb.ability %}
                 {% if ability.skill != skill.id %}{% continue %}{% endif %}
                   <tr>
-                    <td>{{ability.name}}</td>
-                    <td>{{ability.description.text}}</td>
+                    <td class="name">
+                      <img class="ability" id="{{ability.name|nametoid}}" title="{{ability.name}}" src="game_images/{{skillDB.mod_dir}}/{{ability.icon}}" />
+                      <span class="ability-name">{{ability.name}}</span>
+                    </td>
+                    <td class="description">{{ability.description.text}}</td>
                     <td>
-              {% if "damagebuff" in ability %}
-              <div class="stat-group">
-              {% for damageType, amount in ability.damagebuff|dictsort %}
-              {% set damageType = damageType %}
-                <div class="stat" data-stat-class="damage" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
-                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
-                </div>
-                {% if loop.index0 % 4 == 3 and not loop.last %}
-                <br>
-                {% endif %}
-              {% endfor %}
-              </div>
-              {% endif %}
+                      {% if "damagebuff" in ability %}
+                      <div class="stat-group">
+                      {% for damageType, amount in ability.damagebuff|dictsort %}
+                      {% set damageType = damageType %}
+                        <div class="stat" data-stat-class="damage" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                          <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
+                        </div>
+                        {% if loop.index0 % 4 == 3 and not loop.last %}
+                        <br>
+                        {% endif %}
+                      {% endfor %}
+                      </div>
+                      {% endif %}
 
-              {% if "resistbuff" in ability %}
-              <div class="stat-group">
-              {% for damageType, amount in ability.resistbuff|dictsort %}
-              {% set damageType = damageType %}
-                <div class="stat" data-stat-class="resist" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
-                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance"> {{amount}}
-                </div>
-                {% if loop.index0 % 4 == 3 and not loop.last %}
-                <br>
-                {% endif %}
-              {% endfor %}
-              </div>
-              {% endif %}
+                      {% if "resistbuff" in ability %}
+                      <div class="stat-group">
+                      {% for damageType, amount in ability.resistbuff|dictsort %}
+                      {% set damageType = damageType %}
+                        <div class="stat" data-stat-class="resist" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                          <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance"> {{amount}}
+                        </div>
+                        {% if loop.index0 % 4 == 3 and not loop.last %}
+                        <br>
+                        {% endif %}
+                      {% endfor %}
+                      </div>
+                      {% endif %}
 
-              {% for buff in ability.primarybuff|sort(attribute="id") %}
-              {% set stat = PRIMARY_STATS[buff.id|int] %}
-              {% if loop.first %}
-              <div class="stat-group">
-              {% endif %}
-                <div class="stat" data-stat-class="primary" data-stat-type="{{stat}}" data-stat-value="{{buff.amount}}">
-                  <img class="stat" src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}"> {{buff.amount}}
-                </div>
-                {% if loop.index0 % 4 == 3 and not loop.last %}
-                <br>
-                {% endif %}
-              {% if loop.last %}
-              </div>
-              {% endif %}
-              {% endfor %}
+                      {% for buff in ability.primarybuff|sort(attribute="id") %}
+                      {% set stat = PRIMARY_STATS[buff.id|int] %}
+                      {% if loop.first %}
+                      <div class="stat-group">
+                      {% endif %}
+                        <div class="stat" data-stat-class="primary" data-stat-type="{{stat}}" data-stat-value="{{buff.amount}}">
+                          <img class="stat" src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}"> {{buff.amount}}
+                        </div>
+                        {% if loop.index0 % 4 == 3 and not loop.last %}
+                        <br>
+                        {% endif %}
+                      {% if loop.last %}
+                      </div>
+                      {% endif %}
+                      {% endfor %}
 
-              {% for buff in ability.secondarybuff|sort(attribute="id")  %}
-              {% set stat = SECONDARY_STATS[buff.id|int] %}
-              {% if loop.first %}
-              <div class="stat-group">
-              {% endif %}
-                <div class="stat" data-stat-class="secondary" data-stat-type="{{stat[0]}}" data-stat-value="{{buff.amount}}">
-                  <img class="stat" src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}"> {{buff.amount}}
-                </div>
-                {% if loop.index0 % 4 == 3 and not loop.last %}
-                <br>
-                {% endif %}
-              {% if loop.last %}
-              </div>
-              {% endif %}
-              {% endfor %}
+                      {% for buff in ability.secondarybuff|sort(attribute="id")  %}
+                      {% set stat = SECONDARY_STATS[buff.id|int] %}
+                      {% if loop.first %}
+                      <div class="stat-group">
+                      {% endif %}
+                        <div class="stat" data-stat-class="secondary" data-stat-type="{{stat[0]}}" data-stat-value="{{buff.amount}}">
+                          <img class="stat" src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}"> {{buff.amount}}
+                        </div>
+                        {% if loop.index0 % 4 == 3 and not loop.last %}
+                        <br>
+                        {% endif %}
+                      {% if loop.last %}
+                      </div>
+                      {% endif %}
+                      {% endfor %}
                     </td>
                     <td>
+                    {% if "giveitem" in ability %}
+                    {% for itemDB in itemDBs %}
+                    {% for item in itemDB.itemdb.item %}
+                    {% if item.name|nametoid == ability.giveitem|nametoid %}
+                      <a class="ref" href="#{{item.name|nametoid}}">
+                        <img class="item" title="{{item.name}}" src="game_images/{{itemDB.mod_dir}}/{{item.iconfile}}">
+                      </a>
+                    {% break %}
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                    {% endif %}
                     </td>
                     <td>
+                    {% if "spell" in ability %}
+                      <b>{{ability.spell.name}}</b>
+                    {% endif %}
                     </td>
                   </tr>
                 {% endfor %}
