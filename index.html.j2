@@ -40,9 +40,7 @@
       top:-4px;
       right:-5px;
     }
-    table.itemDB td.name,
-    table.monDB td.name,
-    table.skillDB td.name {
+    td.name {
       max-width: 200px;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -81,6 +79,27 @@
     div.recipe-group:not(:first-of-type),
     div.loadout-group:not(:first-of-type) {
       border-top: 1px dotted #8c8b8b;
+    }
+    div.skill-type-warrior {
+      background-color: rgba(255,3,0,.6);
+      font-weight: bold;
+      font-size: 50%;
+      width: 32px;
+      text-align: center;
+    }
+    div.skill-type-rogue {
+      background-color: #dce358;
+      font-weight: bold;
+      font-size: 50%;
+      width: 32px;
+      text-align: center;
+    }
+    div.skill-type-wizard {
+      background-color: rgba(113,115,179,0.5);
+      font-weight: bold;
+      font-size: 50%;
+      width: 32px;
+      text-align: center;
     }
     span.stat-filter-group {
       display: inline-block;
@@ -537,25 +556,27 @@
         <thead>
           <tr>
             <th class="name">Name</th>
-            <th class="type">Type</th>
             <th>Loadout</th>
-            <th>Flags</th>
+            {# <th>Flags</th> #}
             <th>Abilities</th>
           </tr>
         </thead>
 
         <tbody class="list">
+
           {% for skillDB in skillDBs %}
           {% for skill in skillDB.skilldb.skill %}
           <tr id="skill{{skill.id}}">
+
+            {# ====== Skill Name ====== #}
             <td class="name">
               <a name="{{skill.name|nametoid}}"> </a>
               <img class="skill" id="{{skill.name|nametoid}}" title="{{skill.name}}" src="game_images/{{skillDB.mod_dir}}/{{skill.art.icon}}">
               {{skill.name}}
+              <div class="skill-type-{{skill.type|lower}}">{{skill.type|capitalize}}</div>
             </td>
-            <td>
-              {{skill.type|capitalize}}
-            </td>
+
+            {# ====== Loadout ====== #}
             <td>
             {% set lockpick_count = namespace(value=0) %}
             {% for loadout in skill.loadout %}
@@ -580,7 +601,7 @@
             {% endfor %}
             {% endfor %}
 
-            {# Now do the random items#}
+            {# Now do the random items #}
             {% elif "type" in loadout %}
             <div class="loadout-group">
                 {{loadout.type}}{% if "amount" in loadout %} x {{loadout.amount}} {% endif %}
@@ -595,12 +616,98 @@
             </div>
             {% endif %}
             </td>
-            <td>{{skill.flags}}</td>
+
+            {# ====== Flags ====== #}
+            {# <td>{{skill.flags}}</td> #}
+
+            {# ====== Abilities ====== #}
             <td>
-              {% for ability in skillDB.skilldb.ability %}
-              {% if ability.skill != skill.id %}{% continue %}{% endif %}
-              {{ability.name}}
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Stats</th>
+                    <th>Item</th>
+                    <th>Spells</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for ability in skillDB.skilldb.ability %}
+                {% if ability.skill != skill.id %}{% continue %}{% endif %}
+                  <tr>
+                    <td>{{ability.name}}</td>
+                    <td>{{ability.description.text}}</td>
+                    <td>
+              {% if "damagebuff" in ability %}
+              <div class="stat-group">
+              {% for damageType, amount in ability.damagebuff|dictsort %}
+              {% set damageType = damageType %}
+                <div class="stat" data-stat-class="damage" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}.png" title="{{damageType|capitalize}} Damage"> {{amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
               {% endfor %}
+              </div>
+              {% endif %}
+
+              {% if "resistbuff" in ability %}
+              <div class="stat-group">
+              {% for damageType, amount in ability.resistbuff|dictsort %}
+              {% set damageType = damageType %}
+                <div class="stat" data-stat-class="resist" data-stat-type="{{damageType}}" data-stat-value="{{amount}}">
+                  <img class="stat" src="game_images/ui/icons/dmg_{{damageType}}_resist.png" title="{{damageType|capitalize}} Resistance"> {{amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% endfor %}
+              </div>
+              {% endif %}
+
+              {% for buff in ability.primarybuff|sort(attribute="id") %}
+              {% set stat = PRIMARY_STATS[buff.id|int] %}
+              {% if loop.first %}
+              <div class="stat-group">
+              {% endif %}
+                <div class="stat" data-stat-class="primary" data-stat-type="{{stat}}" data-stat-value="{{buff.amount}}">
+                  <img class="stat" src="game_images/ui/icons/stat_{{stat}}.png" title="{{stat|capitalize}}"> {{buff.amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% if loop.last %}
+              </div>
+              {% endif %}
+              {% endfor %}
+
+              {% for buff in ability.secondarybuff|sort(attribute="id")  %}
+              {% set stat = SECONDARY_STATS[buff.id|int] %}
+              {% if loop.first %}
+              <div class="stat-group">
+              {% endif %}
+                <div class="stat" data-stat-class="secondary" data-stat-type="{{stat[0]}}" data-stat-value="{{buff.amount}}">
+                  <img class="stat" src="game_images/ui/icons/stat_{{stat[0]}}.png" title="{{stat[1]}}"> {{buff.amount}}
+                </div>
+                {% if loop.index0 % 4 == 3 and not loop.last %}
+                <br>
+                {% endif %}
+              {% if loop.last %}
+              </div>
+              {% endif %}
+              {% endfor %}
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+              </table>
+
             </td>
           </tr>
 
