@@ -40,7 +40,9 @@
       top:-4px;
       right:-5px;
     }
-    table.itemDB td.name, table.monDB td.name {
+    table.itemDB td.name,
+    table.monDB td.name,
+    table.skillDB td.name {
       max-width: 200px;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -62,13 +64,22 @@
     img.stat {
       vertical-align:middle;
     }
+    img.skill {
+      vertical-align:middle;
+      width:32px;
+      height:32px;
+    }
     div.stat {
       display:inline-block;
     }
-    div.stat-group, div.recipe-group {
+    div.stat-group,
+    div.recipe-group,
+    div.loadout-group {
       white-space: nowrap;
     }
-    div.stat-group:not(:first-of-type), div.recipe-group:not(:first-of-type) {
+    div.stat-group:not(:first-of-type),
+    div.recipe-group:not(:first-of-type),
+    div.loadout-group:not(:first-of-type) {
       border-top: 1px dotted #8c8b8b;
     }
     span.stat-filter-group {
@@ -43582,16 +43593,16 @@
               0
 
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
               <a href="#bituminouscoal">
-                <img class="item" title="Bituminous Coal" id="bituminouscoal" src="">
+                <img class="item" title="Bituminous Coal" src="game_images/./items/mineral_bituminous_coal.png">
               </a>
             </td>
 
@@ -43629,13 +43640,13 @@
               1
 
               <a href="#potionoflivelyregeneration">
-                <img class="item" title="Potion of Lively Regeneration" id="potionoflivelyregeneration" src="">
+                <img class="item" title="Potion of Lively Regeneration" src="game_images/./items/potion_regen0.png">
               </a>
               <a href="#apple">
-                <img class="item" title="Apple" id="apple" src="">
+                <img class="item" title="Apple" src="game_images/./items/food_apple.png">
               </a>
               <a href="#woodensword">
-                <img class="item" title="Wooden Sword" id="woodensword" src="">
+                <img class="item" title="Wooden Sword" src="game_images/./items/sword_wooden.png">
               </a>
             </td>
 
@@ -43678,16 +43689,16 @@
               2
 
               <a href="#potionofdireempowerment">
-                <img class="item" title="Potion of Dire Empowerment" id="potionofdireempowerment" src="">
+                <img class="item" title="Potion of Dire Empowerment" src="game_images/./items/potion_dire0.png">
               </a>
               <a href="#ironingot">
-                <img class="item" title="Iron Ingot" id="ironingot" src="">
+                <img class="item" title="Iron Ingot" src="game_images/./items/ingot_iron.png">
               </a>
               <a href="#ironingot">
-                <img class="item" title="Iron Ingot" id="ironingot" src="">
+                <img class="item" title="Iron Ingot" src="game_images/./items/ingot_iron.png">
               </a>
               <a href="#boneclub">
-                <img class="item" title="Bone Club" id="boneclub" src="">
+                <img class="item" title="Bone Club" src="game_images/./items/mace_bone.png">
               </a>
             </td>
 
@@ -43730,16 +43741,16 @@
               2
 
               <a href="#brasspiping">
-                <img class="item" title="Brass Piping" id="brasspiping" src="">
+                <img class="item" title="Brass Piping" src="game_images/./items/component_piping_brass.png">
               </a>
               <a href="#brasspiping">
-                <img class="item" title="Brass Piping" id="brasspiping" src="">
+                <img class="item" title="Brass Piping" src="game_images/./items/component_piping_brass.png">
               </a>
               <a href="#springloadedpowercore">
-                <img class="item" title="Spring-loaded Power Core" id="springloadedpowercore" src="">
+                <img class="item" title="Spring-loaded Power Core" src="game_images/./items/component_power_spring.png">
               </a>
               <a href="#blackpowder">
-                <img class="item" title="Black Powder" id="blackpowder" src="">
+                <img class="item" title="Black Powder" src="game_images/./items/reagent_black_powder.png">
               </a>
             </td>
 
@@ -43777,13 +43788,13 @@
               2
 
               <a href="#reardenmetalingot">
-                <img class="item" title="Rearden Metal Ingot" id="reardenmetalingot" src="">
+                <img class="item" title="Rearden Metal Ingot" src="game_images/expansion3/items/ingot_rearden.png">
               </a>
               <a href="#reardenmetalingot">
-                <img class="item" title="Rearden Metal Ingot" id="reardenmetalingot" src="">
+                <img class="item" title="Rearden Metal Ingot" src="game_images/expansion3/items/ingot_rearden.png">
               </a>
               <a href="#reardenmetalingot">
-                <img class="item" title="Rearden Metal Ingot" id="reardenmetalingot" src="">
+                <img class="item" title="Rearden Metal Ingot" src="game_images/expansion3/items/ingot_rearden.png">
               </a>
             </td>
 
@@ -43821,16 +43832,16 @@
               2
 
               <a href="#potionofmana">
-                <img class="item" title="Potion of Mana" id="potionofmana" src="">
+                <img class="item" title="Potion of Mana" src="game_images/./items/potion_mana0.png">
               </a>
               <a href="#potionofmana">
-                <img class="item" title="Potion of Mana" id="potionofmana" src="">
+                <img class="item" title="Potion of Mana" src="game_images/./items/potion_mana0.png">
               </a>
               <a href="#aquavitae">
-                <img class="item" title="Aqua Vitae" id="aquavitae" src="">
+                <img class="item" title="Aqua Vitae" src="game_images/./items/reagent_aqua_vitae.png">
               </a>
               <a href="#arcanewand">
-                <img class="item" title="Arcane Wand" id="arcanewand" src="">
+                <img class="item" title="Arcane Wand" src="game_images/./items/wand_arcane.png">
               </a>
             </td>
 
@@ -43865,16 +43876,16 @@
               3
 
               <a href="#verdantpoison">
-                <img class="item" title="Verdant Poison" id="verdantpoison" src="">
+                <img class="item" title="Verdant Poison" src="game_images/./items/potion_poison0.png">
               </a>
               <a href="#verdantpoison">
-                <img class="item" title="Verdant Poison" id="verdantpoison" src="">
+                <img class="item" title="Verdant Poison" src="game_images/./items/potion_poison0.png">
               </a>
               <a href="#acidflask">
-                <img class="item" title="Acid Flask" id="acidflask" src="">
+                <img class="item" title="Acid Flask" src="game_images/./items/thrown_acid_flask.png">
               </a>
               <a href="#bronzedagger">
-                <img class="item" title="Bronze Dagger" id="bronzedagger" src="">
+                <img class="item" title="Bronze Dagger" src="game_images/./items/dagger_bronze_dagger.png">
               </a>
             </td>
 
@@ -43915,16 +43926,16 @@
               3
 
               <a href="#handgrenade">
-                <img class="item" title="Hand Grenade" id="handgrenade" src="">
+                <img class="item" title="Hand Grenade" src="game_images/./items/thrown_grenade.png">
               </a>
               <a href="#handgrenade">
-                <img class="item" title="Hand Grenade" id="handgrenade" src="">
+                <img class="item" title="Hand Grenade" src="game_images/./items/thrown_grenade.png">
               </a>
               <a href="#handgrenade">
-                <img class="item" title="Hand Grenade" id="handgrenade" src="">
+                <img class="item" title="Hand Grenade" src="game_images/./items/thrown_grenade.png">
               </a>
               <a href="#copperwire">
-                <img class="item" title="Copper Wire" id="copperwire" src="">
+                <img class="item" title="Copper Wire" src="game_images/./items/component_wire_copper.png">
               </a>
             </td>
 
@@ -43958,13 +43969,13 @@
               4
 
               <a href="#sapphire">
-                <img class="item" title="Sapphire" id="sapphire" src="">
+                <img class="item" title="Sapphire" src="game_images/./items/gem_sapphire.png">
               </a>
               <a href="#sapphire">
-                <img class="item" title="Sapphire" id="sapphire" src="">
+                <img class="item" title="Sapphire" src="game_images/./items/gem_sapphire.png">
               </a>
               <a href="#hyperboreanpotion">
-                <img class="item" title="Hyperborean Potion" id="hyperboreanpotion" src="">
+                <img class="item" title="Hyperborean Potion" src="game_images/./items/potion_hyperborean.png">
               </a>
             </td>
 
@@ -44002,13 +44013,13 @@
               4
 
               <a href="#ruby">
-                <img class="item" title="Ruby" id="ruby" src="">
+                <img class="item" title="Ruby" src="game_images/./items/gem_ruby.png">
               </a>
               <a href="#ruby">
-                <img class="item" title="Ruby" id="ruby" src="">
+                <img class="item" title="Ruby" src="game_images/./items/gem_ruby.png">
               </a>
               <a href="#infernalpotion">
-                <img class="item" title="Infernal Potion" id="infernalpotion" src="">
+                <img class="item" title="Infernal Potion" src="game_images/./items/potion_infernal.png">
               </a>
             </td>
 
@@ -44046,16 +44057,16 @@
               4
 
               <a href="#reardenmetalingot">
-                <img class="item" title="Rearden Metal Ingot" id="reardenmetalingot" src="">
+                <img class="item" title="Rearden Metal Ingot" src="game_images/expansion3/items/ingot_rearden.png">
               </a>
               <a href="#reardenmetalingot">
-                <img class="item" title="Rearden Metal Ingot" id="reardenmetalingot" src="">
+                <img class="item" title="Rearden Metal Ingot" src="game_images/expansion3/items/ingot_rearden.png">
               </a>
               <a href="#silveringot">
-                <img class="item" title="Silver Ingot" id="silveringot" src="">
+                <img class="item" title="Silver Ingot" src="game_images/./items/ingot_silver.png">
               </a>
               <a href="#goldingot">
-                <img class="item" title="Gold Ingot" id="goldingot" src="">
+                <img class="item" title="Gold Ingot" src="game_images/./items/ingot_gold.png">
               </a>
             </td>
 
@@ -44099,13 +44110,13 @@
               5
 
               <a href="#brimstone">
-                <img class="item" title="Brimstone" id="brimstone" src="">
+                <img class="item" title="Brimstone" src="game_images/./items/reagent_brimstone.png">
               </a>
               <a href="#carnelian">
-                <img class="item" title="Carnelian" id="carnelian" src="">
+                <img class="item" title="Carnelian" src="game_images/./items/gem_carnelian.png">
               </a>
               <a href="#darkorb">
-                <img class="item" title="Dark Orb" id="darkorb" src="">
+                <img class="item" title="Dark Orb" src="game_images/./items/orb_dark.png">
               </a>
             </td>
 
@@ -44149,13 +44160,13 @@
               5
 
               <a href="#emerald">
-                <img class="item" title="Emerald" id="emerald" src="">
+                <img class="item" title="Emerald" src="game_images/./items/gem_emerald.png">
               </a>
               <a href="#emerald">
-                <img class="item" title="Emerald" id="emerald" src="">
+                <img class="item" title="Emerald" src="game_images/./items/gem_emerald.png">
               </a>
               <a href="#voltaicpotion">
-                <img class="item" title="Voltaic Potion" id="voltaicpotion" src="">
+                <img class="item" title="Voltaic Potion" src="game_images/./items/potion_voltaic.png">
               </a>
             </td>
 
@@ -44198,13 +44209,13 @@
               6
 
               <a href="#steelsword">
-                <img class="item" title="Steel Sword" id="steelsword" src="">
+                <img class="item" title="Steel Sword" src="game_images/./items/sword_craft_steel2.png">
               </a>
               <a href="#steelaxe">
-                <img class="item" title="Steel Axe" id="steelaxe" src="">
+                <img class="item" title="Steel Axe" src="game_images/./items/axe_craft_steel2.png">
               </a>
               <a href="#steelmace">
-                <img class="item" title="Steel Mace" id="steelmace" src="">
+                <img class="item" title="Steel Mace" src="game_images/./items/mace_craft_steel2.png">
               </a>
             </td>
 
@@ -44254,16 +44265,16 @@
               1
 
               <a href="#brassmechanisms">
-                <img class="item" title="Brass Mechanisms" id="brassmechanisms" src="">
+                <img class="item" title="Brass Mechanisms" src="game_images/./items/component_parts_brass.png">
               </a>
               <a href="#brassmechanisms">
-                <img class="item" title="Brass Mechanisms" id="brassmechanisms" src="">
+                <img class="item" title="Brass Mechanisms" src="game_images/./items/component_parts_brass.png">
               </a>
               <a href="#brasspiping">
-                <img class="item" title="Brass Piping" id="brasspiping" src="">
+                <img class="item" title="Brass Piping" src="game_images/./items/component_piping_brass.png">
               </a>
               <a href="#copperwire">
-                <img class="item" title="Copper Wire" id="copperwire" src="">
+                <img class="item" title="Copper Wire" src="game_images/./items/component_wire_copper.png">
               </a>
             </td>
 
@@ -44306,13 +44317,13 @@
               1
 
               <a href="#odiouspuffball">
-                <img class="item" title="Odious Puffball" id="odiouspuffball" src="">
+                <img class="item" title="Odious Puffball" src="game_images/./items/fungus_odiouspuffball.png">
               </a>
               <a href="#mudwen">
-                <img class="item" title="Mud Wen" id="mudwen" src="">
+                <img class="item" title="Mud Wen" src="game_images/./items/fungus_mudwen.png">
               </a>
               <a href="#felltruffle">
-                <img class="item" title="Fell Truffle" id="felltruffle" src="">
+                <img class="item" title="Fell Truffle" src="game_images/./items/fungus_felltruffle.png">
               </a>
             </td>
 
@@ -44350,13 +44361,13 @@
               3
 
               <a href="#brasspiping">
-                <img class="item" title="Brass Piping" id="brasspiping" src="">
+                <img class="item" title="Brass Piping" src="game_images/./items/component_piping_brass.png">
               </a>
               <a href="#voltaiccell">
-                <img class="item" title="Voltaic Cell" id="voltaiccell" src="">
+                <img class="item" title="Voltaic Cell" src="game_images/./items/component_voltaic_cell.png">
               </a>
               <a href="#slottedbronzediscs">
-                <img class="item" title="Slotted Bronze Discs" id="slottedbronzediscs" src="">
+                <img class="item" title="Slotted Bronze Discs" src="game_images/./items/component_bronze_discs.png">
               </a>
             </td>
 
@@ -44399,16 +44410,16 @@
               5
 
               <a href="#aethericpowercylinder">
-                <img class="item" title="Aetheric Power Cylinder" id="aethericpowercylinder" src="">
+                <img class="item" title="Aetheric Power Cylinder" src="game_images/./items/component_aetheric_power.png">
               </a>
               <a href="#aethericpowercylinder">
-                <img class="item" title="Aetheric Power Cylinder" id="aethericpowercylinder" src="">
+                <img class="item" title="Aetheric Power Cylinder" src="game_images/./items/component_aetheric_power.png">
               </a>
               <a href="#selfsealingstembolt">
-                <img class="item" title="Self-sealing Stem Bolt" id="selfsealingstembolt" src="">
+                <img class="item" title="Self-sealing Stem Bolt" src="game_images/./items/component_stem_bolt.png">
               </a>
               <a href="#voltaicpotion">
-                <img class="item" title="Voltaic Potion" id="voltaicpotion" src="">
+                <img class="item" title="Voltaic Potion" src="game_images/./items/potion_voltaic.png">
               </a>
             </td>
 
@@ -44457,16 +44468,16 @@
               6
 
               <a href="#diamond">
-                <img class="item" title="Diamond" id="diamond" src="">
+                <img class="item" title="Diamond" src="game_images/./items/gem_diamond.png">
               </a>
               <a href="#ruby">
-                <img class="item" title="Ruby" id="ruby" src="">
+                <img class="item" title="Ruby" src="game_images/./items/gem_ruby.png">
               </a>
               <a href="#platinumingot">
-                <img class="item" title="Platinum Ingot" id="platinumingot" src="">
+                <img class="item" title="Platinum Ingot" src="game_images/./items/ingot_platinum.png">
               </a>
               <a href="#platinumingot">
-                <img class="item" title="Platinum Ingot" id="platinumingot" src="">
+                <img class="item" title="Platinum Ingot" src="game_images/./items/ingot_platinum.png">
               </a>
             </td>
 
@@ -44509,13 +44520,13 @@
               1
 
               <a href="#hematite">
-                <img class="item" title="Hematite" id="hematite" src="">
+                <img class="item" title="Hematite" src="game_images/./items/mineral_hematite.png">
               </a>
               <a href="#bauxite">
-                <img class="item" title="Bauxite" id="bauxite" src="">
+                <img class="item" title="Bauxite" src="game_images/./items/mineral_bauxite.png">
               </a>
               <a href="#cassiterite">
-                <img class="item" title="Cassiterite" id="cassiterite" src="">
+                <img class="item" title="Cassiterite" src="game_images/./items/mineral_cassiterite.png">
               </a>
             </td>
 
@@ -44562,13 +44573,13 @@
               0
 
               <a href="#leatherbelt">
-                <img class="item" title="Leather Belt" id="leatherbelt" src="">
+                <img class="item" title="Leather Belt" src="game_images/./items/belt_leather.png">
               </a>
               <a href="#leatherbelt">
-                <img class="item" title="Leather Belt" id="leatherbelt" src="">
+                <img class="item" title="Leather Belt" src="game_images/./items/belt_leather.png">
               </a>
               <a href="#swashbucklingbelt">
-                <img class="item" title="Swashbuckling Belt" id="swashbucklingbelt" src="">
+                <img class="item" title="Swashbuckling Belt" src="game_images/./items/belt_swashbuckling.png">
               </a>
             </td>
 
@@ -44610,16 +44621,16 @@
               <img class="stat" width="16px" height="16px" src="game_images/items/tool_ingot_press.png">
 
               <a href="#agedcheese">
-                <img class="item" title="Aged Cheese" id="agedcheese" src="">
+                <img class="item" title="Aged Cheese" src="game_images/./items/food_cheese_aged.png">
               </a>
               <a href="#briecheese">
-                <img class="item" title="Brie Cheese" id="briecheese" src="">
+                <img class="item" title="Brie Cheese" src="game_images/./items/food_cheese_brie.png">
               </a>
               <a href="#havarti">
-                <img class="item" title="Havarti" id="havarti" src="">
+                <img class="item" title="Havarti" src="game_images/./items/food_cheese_havarti.png">
               </a>
               <a href="#parmigianoreggianocheese">
-                <img class="item" title="Parmigiano Reggiano Cheese" id="parmigianoreggianocheese" src="">
+                <img class="item" title="Parmigiano Reggiano Cheese" src="game_images/./items/food_cheese_parmigiano-reggiano.png">
               </a>
             </td>
 
@@ -44667,7 +44678,7 @@
               0
 
               <a href="#brassmechanisms">
-                <img class="item" title="Brass Mechanisms" id="brassmechanisms" src="">
+                <img class="item" title="Brass Mechanisms" src="game_images/./items/component_parts_brass.png">
               </a>
             </td>
 
@@ -44711,16 +44722,16 @@
               1
 
               <a href="#lutefisk">
-                <img class="item" title="Lutefisk" id="lutefisk" src="">
+                <img class="item" title="Lutefisk" src="game_images/./items/food_lutefisk.png">
               </a>
               <a href="#lutefisk">
-                <img class="item" title="Lutefisk" id="lutefisk" src="">
+                <img class="item" title="Lutefisk" src="game_images/./items/food_lutefisk.png">
               </a>
               <a href="#lutefisk">
-                <img class="item" title="Lutefisk" id="lutefisk" src="">
+                <img class="item" title="Lutefisk" src="game_images/./items/food_lutefisk.png">
               </a>
               <a href="#lutefisk">
-                <img class="item" title="Lutefisk" id="lutefisk" src="">
+                <img class="item" title="Lutefisk" src="game_images/./items/food_lutefisk.png">
               </a>
             </td>
 
@@ -44762,13 +44773,13 @@
               1
 
               <a href="#copperingot">
-                <img class="item" title="Copper Ingot" id="copperingot" src="">
+                <img class="item" title="Copper Ingot" src="game_images/./items/ingot_copper.png">
               </a>
               <a href="#copperingot">
-                <img class="item" title="Copper Ingot" id="copperingot" src="">
+                <img class="item" title="Copper Ingot" src="game_images/./items/ingot_copper.png">
               </a>
               <a href="#copperingot">
-                <img class="item" title="Copper Ingot" id="copperingot" src="">
+                <img class="item" title="Copper Ingot" src="game_images/./items/ingot_copper.png">
               </a>
             </td>
 
@@ -44820,13 +44831,13 @@
               2
 
               <a href="#ironingot">
-                <img class="item" title="Iron Ingot" id="ironingot" src="">
+                <img class="item" title="Iron Ingot" src="game_images/./items/ingot_iron.png">
               </a>
               <a href="#ironingot">
-                <img class="item" title="Iron Ingot" id="ironingot" src="">
+                <img class="item" title="Iron Ingot" src="game_images/./items/ingot_iron.png">
               </a>
               <a href="#ironingot">
-                <img class="item" title="Iron Ingot" id="ironingot" src="">
+                <img class="item" title="Iron Ingot" src="game_images/./items/ingot_iron.png">
               </a>
             </td>
 
@@ -44881,16 +44892,16 @@
               2
 
               <a href="#potionofhealing">
-                <img class="item" title="Potion of Healing" id="potionofhealing" src="">
+                <img class="item" title="Potion of Healing" src="game_images/./items/potion_health0.png">
               </a>
               <a href="#potionofhealing">
-                <img class="item" title="Potion of Healing" id="potionofhealing" src="">
+                <img class="item" title="Potion of Healing" src="game_images/./items/potion_health0.png">
               </a>
               <a href="#potionofreplenishment">
-                <img class="item" title="Potion of Replenishment" id="potionofreplenishment" src="">
+                <img class="item" title="Potion of Replenishment" src="game_images/./items/potion_renew0.png">
               </a>
               <a href="#potionofpurity">
-                <img class="item" title="Potion of Purity" id="potionofpurity" src="">
+                <img class="item" title="Potion of Purity" src="game_images/./items/potion_purity0.png">
               </a>
             </td>
 
@@ -44935,13 +44946,13 @@
               3
 
               <a href="#steelingot">
-                <img class="item" title="Steel Ingot" id="steelingot" src="">
+                <img class="item" title="Steel Ingot" src="game_images/./items/ingot_steel.png">
               </a>
               <a href="#steelingot">
-                <img class="item" title="Steel Ingot" id="steelingot" src="">
+                <img class="item" title="Steel Ingot" src="game_images/./items/ingot_steel.png">
               </a>
               <a href="#potionofsteeling">
-                <img class="item" title="Potion of Steeling" id="potionofsteeling" src="">
+                <img class="item" title="Potion of Steeling" src="game_images/./items/potion_armour0.png">
               </a>
             </td>
 
@@ -44997,10 +45008,10 @@
               3
 
               <a href="#infernalpotion">
-                <img class="item" title="Infernal Potion" id="infernalpotion" src="">
+                <img class="item" title="Infernal Potion" src="game_images/./items/potion_infernal.png">
               </a>
               <a href="#potionofsteeling">
-                <img class="item" title="Potion of Steeling" id="potionofsteeling" src="">
+                <img class="item" title="Potion of Steeling" src="game_images/./items/potion_armour0.png">
               </a>
             </td>
 
@@ -45045,16 +45056,16 @@
               3
 
               <a href="#potionofinvisibility">
-                <img class="item" title="Potion of Invisibility" id="potionofinvisibility" src="">
+                <img class="item" title="Potion of Invisibility" src="game_images/./items/potion_invisibility0.png">
               </a>
               <a href="#aluminumingot">
-                <img class="item" title="Aluminum Ingot" id="aluminumingot" src="">
+                <img class="item" title="Aluminum Ingot" src="game_images/./items/ingot_aluminum.png">
               </a>
               <a href="#aluminumingot">
-                <img class="item" title="Aluminum Ingot" id="aluminumingot" src="">
+                <img class="item" title="Aluminum Ingot" src="game_images/./items/ingot_aluminum.png">
               </a>
               <a href="#pyritesun">
-                <img class="item" title="Pyrite Sun" id="pyritesun" src="">
+                <img class="item" title="Pyrite Sun" src="game_images/./items/gem_pyritesun.png">
               </a>
             </td>
 
@@ -45097,16 +45108,16 @@
               4
 
               <a href="#blackpearl">
-                <img class="item" title="Black Pearl" id="blackpearl" src="">
+                <img class="item" title="Black Pearl" src="game_images/./items/gem_blackpearl.png">
               </a>
               <a href="#blackpearl">
-                <img class="item" title="Black Pearl" id="blackpearl" src="">
+                <img class="item" title="Black Pearl" src="game_images/./items/gem_blackpearl.png">
               </a>
               <a href="#silveringot">
-                <img class="item" title="Silver Ingot" id="silveringot" src="">
+                <img class="item" title="Silver Ingot" src="game_images/./items/ingot_silver.png">
               </a>
               <a href="#goldingot">
-                <img class="item" title="Gold Ingot" id="goldingot" src="">
+                <img class="item" title="Gold Ingot" src="game_images/./items/ingot_gold.png">
               </a>
             </td>
 
@@ -45154,13 +45165,13 @@
               4
 
               <a href="#diamond">
-                <img class="item" title="Diamond" id="diamond" src="">
+                <img class="item" title="Diamond" src="game_images/./items/gem_diamond.png">
               </a>
               <a href="#diamond">
-                <img class="item" title="Diamond" id="diamond" src="">
+                <img class="item" title="Diamond" src="game_images/./items/gem_diamond.png">
               </a>
               <a href="#diamond">
-                <img class="item" title="Diamond" id="diamond" src="">
+                <img class="item" title="Diamond" src="game_images/./items/gem_diamond.png">
               </a>
             </td>
 
@@ -45217,13 +45228,13 @@
               5
 
               <a href="#brimstone">
-                <img class="item" title="Brimstone" id="brimstone" src="">
+                <img class="item" title="Brimstone" src="game_images/./items/reagent_brimstone.png">
               </a>
               <a href="#carnelian">
-                <img class="item" title="Carnelian" id="carnelian" src="">
+                <img class="item" title="Carnelian" src="game_images/./items/gem_carnelian.png">
               </a>
               <a href="#darkorb">
-                <img class="item" title="Dark Orb" id="darkorb" src="">
+                <img class="item" title="Dark Orb" src="game_images/./items/orb_dark.png">
               </a>
             </td>
 
@@ -45272,16 +45283,16 @@
               5
 
               <a href="#lederhosen">
-                <img class="item" title="Lederhosen" id="lederhosen" src="">
+                <img class="item" title="Lederhosen" src="game_images/./items/pants_lederhosen.png">
               </a>
               <a href="#starryorb">
-                <img class="item" title="Starry Orb" id="starryorb" src="">
+                <img class="item" title="Starry Orb" src="game_images/./items/orb_starry.png">
               </a>
               <a href="#absinthe">
-                <img class="item" title="Absinthe" id="absinthe" src="">
+                <img class="item" title="Absinthe" src="game_images/./items/booze_absinthe.png">
               </a>
               <a href="#absinthe">
-                <img class="item" title="Absinthe" id="absinthe" src="">
+                <img class="item" title="Absinthe" src="game_images/./items/booze_absinthe.png">
               </a>
             </td>
 
@@ -45327,13 +45338,13 @@
               6
 
               <a href="#fierywand">
-                <img class="item" title="Fiery Wand" id="fierywand" src="">
+                <img class="item" title="Fiery Wand" src="game_images/./items/wand_firey.png">
               </a>
               <a href="#wandoflaser">
-                <img class="item" title="Wand of Laser" id="wandoflaser" src="">
+                <img class="item" title="Wand of Laser" src="game_images/./items/wand_laser.png">
               </a>
               <a href="#wandoftesla">
-                <img class="item" title="Wand of Tesla" id="wandoftesla" src="">
+                <img class="item" title="Wand of Tesla" src="game_images/./items/wand_tesla.png">
               </a>
             </td>
 
@@ -45377,16 +45388,16 @@
               1
 
               <a href="#copperwire">
-                <img class="item" title="Copper Wire" id="copperwire" src="">
+                <img class="item" title="Copper Wire" src="game_images/./items/component_wire_copper.png">
               </a>
               <a href="#copperwire">
-                <img class="item" title="Copper Wire" id="copperwire" src="">
+                <img class="item" title="Copper Wire" src="game_images/./items/component_wire_copper.png">
               </a>
               <a href="#copperwire">
-                <img class="item" title="Copper Wire" id="copperwire" src="">
+                <img class="item" title="Copper Wire" src="game_images/./items/component_wire_copper.png">
               </a>
               <a href="#copperwire">
-                <img class="item" title="Copper Wire" id="copperwire" src="">
+                <img class="item" title="Copper Wire" src="game_images/./items/component_wire_copper.png">
               </a>
             </td>
 
@@ -45424,16 +45435,16 @@
               2
 
               <a href="#potionofinvisibility">
-                <img class="item" title="Potion of Invisibility" id="potionofinvisibility" src="">
+                <img class="item" title="Potion of Invisibility" src="game_images/./items/potion_invisibility0.png">
               </a>
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
               <a href="#aquafortis">
-                <img class="item" title="Aqua Fortis" id="aquafortis" src="">
+                <img class="item" title="Aqua Fortis" src="game_images/./items/reagent_aqua_fortis.png">
               </a>
             </td>
 
@@ -45471,13 +45482,13 @@
               3
 
               <a href="#electrumingot">
-                <img class="item" title="Electrum Ingot" id="electrumingot" src="">
+                <img class="item" title="Electrum Ingot" src="game_images/./items/ingot_electrum.png">
               </a>
               <a href="#electrumingot">
-                <img class="item" title="Electrum Ingot" id="electrumingot" src="">
+                <img class="item" title="Electrum Ingot" src="game_images/./items/ingot_electrum.png">
               </a>
               <a href="#potionofradiance">
-                <img class="item" title="Potion of Radiance" id="potionofradiance" src="">
+                <img class="item" title="Potion of Radiance" src="game_images/./items/potion_radiance0.png">
               </a>
             </td>
 
@@ -45518,13 +45529,13 @@
               4
 
               <a href="#irondirk">
-                <img class="item" title="Iron Dirk" id="irondirk" src="">
+                <img class="item" title="Iron Dirk" src="game_images/./items/dagger_dirk.png">
               </a>
               <a href="#bronzedagger">
-                <img class="item" title="Bronze Dagger" id="bronzedagger" src="">
+                <img class="item" title="Bronze Dagger" src="game_images/./items/dagger_bronze_dagger.png">
               </a>
               <a href="#gladius">
-                <img class="item" title="Gladius" id="gladius" src="">
+                <img class="item" title="Gladius" src="game_images/./items/sword_gladius.png">
               </a>
             </td>
 
@@ -45568,16 +45579,16 @@
               4
 
               <a href="#silveringot">
-                <img class="item" title="Silver Ingot" id="silveringot" src="">
+                <img class="item" title="Silver Ingot" src="game_images/./items/ingot_silver.png">
               </a>
               <a href="#silveringot">
-                <img class="item" title="Silver Ingot" id="silveringot" src="">
+                <img class="item" title="Silver Ingot" src="game_images/./items/ingot_silver.png">
               </a>
               <a href="#diamond">
-                <img class="item" title="Diamond" id="diamond" src="">
+                <img class="item" title="Diamond" src="game_images/./items/gem_diamond.png">
               </a>
               <a href="#wandoflaser">
-                <img class="item" title="Wand of Laser" id="wandoflaser" src="">
+                <img class="item" title="Wand of Laser" src="game_images/./items/wand_laser.png">
               </a>
             </td>
 
@@ -45621,13 +45632,13 @@
               2
 
               <a href="#hematite">
-                <img class="item" title="Hematite" id="hematite" src="">
+                <img class="item" title="Hematite" src="game_images/./items/mineral_hematite.png">
               </a>
               <a href="#bauxite">
-                <img class="item" title="Bauxite" id="bauxite" src="">
+                <img class="item" title="Bauxite" src="game_images/./items/mineral_bauxite.png">
               </a>
               <a href="#cassiterite">
-                <img class="item" title="Cassiterite" id="cassiterite" src="">
+                <img class="item" title="Cassiterite" src="game_images/./items/mineral_cassiterite.png">
               </a>
             </td>
 
@@ -45672,10 +45683,10 @@
               4
 
               <a href="#sashofthebluewizards">
-                <img class="item" title="Sash of the Blue Wizards" id="sashofthebluewizards" src="">
+                <img class="item" title="Sash of the Blue Wizards" src="game_images/./items/belt_wizard_sash.png">
               </a>
               <a href="#timelordscarf">
-                <img class="item" title="Time Lord Scarf" id="timelordscarf" src="">
+                <img class="item" title="Time Lord Scarf" src="game_images/expansion/items/gorget_timelord_scarf.png">
               </a>
             </td>
 
@@ -45719,13 +45730,13 @@
               5
 
               <a href="#silveringot">
-                <img class="item" title="Silver Ingot" id="silveringot" src="">
+                <img class="item" title="Silver Ingot" src="game_images/./items/ingot_silver.png">
               </a>
               <a href="#goldingot">
-                <img class="item" title="Gold Ingot" id="goldingot" src="">
+                <img class="item" title="Gold Ingot" src="game_images/./items/ingot_gold.png">
               </a>
               <a href="#platinumingot">
-                <img class="item" title="Platinum Ingot" id="platinumingot" src="">
+                <img class="item" title="Platinum Ingot" src="game_images/./items/ingot_platinum.png">
               </a>
             </td>
 
@@ -45777,7 +45788,7 @@
               1
 
               <a href="#ironingot">
-                <img class="item" title="Iron Ingot" id="ironingot" src="">
+                <img class="item" title="Iron Ingot" src="game_images/./items/ingot_iron.png">
               </a>
             </td>
 
@@ -45815,10 +45826,10 @@
               2
 
               <a href="#bituminouscoal">
-                <img class="item" title="Bituminous Coal" id="bituminouscoal" src="">
+                <img class="item" title="Bituminous Coal" src="game_images/./items/mineral_bituminous_coal.png">
               </a>
               <a href="#alchemicalooze">
-                <img class="item" title="Alchemical Ooze" id="alchemicalooze" src="">
+                <img class="item" title="Alchemical Ooze" src="game_images/expansion2/items/potion_ooze.png">
               </a>
             </td>
 
@@ -45856,13 +45867,13 @@
               4
 
               <a href="#citrine">
-                <img class="item" title="Citrine" id="citrine" src="">
+                <img class="item" title="Citrine" src="game_images/./items/gem_citrine.png">
               </a>
               <a href="#citrine">
-                <img class="item" title="Citrine" id="citrine" src="">
+                <img class="item" title="Citrine" src="game_images/./items/gem_citrine.png">
               </a>
               <a href="#acidflask">
-                <img class="item" title="Acid Flask" id="acidflask" src="">
+                <img class="item" title="Acid Flask" src="game_images/./items/thrown_acid_flask.png">
               </a>
             </td>
 
@@ -45900,16 +45911,16 @@
               <img class="stat" width="16px" height="16px" src="game_images/items/tool_ingot_press.png">
 
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
             </td>
 
@@ -45948,10 +45959,10 @@
               3
 
               <a href="#spatialinstabilityinfusion">
-                <img class="item" title="Spatial Instability Infusion" id="spatialinstabilityinfusion" src="">
+                <img class="item" title="Spatial Instability Infusion" src="game_images/./items/potion_blink.png">
               </a>
               <a href="#blinkdust">
-                <img class="item" title="Blink Dust" id="blinkdust" src="">
+                <img class="item" title="Blink Dust" src="game_images/expansion/items/thrown_blink_dust.png">
               </a>
             </td>
 
@@ -45992,16 +46003,16 @@
               4
 
               <a href="#greedyblungecap">
-                <img class="item" title="Greedy Blungecap" id="greedyblungecap" src="">
+                <img class="item" title="Greedy Blungecap" src="game_images/./items/fungus_greedyblungecap.png">
               </a>
               <a href="#carnelian">
-                <img class="item" title="Carnelian" id="carnelian" src="">
+                <img class="item" title="Carnelian" src="game_images/./items/gem_carnelian.png">
               </a>
               <a href="#zincingot">
-                <img class="item" title="Zinc Ingot" id="zincingot" src="">
+                <img class="item" title="Zinc Ingot" src="game_images/./items/ingot_zinc.png">
               </a>
               <a href="#potionoflivelyregeneration">
-                <img class="item" title="Potion of Lively Regeneration" id="potionoflivelyregeneration" src="">
+                <img class="item" title="Potion of Lively Regeneration" src="game_images/./items/potion_regen0.png">
               </a>
             </td>
 
@@ -46042,16 +46053,16 @@
               6
 
               <a href="#ruby">
-                <img class="item" title="Ruby" id="ruby" src="">
+                <img class="item" title="Ruby" src="game_images/./items/gem_ruby.png">
               </a>
               <a href="#sapphire">
-                <img class="item" title="Sapphire" id="sapphire" src="">
+                <img class="item" title="Sapphire" src="game_images/./items/gem_sapphire.png">
               </a>
               <a href="#emerald">
-                <img class="item" title="Emerald" id="emerald" src="">
+                <img class="item" title="Emerald" src="game_images/./items/gem_emerald.png">
               </a>
               <a href="#citrine">
-                <img class="item" title="Citrine" id="citrine" src="">
+                <img class="item" title="Citrine" src="game_images/./items/gem_citrine.png">
               </a>
             </td>
 
@@ -46098,13 +46109,13 @@
               3
 
               <a href="#voltaiccell">
-                <img class="item" title="Voltaic Cell" id="voltaiccell" src="">
+                <img class="item" title="Voltaic Cell" src="game_images/./items/component_voltaic_cell.png">
               </a>
               <a href="#copperwire">
-                <img class="item" title="Copper Wire" id="copperwire" src="">
+                <img class="item" title="Copper Wire" src="game_images/./items/component_wire_copper.png">
               </a>
               <a href="#copperingot">
-                <img class="item" title="Copper Ingot" id="copperingot" src="">
+                <img class="item" title="Copper Ingot" src="game_images/./items/ingot_copper.png">
               </a>
             </td>
 
@@ -46143,13 +46154,13 @@
               2
 
               <a href="#aluminumtube">
-                <img class="item" title="Aluminum Tube" id="aluminumtube" src="">
+                <img class="item" title="Aluminum Tube" src="game_images/./items/mace_aluminum_tube.png">
               </a>
               <a href="#aethericpowercylinder">
-                <img class="item" title="Aetheric Power Cylinder" id="aethericpowercylinder" src="">
+                <img class="item" title="Aetheric Power Cylinder" src="game_images/./items/component_aetheric_power.png">
               </a>
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
             </td>
 
@@ -46187,16 +46198,16 @@
               3
 
               <a href="#brassingot">
-                <img class="item" title="Brass Ingot" id="brassingot" src="">
+                <img class="item" title="Brass Ingot" src="game_images/./items/ingot_brass.png">
               </a>
               <a href="#slottedbronzediscs">
-                <img class="item" title="Slotted Bronze Discs" id="slottedbronzediscs" src="">
+                <img class="item" title="Slotted Bronze Discs" src="game_images/./items/component_bronze_discs.png">
               </a>
               <a href="#pressureplate">
-                <img class="item" title="Pressure Plate" id="pressureplate" src="">
+                <img class="item" title="Pressure Plate" src="game_images/./items/component_pressure_plate.png">
               </a>
               <a href="#selfsealingstembolt">
-                <img class="item" title="Self-sealing Stem Bolt" id="selfsealingstembolt" src="">
+                <img class="item" title="Self-sealing Stem Bolt" src="game_images/./items/component_stem_bolt.png">
               </a>
             </td>
 
@@ -46234,16 +46245,16 @@
               4
 
               <a href="#voltaiccell">
-                <img class="item" title="Voltaic Cell" id="voltaiccell" src="">
+                <img class="item" title="Voltaic Cell" src="game_images/./items/component_voltaic_cell.png">
               </a>
               <a href="#copperwire">
-                <img class="item" title="Copper Wire" id="copperwire" src="">
+                <img class="item" title="Copper Wire" src="game_images/./items/component_wire_copper.png">
               </a>
               <a href="#ruby">
-                <img class="item" title="Ruby" id="ruby" src="">
+                <img class="item" title="Ruby" src="game_images/./items/gem_ruby.png">
               </a>
               <a href="#plasticingot">
-                <img class="item" title="Plastic Ingot" id="plasticingot" src="">
+                <img class="item" title="Plastic Ingot" src="game_images/./items/ingot_plastic.png">
               </a>
             </td>
 
@@ -46290,16 +46301,16 @@
               4
 
               <a href="#ironingot">
-                <img class="item" title="Iron Ingot" id="ironingot" src="">
+                <img class="item" title="Iron Ingot" src="game_images/./items/ingot_iron.png">
               </a>
               <a href="#aluminumtube">
-                <img class="item" title="Aluminum Tube" id="aluminumtube" src="">
+                <img class="item" title="Aluminum Tube" src="game_images/./items/mace_aluminum_tube.png">
               </a>
               <a href="#aluminumtube">
-                <img class="item" title="Aluminum Tube" id="aluminumtube" src="">
+                <img class="item" title="Aluminum Tube" src="game_images/./items/mace_aluminum_tube.png">
               </a>
               <a href="#blackpowder">
-                <img class="item" title="Black Powder" id="blackpowder" src="">
+                <img class="item" title="Black Powder" src="game_images/./items/reagent_black_powder.png">
               </a>
             </td>
 
@@ -46337,16 +46348,16 @@
               4
 
               <a href="#ironingot">
-                <img class="item" title="Iron Ingot" id="ironingot" src="">
+                <img class="item" title="Iron Ingot" src="game_images/./items/ingot_iron.png">
               </a>
               <a href="#aluminumtube">
-                <img class="item" title="Aluminum Tube" id="aluminumtube" src="">
+                <img class="item" title="Aluminum Tube" src="game_images/./items/mace_aluminum_tube.png">
               </a>
               <a href="#aluminumtube">
-                <img class="item" title="Aluminum Tube" id="aluminumtube" src="">
+                <img class="item" title="Aluminum Tube" src="game_images/./items/mace_aluminum_tube.png">
               </a>
               <a href="#blackpowder">
-                <img class="item" title="Black Powder" id="blackpowder" src="">
+                <img class="item" title="Black Powder" src="game_images/./items/reagent_black_powder.png">
               </a>
             </td>
 
@@ -46384,16 +46395,16 @@
               4
 
               <a href="#steelingot">
-                <img class="item" title="Steel Ingot" id="steelingot" src="">
+                <img class="item" title="Steel Ingot" src="game_images/./items/ingot_steel.png">
               </a>
               <a href="#springloadedpowercore">
-                <img class="item" title="Spring-loaded Power Core" id="springloadedpowercore" src="">
+                <img class="item" title="Spring-loaded Power Core" src="game_images/./items/component_power_spring.png">
               </a>
               <a href="#brassmechanisms">
-                <img class="item" title="Brass Mechanisms" id="brassmechanisms" src="">
+                <img class="item" title="Brass Mechanisms" src="game_images/./items/component_parts_brass.png">
               </a>
               <a href="#slottedbronzediscs">
-                <img class="item" title="Slotted Bronze Discs" id="slottedbronzediscs" src="">
+                <img class="item" title="Slotted Bronze Discs" src="game_images/./items/component_bronze_discs.png">
               </a>
             </td>
 
@@ -46437,16 +46448,16 @@
               <img class="stat" width="16px" height="16px" src="game_images/items/tool_ingot_press.png">
 
               <a href="#freshsteak">
-                <img class="item" title="Fresh Steak" id="freshsteak" src="">
+                <img class="item" title="Fresh Steak" src="game_images/./items/food_steak_fresh.png">
               </a>
               <a href="#steak">
-                <img class="item" title="Steak" id="steak" src="">
+                <img class="item" title="Steak" src="game_images/./items/food_steak.png">
               </a>
               <a href="#agedsteak">
-                <img class="item" title="Aged Steak" id="agedsteak" src="">
+                <img class="item" title="Aged Steak" src="game_images/./items/food_steak_aged.png">
               </a>
               <a href="#grilledsteak">
-                <img class="item" title="Grilled Steak" id="grilledsteak" src="">
+                <img class="item" title="Grilled Steak" src="game_images/./items/food_steak_grilled.png">
               </a>
             </td>
 
@@ -46469,6 +46480,1618 @@
       </table>
 
       <h1 id="skills">Skills</h1>
+      <!-- For a human-generated list of vanilla skills, visit the archived page:
+        https://web.archive.org/web/20130907235710/http://www.dredmorwiki.com/wiki/Skills -->
+      <table id="skillDB" class="skillDB">
+
+        <thead>
+          <tr>
+            <th class="name">Name</th>
+            <th class="type">Type</th>
+            <th>Loadout</th>
+            <th>Flags</th>
+            <th>Abilities</th>
+          </tr>
+        </thead>
+
+        <tbody class="list">
+          <tr id="skill0">
+            <td class="name">
+              <a name="swords"> </a>
+              <img class="skill" id="swords" title="Swords" src="game_images/./skills/skill_sword.png">
+              Swords
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#woodensword">
+                <img class="item" title="Wooden Sword" src="game_images/./items/sword_wooden.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Swordplay
+              Student of Fencing
+              Liechtenauer's Overhau
+              Sword Practice
+              Thibault's Trompement
+              Sword Lore
+              Sword Poet
+            </td>
+          </tr>
+
+          <tr id="skill45">
+            <td class="name">
+              <a name="daggers"> </a>
+              <img class="skill" id="daggers" title="Daggers" src="game_images/./skills/daggery64.png">
+              Daggers
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#shiv">
+                <img class="item" title="Shiv" src="game_images/./items/dagger_shiv.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Daggers
+              Liechtenauer's Switcheroo
+              Two Attacks One Dagger!
+              Silent Deadly Dagger Sneaky Stance
+              Blood Geyser Strike
+              Very Sharp Wall of Blades Stance
+              Devouring Wound Technique
+            </td>
+          </tr>
+
+          <tr id="skill1">
+            <td class="name">
+              <a name="axes"> </a>
+              <img class="skill" id="axes" title="Axes" src="game_images/./skills/skill_axe.png">
+              Axes
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#crudestoneaxe">
+                <img class="item" title="Crude Stone Axe" src="game_images/./items/axe_stone.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Axemanship
+              Combat Lumberjack
+              Viking Strike
+              Axe Training
+              Norwegian Axenado
+              Axe Mantra
+              Philosopher of the Axe
+            </td>
+          </tr>
+
+          <tr id="skill2">
+            <td class="name">
+              <a name="maces"> </a>
+              <img class="skill" id="maces" title="Maces" src="game_images/./skills/skill_mace.png">
+              Maces
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#gnarledclub">
+                <img class="item" title="Gnarled Club" src="game_images/./items/mace_gnarled_club.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Macery
+              Assistant Hammerer
+              Dwarven Handshake
+              Mace Rehearsal
+              Ragnar's Meteor
+              Mace Knowledge
+              Hammer Champion
+            </td>
+          </tr>
+
+          <tr id="skill46">
+            <td class="name">
+              <a name="polearms"> </a>
+              <img class="skill" id="polearms" title="Polearms" src="game_images/./skills/polearming64.png">
+              Polearms
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#peasantlypitchfork">
+                <img class="item" title="Peasantly Pitchfork" src="game_images/./items/polearm_pitchfork.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Polearms
+              Talhoffer's Lunge Strike
+              The Sensible Swiss Defensive Stance
+              Very Long Stick Damage Enhancement Training
+              Wallenstein's Inevitable Victory Stance
+              Count Tilly's Long-range Pike Bombardment
+              Pope of the Polearm Mastery Sweep
+            </td>
+          </tr>
+
+          <tr id="skill3">
+            <td class="name">
+              <a name="staves"> </a>
+              <img class="skill" id="staves" title="Staves" src="game_images/./skills/skill_staff.png">
+              Staves
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#heftystick">
+                <img class="item" title="Hefty Stick" src="game_images/./items/staff_simple.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Staff-fighting
+              Trainee Stick Wrangler
+              Spirit Conduit
+              Staff Discipline
+              Ki Cascade Strike
+              Staff Secrets
+              Staff Sage
+            </td>
+          </tr>
+
+          <tr id="skill4">
+            <td class="name">
+              <a name="archery"> </a>
+              <img class="skill" id="archery" title="Archery" src="game_images/./skills/skill_crossbow.png">
+              Archery
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#smallcrossbow">
+                <img class="item" title="Small Crossbow" src="game_images/./items/crossbow_small.png">
+              </a>
+            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#woodenbolt">
+                <img class="item" title="Wooden Bolt" src="game_images/./items/bolt_wooden.png">
+              </a>
+ x 18            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#poisonampoulebolt">
+                <img class="item" title="Poison Ampoule Bolt" src="game_images/./items/bolt_ampoule_poison.png">
+              </a>
+ x 6            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#firebolt">
+                <img class="item" title="Fire Bolt" src="game_images/./items/bolt_fire.png">
+              </a>
+ x 6            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Crossbows
+              Bolt Thrower
+              Crossbow Blast
+              Bullseye
+              Maverick
+              Prince of the Crossbow
+            </td>
+          </tr>
+
+          <tr id="skill5">
+            <td class="name">
+              <a name="thrownweaponry"> </a>
+              <img class="skill" id="thrownweaponry" title="Thrown Weaponry" src="game_images/./skills/skill_thrown.png">
+              Thrown Weaponry
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#dwarvenboomerang">
+                <img class="item" title="Dwarven Boomerang" src="game_images/./items/thrown_boomerang.png">
+              </a>
+ x 16            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#acidflask">
+                <img class="item" title="Acid Flask" src="game_images/./items/thrown_acid_flask.png">
+              </a>
+ x 3            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#concussionbomb">
+                <img class="item" title="Concussion Bomb" src="game_images/./items/thrown_concussion_bomb.png">
+              </a>
+ x 5            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Thrown Weaponry
+              Underhander
+              Monster Toss
+              Peltast
+              Australian Technique
+              Regent of Throwing Stuff At People
+            </td>
+          </tr>
+
+          <tr id="skill6">
+            <td class="name">
+              <a name="unarmedcombat"> </a>
+              <img class="skill" id="unarmedcombat" title="Unarmed Combat" src="game_images/./skills/skill_unarmed.png">
+              Unarmed Combat
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#hachimaki">
+                <img class="item" title="Hachimaki" src="game_images/./items/helm_hachimaki.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              The Unarmed Art
+              Small Cricket Apprentice
+              Throwing Buffalo Technique
+              Footwork
+              Gray Heron Takes Flight
+              Stone Sole
+              Master of Dragon Foot Technique
+            </td>
+          </tr>
+
+          <tr id="skill7">
+            <td class="name">
+              <a name="dualwielding"> </a>
+              <img class="skill" id="dualwielding" title="Dual Wielding" src="game_images/./skills/skill_dualwield.png">
+              Dual Wielding
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Dual Wielding
+              Swift Hands
+              Offensive Maneuvering
+              Ambidextrous Defense
+              Combat Momentum
+              Not Drizzt
+            </td>
+          </tr>
+
+          <tr id="skill8">
+            <td class="name">
+              <a name="shieldbearer"> </a>
+              <img class="skill" id="shieldbearer" title="Shield Bearer" src="game_images/./skills/skill_shieldbearer.png">
+              Shield Bearer
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#woodenshield">
+                <img class="item" title="Wooden Shield" src="game_images/./items/shield_wooden.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Shield-bearer
+              Squire of the Shield
+              Duck And Cover!
+              Defensive Bash
+              Tortoise Maneuver
+              Shield Savant
+            </td>
+          </tr>
+
+          <tr id="skill9">
+            <td class="name">
+              <a name="berserkerrage"> </a>
+              <img class="skill" id="berserkerrage" title="Berserker Rage" src="game_images/./skills/skill_berserker.png">
+              Berserker Rage
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Berserker Rage
+              Poor Impulse Control
+              Viking Temperament
+              Ancestral Body Paint
+              Berserker Rage
+              Killing Blow
+            </td>
+          </tr>
+
+          <tr id="skill10">
+            <td class="name">
+              <a name="artfuldodger"> </a>
+              <img class="skill" id="artfuldodger" title="Artful Dodger" src="game_images/./skills/skill_dodging.png">
+              Artful Dodger
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#flippyfloppies">
+                <img class="item" title="Flippy Floppies" src="game_images/./items/boots_floppies.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Artful Dodging
+              Fidgety Fellow
+              Aikido For Adventurers
+              Knightly Leap
+              Transdimensional Dodge
+              Supremely Sly Side-stepper
+            </td>
+          </tr>
+
+          <tr id="skill11">
+            <td class="name">
+              <a name="masterofarms"> </a>
+              <img class="skill" id="masterofarms" title="Master of Arms" src="game_images/./skills/skill_armour.png">
+              Master of Arms
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#ironbreastplate">
+                <img class="item" title="Iron Breastplate" src="game_images/./items/armour_iron_breastplate.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Master of Arms
+              Thick Skin
+              Suit Up
+              Walk It Off
+              It Only Makes You Stronger
+              Master of Arms
+            </td>
+          </tr>
+
+          <tr id="skill12">
+            <td class="name">
+              <a name="deadshot"> </a>
+              <img class="skill" id="deadshot" title="Deadshot" src="game_images/./skills/skill_deadshot.png">
+              Deadshot
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#spectacles">
+                <img class="item" title="Spectacles" src="game_images/./items/helm_spectacles.png">
+              </a>
+            </div>
+            
+            </td>
+            <td>{'deprecated': '1'}</td>
+            <td>
+              Deadshot
+              Beginner's Luck
+              True Aim
+              Masterful Marksman
+            </td>
+          </tr>
+
+          <tr id="skill13">
+            <td class="name">
+              <a name="vampirism"> </a>
+              <img class="skill" id="vampirism" title="Vampirism" src="game_images/./skills/skill_vampirism.png">
+              Vampirism
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+            </td>
+            <td>{'nofood': '1'}</td>
+            <td>
+              Vampirism
+              Blood Sucker
+              Drinker of the Dead
+              Sparkly
+              Psychic Vampire
+              Transylvation
+            </td>
+          </tr>
+
+          <tr id="skill14">
+            <td class="name">
+              <a name="golemancy"> </a>
+              <img class="skill" id="golemancy" title="Golemancy" src="game_images/./skills/skill_golemancer.png">
+              Golemancy
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#golemancerscap">
+                <img class="item" title="Golemancer's Cap" src="game_images/./items/helm_golemancers.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Golemancy
+              Animate Blade Being
+              Animate Mustache
+              Unliving Wall
+              Invive Thaumite Swarm
+              The Mortal Machine
+              Digging Ray
+            </td>
+          </tr>
+
+          <tr id="skill15">
+            <td class="name">
+              <a name="fleshsmithing"> </a>
+              <img class="skill" id="fleshsmithing" title="Fleshsmithing" src="game_images/./skills/skill_fleshshaper.png">
+              Fleshsmithing
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#offal">
+                <img class="item" title="Offal" src="game_images/./items/food_offal.png">
+              </a>
+ x 3            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Flesh-shaping
+              Zombyfycation
+              Knit Tissue
+              Fleshbore
+              Meatshield
+              Corpus Burst
+              Miasmatic Putrefaction
+            </td>
+          </tr>
+
+          <tr id="skill16">
+            <td class="name">
+              <a name="mathemagic"> </a>
+              <img class="skill" id="mathemagic" title="Mathemagic" src="game_images/./skills/skill_mathemagic.png">
+              Mathemagic
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#coatoftweed">
+                <img class="item" title="Coat of Tweed" src="game_images/./items/armour_tweed.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Mathemagic
+              Froda's Jump Discontinuity
+              Beklam's Diminuating Calculus
+              Curse of the Golden Ratio
+              Zenzizenzizenzic
+              Xeuclid's Translation
+              The Recursive Curse
+            </td>
+          </tr>
+
+          <tr id="skill17">
+            <td class="name">
+              <a name="psionics"> </a>
+              <img class="skill" id="psionics" title="Psionics" src="game_images/./skills/skill_psionicist.png">
+              Psionics
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Psionics
+              Narcosomatic Induction
+              Psychokinetic Shove
+              Crystal Healing
+              Nerve Staple
+              Pyrokinesis
+              Unconditional Love
+            </td>
+          </tr>
+
+          <tr id="skill18">
+            <td class="name">
+              <a name="necronomiconomics"> </a>
+              <img class="skill" id="necronomiconomics" title="Necronomiconomics" src="game_images/./skills/skill_necronomiconomics.png">
+              Necronomiconomics
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Necronomiconomics
+              Deathly Hex
+              Nightmare Curse
+              Mark of Chthon
+              Pact of Fleeting Life
+              Eldritch Inhabitation
+              Tenebrous Rift
+            </td>
+          </tr>
+
+          <tr id="skill19">
+            <td class="name">
+              <a name="vikingwizardry"> </a>
+              <img class="skill" id="vikingwizardry" title="Viking Wizardry" src="game_images/./skills/skill_vikingwizard.png">
+              Viking Wizardry
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Viking Wizardry
+              Power of Magic Steel
+              Skatha's Roots
+              Arctic Vortex
+              Unholy Warcry
+              Hand of Belimawr
+              Thor's Fulminaric Bolt
+            </td>
+          </tr>
+
+          <tr id="skill20">
+            <td class="name">
+              <a name="astrology"> </a>
+              <img class="skill" id="astrology" title="Astrology" src="game_images/./skills/skill_astrologer.png">
+              Astrology
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#astrologershat">
+                <img class="item" title="Astrologer's Hat" src="game_images/./items/helm_astrologers.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Astrology
+              Radiant Aura
+              Solar Inscription
+              Blinding Flash
+              Syzygy
+              Celestial Aegis
+              The Stars Aligned
+            </td>
+          </tr>
+
+          <tr id="skill21">
+            <td class="name">
+              <a name="prometheanmagic"> </a>
+              <img class="skill" id="prometheanmagic" title="Promethean Magic" src="game_images/./skills/skill_prometheanmagic.png">
+              Promethean Magic
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Promethean Magic
+              Dragon's Breath
+              Rune of Exploding
+              Summon Wyrmling
+              Obvious Fireball
+              Gog's Tactical Pyre
+              Infernal Torus
+            </td>
+          </tr>
+
+          <tr id="skill22">
+            <td class="name">
+              <a name="magictraining"> </a>
+              <img class="skill" id="magictraining" title="Magic Training" src="game_images/./skills/skill_magictraining.png">
+              Magic Training
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#crackedorb">
+                <img class="item" title="Cracked Orb" src="game_images/./items/orb_cracked.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Magic Training
+              Certified Mage
+              License To Cast
+              Wizarding Associate
+              Extra-planar Concentration
+              Master of Magic
+            </td>
+          </tr>
+
+          <tr id="skill23">
+            <td class="name">
+              <a name="bloodmage"> </a>
+              <img class="skill" id="bloodmage" title="Blood Mage" src="game_images/./skills/skill_bloodmagic.png">
+              Blood Mage
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#sacrificialdagger">
+                <img class="item" title="Sacrificial Dagger" src="game_images/./items/dagger_sacrificial.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Blood Magic
+              Sanguinista
+              Vital Siphon
+              Spirit Stealer
+              Haematic Phylactery
+              Soul Collector
+            </td>
+          </tr>
+
+          <tr id="skill24">
+            <td class="name">
+              <a name="leywalker"> </a>
+              <img class="skill" id="leywalker" title="Ley Walker" src="game_images/./skills/skill_leylines.png">
+              Ley Walker
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Ley Lines
+              Linewalker
+              Thaumaturgic Tap
+              Conduit
+              Channeller
+              Invisible Geometries
+            </td>
+          </tr>
+
+          <tr id="skill25">
+            <td class="name">
+              <a name="perception"> </a>
+              <img class="skill" id="perception" title="Perception" src="game_images/./skills/skill_perception.png">
+              Perception
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+
+
+
+
+
+
+
+            <div class="loadout-group">
+              <img class="item" title="Lockpick" src="game_images/items/lockpick.png"> x 4
+            </div>
+            </td>
+            <td></td>
+            <td>
+              Perception
+              Superhuman Perception
+              Highly Aware
+              Trap Sense
+              Second Sight
+              Third Sight
+              Eye Lasers
+            </td>
+          </tr>
+
+          <tr id="skill26">
+            <td class="name">
+              <a name="burglary"> </a>
+              <img class="skill" id="burglary" title="Burglary" src="game_images/./skills/skill_stealth.png">
+              Burglary
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="loadout-group">
+              <img class="item" title="Lockpick" src="game_images/items/lockpick.png"> x 8
+            </div>
+            </td>
+            <td></td>
+            <td>
+              Burglary
+              Vending Machine Looter
+              Lucky Pick
+              Lockup
+              Ninja Vanish
+              Five-Finger Discount
+              Move in Mysterious Way
+            </td>
+          </tr>
+
+          <tr id="skill27">
+            <td class="name">
+              <a name="assassination"> </a>
+              <img class="skill" id="assassination" title="Assassination" src="game_images/./skills/skill_assassination.png">
+              Assassination
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Assassination
+              Blackjack
+              Slim Customer
+              Venomous Infusion
+              Sneaky Shiv
+              Et tu?
+            </td>
+          </tr>
+
+          <tr id="skill28">
+            <td class="name">
+              <a name="fungalarts"> </a>
+              <img class="skill" id="fungalarts" title="Fungal Arts" src="game_images/./skills/skill_mushroomlore.png">
+              Fungal Arts
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+            <div class="loadout-group">
+                mushroom x 3             </div>
+
+            <div class="loadout-group">
+                mushroom x 2             </div>
+
+            <div class="loadout-group">
+                mushroom x 1             </div>
+            </td>
+            <td></td>
+            <td>
+              Fungal Arts
+              Mushroom Farmer
+              Slime-herder
+              Moldsmith
+              Battle Mycology
+              Fungal Master of Yuggoth
+            </td>
+          </tr>
+
+          <tr id="skill29">
+            <td class="name">
+              <a name="alchemy"> </a>
+              <img class="skill" id="alchemy" title="Alchemy" src="game_images/./skills/skill_alchemy.png">
+              Alchemy
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+
+            <div class="loadout-group">
+                potion            </div>
+
+            <div class="loadout-group">
+                reagent x 1             </div>
+
+            <div class="loadout-group">
+                reagent x 2             </div>
+
+            <div class="loadout-group">
+                reagent x 3             </div>
+
+            <div class="loadout-group">
+              <a class="ref" href="#aquavitae">
+                <img class="item" title="Aqua Vitae" src="game_images/./items/reagent_aqua_vitae.png">
+              </a>
+ x 3            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#aquaregia">
+                <img class="item" title="Aqua Regia" src="game_images/./items/potion_aqua_regia.png">
+              </a>
+ x 3            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#modularalchemybox">
+                <img class="item" title="Modular Alchemy Box" src="game_images/./items/tool_alchemy_kit.png">
+              </a>
+            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#portastill">
+                <img class="item" title="Porta-Still" src="game_images/./items/tool_distilling_kit.png">
+              </a>
+            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#elveningotgrinder">
+                <img class="item" title="Elven Ingot Grinder" src="game_images/./items/tool_grinder.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Alchemy
+              Potions 101
+              Distillistry
+              Transmutationer
+              Mixologist
+              High-energy Alchemist
+              Potionmaster
+            </td>
+          </tr>
+
+          <tr id="skill30">
+            <td class="name">
+              <a name="wandlore"> </a>
+              <img class="skill" id="wandlore" title="Wand Lore" src="game_images/./skills/skill_wandlore.png">
+              Wand Lore
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+
+            <div class="loadout-group">
+                wand            </div>
+
+            <div class="loadout-group">
+                wand            </div>
+
+            <div class="loadout-group">
+                wand            </div>
+
+            <div class="loadout-group">
+              <a class="ref" href="#ndimensionallathe">
+                <img class="item" title="n-Dimensional Lathe" src="game_images/./items/tool_n-dimensional_lathe.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Wand Lore
+              Rod Charge
+              Baton Polisher
+              Rhabdomantic Hacker
+              Adept Wandtwirler
+              The Power of the Rod
+              Aetherweaver
+            </td>
+          </tr>
+
+          <tr id="skill31">
+            <td class="name">
+              <a name="archaeology"> </a>
+              <img class="skill" id="archaeology" title="Archaeology" src="game_images/./skills/skill_archaeology.png">
+              Archaeology
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#fedora">
+                <img class="item" title="Fedora" src="game_images/./items/helm_fedora.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Archaeology
+              Rogue Archaeologist
+              It Belongs In A Museum
+              Remember Your Charlemagne
+              This Translation is All Wrong!
+              Ancient Kronian Ritual
+            </td>
+          </tr>
+
+          <tr id="skill32">
+            <td class="name">
+              <a name="smithing"> </a>
+              <img class="skill" id="smithing" title="Smithing" src="game_images/./skills/skill_smithing.png">
+              Smithing
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#mylittleanviljuniorsmithingkit">
+                <img class="item" title="My Little Anvil Junior Smithing Kit" src="game_images/./items/tool_travel_anvil.png">
+              </a>
+            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#disposableingotpress">
+                <img class="item" title="Disposable Ingot Press" src="game_images/./items/tool_ingot_press.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Smithing
+              Honourary Armourer
+              Ingoteer
+              Metallurgical Practitioner
+              Forgekeeper
+              Chosen of Krong
+              The World-Hammer
+            </td>
+          </tr>
+
+          <tr id="skill33">
+            <td class="name">
+              <a name="tinkering"> </a>
+              <img class="skill" id="tinkering" title="Tinkering" src="game_images/./skills/skill_tinkerer.png">
+              Tinkering
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#tinkererparts">
+                <img class="item" title="Tinkerer Parts" src="game_images/./items/tool_tinkerer_kit.png">
+              </a>
+            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#disposableingotpress">
+                <img class="item" title="Disposable Ingot Press" src="game_images/./items/tool_ingot_press.png">
+              </a>
+            </div>
+            
+
+            <div class="loadout-group">
+                component x 3             </div>
+
+            <div class="loadout-group">
+                component x 3             </div>
+
+            <div class="loadout-group">
+                component x 3             </div>
+            </td>
+            <td></td>
+            <td>
+              Tinkering
+              Dabbling Trappist
+              Mechanicker
+              Cog-jockey
+              Inventor
+              Chief Artificer
+              Music of the Gears
+            </td>
+          </tr>
+
+          <tr id="skill34">
+            <td class="name">
+              <a name="biggamehunter"> </a>
+              <img class="skill" id="biggamehunter" title="Big Game Hunter" src="game_images/expansion/skills/hunter64.png">
+              Big Game Hunter
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Big Game Hunter
+              Trophy Collector
+              Butcher
+              Hunter's Lure
+              The Most Dangerous Game
+              Release The Hounds
+            </td>
+          </tr>
+
+          <tr id="skill35">
+            <td class="name">
+              <a name="emomancy"> </a>
+              <img class="skill" id="emomancy" title="Emomancy" src="game_images/expansion/skills/emomancy64.png">
+              Emomancy
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Emomancy
+              Love Will Teleport Us Apart
+              The Cure
+              My Chemical Explosion
+              Dampening Field of Angst
+              Sigil of Whatever
+              Mark of the Black Eyeliner
+              Depressing Elemental Blast
+            </td>
+          </tr>
+
+          <tr id="skill36">
+            <td class="name">
+              <a name="weredigglecurse"> </a>
+              <img class="skill" id="weredigglecurse" title="Werediggle Curse" src="game_images/expansion/skills/werediggle64.png">
+              Werediggle Curse
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Werediggle Curse
+              Werediggle Form
+              Diggle Plague
+              Werediggles of London
+              Going Commando
+              It Comes out of Where?!
+              The Mighty Auger
+              Arch-Diggle Smash
+              Dr. Diggle and Mr. Hyde
+            </td>
+          </tr>
+
+          <tr id="skill38">
+            <td class="name">
+              <a name="killervegan"> </a>
+              <img class="skill" id="killervegan" title="Killer Vegan" src="game_images/expansion/skills/killer_vegan64.png">
+              Killer Vegan
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#tofu">
+                <img class="item" title="Tofu" src="game_images/./items/food_tofu.png">
+              </a>
+ x 5            </div>
+            
+            </td>
+            <td>{'nofood': '1', 'veganism': '1', 'friendlytaxa': 'Animal'}</td>
+            <td>
+              Killer Vegan
+              Green Harvest
+              Animal Friend
+              Clean Living
+              Aura of Self-Righteousness
+              Level 5 Vegan
+            </td>
+          </tr>
+
+          <tr id="skill39">
+            <td class="name">
+              <a name="piracy"> </a>
+              <img class="skill" id="piracy" title="Piracy" src="game_images/expansion/skills/piracy64.png">
+              Piracy
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+
+
+
+
+
+
+
+            <div class="loadout-group">
+              <img class="item" title="Lockpick" src="game_images/items/lockpick.png"> x 4
+            </div>
+            </td>
+            <td></td>
+            <td>
+              Piracy
+              Plundering
+              Swashbuckling
+              Mists of the Corsair
+              The Black Spot
+              Broadside
+            </td>
+          </tr>
+
+          <tr id="skill40">
+            <td class="name">
+              <a name="demonologist"> </a>
+              <img class="skill" id="demonologist" title="Demonologist" src="game_images/expansion/skills/demonologist64.png">
+              Demonologist
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Demonologist
+              Turn Demon
+              Fervor of the Flagellant
+              Celestial Circle
+              Abyssal Fire
+              Infernal Contract
+              Flames of The Heckforge
+              No, You Are The Demons
+            </td>
+          </tr>
+
+          <tr id="skill41">
+            <td class="name">
+              <a name="clockworkknight"> </a>
+              <img class="skill" id="clockworkknight" title="Clockwork Knight" src="game_images/expansion2/skills/clockwork_knight64.png">
+              Clockwork Knight
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#leathercapwithacogonit">
+                <img class="item" title="Leather Cap With A Cog On It" src="game_images/expansion2/items/helm_leather_cap_cog.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Clockwork Knight
+              Tech Scavenger
+              Rocket-powered Punch
+              Rocket Jump
+              Augmented Limbs
+              Parabolic Mecha-stomp
+              Thaumecha-kinetic Damper
+              Charge of the Steam Brigade
+            </td>
+          </tr>
+
+          <tr id="skill42">
+            <td class="name">
+              <a name="roguescientist"> </a>
+              <img class="skill" id="roguescientist" title="Rogue Scientist" src="game_images/expansion2/skills/clockwork_rogue64.png">
+              Rogue Scientist
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#sonicwand">
+                <img class="item" title="Sonic Wand" src="game_images/expansion2/items/wand_sonic.png">
+              </a>
+            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#acidflask">
+                <img class="item" title="Acid Flask" src="game_images/./items/thrown_acid_flask.png">
+              </a>
+ x 2            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#poisonflask">
+                <img class="item" title="Poison Flask" src="game_images/./items/thrown_poison_flask.png">
+              </a>
+ x 2            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Rogue Scientist
+              Chemic Pilferer
+              Baromatic Pulse Device
+              Acidical Projector
+              Clockwork Reflexes
+              Alchemical Toxin Canister
+              Thaumomechnical Rebreather
+              Baromatic Vortex Upgrade
+              Aetheric Death Ray
+            </td>
+          </tr>
+
+          <tr id="skill43">
+            <td class="name">
+              <a name="battlegeology"> </a>
+              <img class="skill" id="battlegeology" title="Battle Geology" src="game_images/expansion2/skills/geology64.png">
+              Battle Geology
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Battle Geology
+              Plutonic Fist
+              Stone Secret
+              Seismic Uppercut
+              Basalt Skin
+              Petrification
+              Quake
+            </td>
+          </tr>
+
+          <tr id="skill44">
+            <td class="name">
+              <a name="warlockery"> </a>
+              <img class="skill" id="warlockery" title="Warlockery" src="game_images/expansion2/skills/warlockery64.png">
+              Warlockery
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#aluminumwizardinghat">
+                <img class="item" title="Aluminum Wizarding Hat" src="game_images/expansion2/items/helm_aluminum_wizard_hat.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Warlockery
+              Puissant Touch
+              Mage's Mana Maille
+              Warlock's Challenge
+              Essence of Battle
+              Chronomantic Twist
+              Puissant Veil
+              Arcane Capacitor
+              Manacalypse 
+            </td>
+          </tr>
+
+          <tr id="skill47">
+            <td class="name">
+              <a name="bankster"> </a>
+              <img class="skill" id="bankster" title="Bankster" src="game_images/expansion3/skills/bankster64.png">
+              Bankster
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#reardenmetalingot">
+                <img class="item" title="Rearden Metal Ingot" src="game_images/expansion3/items/ingot_rearden.png">
+              </a>
+ x  3            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Bankster
+              High Interest Loan
+              Dump Toxic Assets
+              Insurance Fraud
+              Hire Contractor
+              Fiscal Hedge
+              Bailout
+            </td>
+          </tr>
+
+          <tr id="skill48">
+            <td class="name">
+              <a name="communist"> </a>
+              <img class="skill" id="communist" title="Communist" src="game_images/expansion3/skills/communist64.png">
+              Communist
+            </td>
+            <td>
+              Warrior
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#sickle">
+                <img class="item" title="Sickle" src="game_images/expansion3/items/sword_sickle.png">
+              </a>
+            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#hammer">
+                <img class="item" title="Hammer" src="game_images/expansion3/items/mace_hammer.png">
+              </a>
+            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#mosolovcocktail">
+                <img class="item" title="Mosolov Cocktail" src="game_images/./items/thrown_mosolov_cocktail.png">
+              </a>
+ x 3            </div>
+            
+
+            <div class="loadout-group">
+              <a class="ref" href="#vodka">
+                <img class="item" title="Vodka" src="game_images/expansion3/items/booze_vodka.png">
+              </a>
+ x 3            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Communist
+              Guerrilla Attack
+              Socialized Healthcare
+              General Winter
+              Dialectical Materialism
+              Vanguard Party
+              Iron Curtain
+              They've got The Bomb!
+            </td>
+          </tr>
+
+          <tr id="skill49">
+            <td class="name">
+              <a name="egyptianmagic"> </a>
+              <img class="skill" id="egyptianmagic" title="Egyptian Magic" src="game_images/expansion3/skills/egyptian_magic64.png">
+              Egyptian Magic
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Egyptian Magic
+              Glyph of the Asp
+              Glyph of Imhotep
+              Call the Sandstorm
+              Glyph of Anubis
+              Call the Nile
+              Glyph of the Eye of Ra
+            </td>
+          </tr>
+
+          <tr id="skill50">
+            <td class="name">
+              <a name="magicallaw"> </a>
+              <img class="skill" id="magicallaw" title="Magical Law" src="game_images/expansion3/skills/magical_law64.png">
+              Magical Law
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Magical Law
+              Confiscate Evidence
+              Polymorphic Injunction
+              Gag Order
+              Rune of Objection
+              Writ of Counterspelling
+              Wright's Irrefutable Argument
+            </td>
+          </tr>
+
+          <tr id="skill51">
+            <td class="name">
+              <a name="paranormalinvestigator"> </a>
+              <img class="skill" id="paranormalinvestigator" title="Paranormal Investigator" src="game_images/expansion3/skills/paranormal_investigator64.png">
+              Paranormal Investigator
+            </td>
+            <td>
+              Rogue
+            </td>
+            <td>
+            </td>
+            <td></td>
+            <td>
+              Paranormal Investigator
+              There Must Be A Rational Explanation
+              Close Encounter
+              Skepticism
+              Xenochemistry
+              Alien Autopsy
+              Alien Weapon
+            </td>
+          </tr>
+
+          <tr id="skill52">
+            <td class="name">
+              <a name="tourist"> </a>
+              <img class="skill" id="tourist" title="Tourist" src="game_images/expansion3/skills/tourist64.png">
+              Tourist
+            </td>
+            <td>
+              Wizard
+            </td>
+            <td>
+
+            <div class="loadout-group">
+              <a class="ref" href="#camera">
+                <img class="item" title="Camera" src="game_images/expansion3/items/camera.png">
+              </a>
+            </div>
+            
+            </td>
+            <td></td>
+            <td>
+              Tourist
+              Relax and Unwind
+              See the Sights
+              Handle Strange Foreign Currencies
+              Meet Interesting People
+              Sample the Local Cuisine
+              Get Away from It All
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
 
       <h1 id="monsters">Monsters</h1>
       <table id="monDB" class="monDB">
@@ -46495,7 +48118,7 @@
                 src="game_images/./sprites/monster/blobby/blobby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="blobby">
               Blobby
             </td>
 
@@ -46613,7 +48236,7 @@
                 src="game_images/./sprites/monster/blobby/blobby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="electroblobby">
               Electroblobby
             </td>
 
@@ -46732,7 +48355,7 @@
                 src="game_images/./sprites/monster/blobby/blobby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="kleptoblobby">
               Kleptoblobby
             </td>
 
@@ -46857,7 +48480,7 @@
                 src="game_images/./sprites/monster/blobby/blobby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="toxiblobby">
               Toxiblobby
             </td>
 
@@ -46971,7 +48594,7 @@
                 src="game_images/./sprites/monster/blobby/blobby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="sanguiblobby">
               Sanguiblobby
             </td>
 
@@ -47090,7 +48713,7 @@
                 src="game_images/./sprites/monster/blobby/blobby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="thermoblobby">
               Thermoblobby
             </td>
 
@@ -47210,7 +48833,7 @@
                 src="game_images/./sprites/monster/blobby/blobby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="blobofcorruption">
               Blob of Corruption
             </td>
 
@@ -47324,7 +48947,7 @@
                 src="game_images/./sprites/monster/blobby/blobby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="animatedoil">
               Animated Oil
             </td>
 
@@ -47430,7 +49053,7 @@
                 src="game_images/./sprites/monster/blobby/blobby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="animateblood">
               Animate Blood
             </td>
 
@@ -47544,7 +49167,7 @@
                 src="game_images/./sprites/monster/blobby/blobby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="summonslime">
               Summon Slime
             </td>
 
@@ -47655,7 +49278,7 @@
                 src="game_images/./sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="diggle">
               Diggle
             </td>
 
@@ -47771,7 +49394,7 @@
                 src="game_images/./sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="sicklydiggle">
               Sickly Diggle
             </td>
 
@@ -47893,7 +49516,7 @@
                 src="game_images/./sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="enrageddiggle">
               Enraged Diggle
             </td>
 
@@ -48004,7 +49627,7 @@
                 src="game_images/./sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="archdiggle">
               Arch Diggle
             </td>
 
@@ -48118,7 +49741,7 @@
                 src="game_images/./sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="digglecommando">
               Diggle Commando
             </td>
 
@@ -48232,7 +49855,7 @@
                 src="game_images/./sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="hungrydiggle">
               Hungry Diggle
             </td>
 
@@ -48346,7 +49969,7 @@
                 src="game_images/./sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="thirstydiggle">
               Thirsty Diggle
             </td>
 
@@ -48460,7 +50083,7 @@
                 src="game_images/./sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="trainedhuntingdiggle">
               Trained Hunting Diggle
             </td>
 
@@ -48580,7 +50203,7 @@
                 src="game_images/./sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="impishdiggle">
               Impish Diggle
             </td>
 
@@ -48711,7 +50334,7 @@
                 src="game_images/./sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="siegfried">
               Siegfried
             </td>
 
@@ -48828,7 +50451,7 @@
                 src="game_images/./sprites/monster/octo/Octo_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="octo">
               Octo
             </td>
 
@@ -48945,7 +50568,7 @@
                 src="game_images/./sprites/monster/octo/Octo_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="molluscus">
               Molluscus
             </td>
 
@@ -49070,7 +50693,7 @@
                 src="game_images/./sprites/monster/zomby/zomby_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="zomby">
               Zomby
             </td>
 
@@ -49201,7 +50824,7 @@
                 src="game_images/./sprites/monster/deth/deth_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="deth">
               Deth
             </td>
 
@@ -49324,7 +50947,7 @@
                 src="game_images/./sprites/monster/deth/deth_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="megadeth">
               Megadeth
             </td>
 
@@ -49454,7 +51077,7 @@
                 src="game_images/./sprites/monster/deth/deth_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="reddeth">
               Red Deth
             </td>
 
@@ -49584,7 +51207,7 @@
                 src="game_images/./sprites/monster/djinn/Djinn_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="djinn">
               Djinn
             </td>
 
@@ -49702,7 +51325,7 @@
                 src="game_images/./sprites/monster/djinn/Djinn_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="djinnfizz">
               Djinn Fizz
             </td>
 
@@ -49822,7 +51445,7 @@
                 src="game_images/./sprites/monster/djinn/Djinn_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="s1djinn">
               s1Djinn
             </td>
 
@@ -49938,7 +51561,7 @@
                 src="game_images/./sprites/monster/batty/batty_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="batty">
               Batty
             </td>
 
@@ -50062,7 +51685,7 @@
                 src="game_images/./sprites/monster/batty/batty_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="lilbatty">
               Lil Batty
             </td>
 
@@ -50176,7 +51799,7 @@
                 src="game_images/./sprites/monster/batty/batty_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="blinkbatty">
               Blink Batty
             </td>
 
@@ -50290,7 +51913,7 @@
                 src="game_images/./sprites/monster/thrusty/thrusty_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="thrusty">
               Thrusty
             </td>
 
@@ -50406,7 +52029,7 @@
                 src="game_images/./sprites/monster/thrusty/thrusty_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="creepcreep">
               Creep-Creep
             </td>
 
@@ -50534,7 +52157,7 @@
                 src="game_images/./sprites/monster/pumpkinn/DemPum_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="pumpkinn">
               Pumpkinn
             </td>
 
@@ -50646,7 +52269,7 @@
                 src="game_images/./sprites/monster/pumpkinn/DemPum_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="thegreatpumpkinn">
               The Great Pumpkinn
             </td>
 
@@ -50770,7 +52393,7 @@
                 src="game_images/./sprites/monster/pumpkinn/DemPum_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="rottenpumpkinn">
               Rotten Pumpkinn
             </td>
 
@@ -50895,7 +52518,7 @@
                 src="game_images/./sprites/monster/eely/eely_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="eely">
               Eely
             </td>
 
@@ -51008,7 +52631,7 @@
                 src="game_images/./sprites/monster/eely/eely_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="lavaeely">
               Lava Eely
             </td>
 
@@ -51130,7 +52753,7 @@
                 src="game_images/./sprites/monster/witch/witch_walk_down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="witchy">
               Witchy
             </td>
 
@@ -51246,7 +52869,7 @@
                 src="game_images/./sprites/monster/witch/witch_walk_down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="monstrousmask">
               Monstrous Mask
             </td>
 
@@ -51366,7 +52989,7 @@
                 src="game_images/./sprites/monster/witch/witch_walk_down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="themaskedmarvel">
               The Masked Marvel
             </td>
 
@@ -51486,7 +53109,7 @@
                 src="game_images/./sprites/monster/witch/witch_walk_down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="voodoojoe">
               Voodoo Joe
             </td>
 
@@ -51606,7 +53229,7 @@
                 src="game_images/./sprites/monster/swarmy/swarmy_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="swarmy">
               Swarmy
             </td>
 
@@ -51727,7 +53350,7 @@
                 src="game_images/./sprites/monster/swarmy/swarmy_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="demonicdenizen">
               Demonic Denizen
             </td>
 
@@ -51852,7 +53475,7 @@
                 src="game_images/./sprites/monster/mush/mush_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="mushy">
               Mushy
             </td>
 
@@ -51973,7 +53596,7 @@
                 src="game_images/./sprites/monster/mush/mush_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="summonmushroombeast">
               Summon Mushroom-beast
             </td>
 
@@ -52087,7 +53710,7 @@
                 src="game_images/./sprites/monster/mush/mush_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="toady">
               Toady
             </td>
 
@@ -52206,7 +53829,7 @@
                 src="game_images/./sprites/monster/carrotty/carrotty_walk_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="carrotty">
               Carrotty
             </td>
 
@@ -52321,7 +53944,7 @@
                 src="game_images/./sprites/monster/carrotty/carrotty_walk_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="youngcarrot">
               Young Carrot
             </td>
 
@@ -52440,7 +54063,7 @@
                 src="game_images/./sprites/monster/carrotty/carrotty_walk_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="coldcarrot">
               Cold Carrot
             </td>
 
@@ -52568,7 +54191,7 @@
                 src="game_images/./sprites/monster/carrotty/carrotty_walk_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="magmacarrot">
               Magma Carrot
             </td>
 
@@ -52696,7 +54319,7 @@
                 src="game_images/./sprites/monster/carrotty/carrotty_walk_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="fellcarrot">
               Fell Carrot
             </td>
 
@@ -52830,7 +54453,7 @@
                 src="game_images/./sprites/monster/golem/ice_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="icygolem">
               Icy Golem
             </td>
 
@@ -52951,7 +54574,7 @@
                 src="game_images/./sprites/monster/golem/ice_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="flaminggolem">
               Flaming Golem
             </td>
 
@@ -53082,7 +54705,7 @@
                 src="game_images/./sprites/monster/golem/ice_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="unhealthfulgolem">
               Unhealthful Golem
             </td>
 
@@ -53207,7 +54830,7 @@
                 src="game_images/./sprites/monster/golem/ice_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="magicgolem">
               Magic Golem
             </td>
 
@@ -53335,7 +54958,7 @@
                 src="game_images/./sprites/monster/golem/ice_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="steamgolem">
               Steam Golem
             </td>
 
@@ -53467,7 +55090,7 @@
                 src="game_images/./sprites/monster/golem/ice_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="goldgolem">
               Gold Golem
             </td>
 
@@ -53592,7 +55215,7 @@
                 src="game_images/./sprites/monster/squiddy/squiddy_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="squiddy">
               Squiddy
             </td>
 
@@ -53705,7 +55328,7 @@
                 src="game_images/./sprites/monster/fatty/fatty_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="footy">
               Footy
             </td>
 
@@ -53821,7 +55444,7 @@
                 src="game_images/./sprites/monster/greeny/greeny_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="grandpamustache">
               Grandpa Mustache
             </td>
 
@@ -53940,7 +55563,7 @@
                 src="game_images/./sprites/monster/greeny/greeny_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="mustachespirit">
               Mustache Spirit
             </td>
 
@@ -54059,7 +55682,7 @@
                 src="game_images/./sprites/monster/greeny/greeny_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="mustacheleaguechampion">
               Mustache League Champion
             </td>
 
@@ -54179,7 +55802,7 @@
                 src="game_images/./sprites/monster/greeny/greeny_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="animatemustache">
               Animate Mustache
             </td>
 
@@ -54304,7 +55927,7 @@
                 src="game_images/./sprites/monster/fire/fire_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="flamer">
               Flamer
             </td>
 
@@ -54428,7 +56051,7 @@
                 src="game_images/./sprites/monster/fire/fire_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="icewyrm">
               Ice Wyrm
             </td>
 
@@ -54556,7 +56179,7 @@
                 src="game_images/./sprites/monster/fire/fire_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="magicdragon">
               Magic Dragon
             </td>
 
@@ -54684,7 +56307,7 @@
                 src="game_images/./sprites/monster/fire/fire_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="summonwyrmling">
               Summon Wyrmling
             </td>
 
@@ -54809,7 +56432,7 @@
                 src="game_images/./sprites/monster/red/red_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="bigred">
               Big Red
             </td>
 
@@ -54930,7 +56553,7 @@
                 src="game_images/./sprites/monster/red/red_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="snowbaal">
               Snow Baal
             </td>
 
@@ -55051,7 +56674,7 @@
                 src="game_images/./sprites/monster/red/red_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="dreadcollector">
               Dread Collector
             </td>
 
@@ -55160,7 +56783,7 @@
                 src="game_images/./sprites/monster/luck/luck_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="lucky">
               Lucky
             </td>
 
@@ -55275,7 +56898,7 @@
                 src="game_images/./sprites/monster/luck/luck_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="fardarrig">
               Far Darrig
             </td>
 
@@ -55392,7 +57015,7 @@
                 src="game_images/./sprites/monster/robo/Robo_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="robo">
               Robo
             </td>
 
@@ -55529,7 +57152,7 @@
                 src="game_images/./sprites/monster/robo/Robo_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="unfriendlyai">
               Unfriendly AI
             </td>
 
@@ -55664,7 +57287,7 @@
                 src="game_images/./sprites/monster/robo/Robo_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="mortalmachine">
               Mortal Machine
             </td>
 
@@ -55802,7 +57425,7 @@
                 src="game_images/./sprites/monster/robo/Robo_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="flintultrasparc">
               Flint Ultrasparc
             </td>
 
@@ -55926,7 +57549,7 @@
                 src="game_images/./sprites/monster/lich/lich_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="lorddredmor">
               Lord Dredmor
             </td>
 
@@ -56084,7 +57707,7 @@
                 src="game_images/./sprites/monster/lich/lich_Walk_Down.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="tougherlorddredmor">
               Tougher Lord Dredmor
             </td>
 
@@ -56244,7 +57867,7 @@
                 src="game_images/./sprites/monster/brax/brax_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="brax">
               Brax
             </td>
 
@@ -56357,7 +57980,7 @@
                 src="game_images/expansion/sprites/monster/fish/fish_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="fishwarrior">
               Fish Warrior
             </td>
 
@@ -56472,7 +58095,7 @@
                 src="game_images/expansion/sprites/monster/fish/fish_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="fishpaladin">
               Fish Paladin
             </td>
 
@@ -56591,7 +58214,7 @@
                 src="game_images/expansion/sprites/monster/fish/fish_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="coldfish">
               Cold Fish
             </td>
 
@@ -56719,7 +58342,7 @@
                 src="game_images/expansion/sprites/monster/fish/fish_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="lavafish">
               Lava Fish
             </td>
 
@@ -56847,7 +58470,7 @@
                 src="game_images/expansion/sprites/monster/fish/fish_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="seacrusader">
               Sea Crusader
             </td>
 
@@ -56969,7 +58592,7 @@
                 src="game_images/expansion/sprites/monster/fish/fish_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="lutefiskavatar">
               Lutefisk Avatar
             </td>
 
@@ -57091,7 +58714,7 @@
                 src="game_images/expansion/sprites/monster/tuber_beholder/tuber_beholder_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="evilmagicpotato">
               Evil Magic Potato
             </td>
 
@@ -57193,7 +58816,7 @@
                 src="game_images/expansion/sprites/monster/tuber_beholder/tuber_beholder_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="enchantedplaguetato">
               Enchanted Plaguetato
             </td>
 
@@ -57319,7 +58942,7 @@
                 src="game_images/expansion/sprites/monster/tuber_beholder/tuber_beholder_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="goldendoomtuber">
               Golden Doom-Tuber
             </td>
 
@@ -57442,7 +59065,7 @@
                 src="game_images/expansion/sprites/monster/tuber_beholder/tuber_beholder_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="eldritchtuber">
               Eldritch Tuber
             </td>
 
@@ -57565,7 +59188,7 @@
                 src="game_images/expansion/sprites/monster/tuber_beholder/tuber_beholder_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="tuberspirit">
               Tuber-spirit
             </td>
 
@@ -57695,7 +59318,7 @@
                 src="game_images/expansion/sprites/monster/tuber_beholder/tuber_beholder_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="butcheryam">
               Butcher Yam
             </td>
 
@@ -57812,7 +59435,7 @@
                 src="game_images/expansion/sprites/monster/elm/elm_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="sparky">
               Sparky
             </td>
 
@@ -57920,7 +59543,7 @@
                 src="game_images/expansion/sprites/monster/elm/elm_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="entropicelemental">
               Entropic Elemental
             </td>
 
@@ -58042,7 +59665,7 @@
                 src="game_images/expansion/sprites/monster/elm/elm_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="arborealwisp">
               Arboreal Wisp
             </td>
 
@@ -58161,7 +59784,7 @@
                 src="game_images/expansion/sprites/monster/elm/elm_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="sanguinousconflageration">
               Sanguinous Conflageration
             </td>
 
@@ -58272,7 +59895,7 @@
                 src="game_images/expansion/sprites/monster/slick/slick_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="slick">
               Slick
             </td>
 
@@ -58383,7 +60006,7 @@
                 src="game_images/expansion/sprites/monster/slick/slick_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="acidicslick">
               Acidic Slick
             </td>
 
@@ -58506,7 +60129,7 @@
                 src="game_images/expansion/sprites/monster/slick/slick_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="eldritchslick">
               Eldritch Slick
             </td>
 
@@ -58636,7 +60259,7 @@
                 src="game_images/expansion/sprites/monster/mummy/mum_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="mummy">
               Mummy
             </td>
 
@@ -58756,7 +60379,7 @@
                 src="game_images/expansion/sprites/monster/mummy/mum_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="preservedwitch">
               Preserved Witch
             </td>
 
@@ -58889,7 +60512,7 @@
                 src="game_images/expansion/sprites/monster/mummy/mum_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="redlichess">
               Red Lichess
             </td>
 
@@ -59022,7 +60645,7 @@
                 src="game_images/expansion/sprites/monster/agar/agar_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="agaraguardian">
               Agar Aguardian
             </td>
 
@@ -59151,7 +60774,7 @@
                 src="game_images/expansion/sprites/monster/agar/agar_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="ectoplasmicexcession">
               Ectoplasmic Excession
             </td>
 
@@ -59272,7 +60895,7 @@
                 src="game_images/expansion/sprites/monster/agar/agar_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="plegmaticanimation">
               Plegmatic Animation
             </td>
 
@@ -59405,7 +61028,7 @@
                 src="game_images/expansion/sprites/monster/agar/agar_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="nethercube">
               Nether Cube
             </td>
 
@@ -59535,7 +61158,7 @@
                 src="game_images/expansion/sprites/monster/agar/agar_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="cosbianhorror">
               Cosbian Horror
             </td>
 
@@ -59665,7 +61288,7 @@
                 src="game_images/expansion/sprites/monster/agar/agar_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="pectinoustesseract">
               Pectinous Tesseract
             </td>
 
@@ -59795,7 +61418,7 @@
                 src="game_images/expansion/sprites/monster/muscle_diggle/musclediggle_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="musclediggle">
               Muscle Diggle
             </td>
 
@@ -59908,7 +61531,7 @@
                 src="game_images/expansion/sprites/monster/muscle_diggle/musclediggle_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="monstrousdemondiggle">
               Monstrous Demon Diggle
             </td>
 
@@ -60039,7 +61662,7 @@
                 src="game_images/expansion/sprites/monster/statue/statue_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="livingstatue">
               Living Statue
             </td>
 
@@ -60167,7 +61790,7 @@
                 src="game_images/expansion/sprites/monster/statue/statue_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="stoneguardian">
               Stone Guardian
             </td>
 
@@ -60294,7 +61917,7 @@
                 src="game_images/expansion/sprites/monster/statue/statue_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="ironman">
               Iron Man
             </td>
 
@@ -60427,7 +62050,7 @@
                 src="game_images/expansion/sprites/monster/wight/wight_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="wight">
               Wight
             </td>
 
@@ -60544,7 +62167,7 @@
                 src="game_images/expansion/sprites/monster/wight/wight_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="deadhead">
               Dead Head
             </td>
 
@@ -60677,7 +62300,7 @@
                 src="game_images/expansion/sprites/monster/wight/wight_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="witchhead">
               Witch Head
             </td>
 
@@ -60810,7 +62433,7 @@
                 src="game_images/expansion/sprites/monster/wight/wight_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="screamingskull">
               Screaming Skull
             </td>
 
@@ -60946,7 +62569,7 @@
                 src="game_images/expansion/sprites/monster/gnome/gnome_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="gnome">
               Gnome
             </td>
 
@@ -61045,7 +62668,7 @@
                 src="game_images/expansion/sprites/monster/gnome/gnome_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="jiggygnome">
               Jiggy Gnome
             </td>
 
@@ -61165,7 +62788,7 @@
                 src="game_images/expansion/sprites/monster/gnome/gnome_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="villaingnome">
               Villain Gnome
             </td>
 
@@ -61285,7 +62908,7 @@
                 src="game_images/expansion/sprites/monster/gnome/gnome_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="eldergnome">
               Elder Gnome
             </td>
 
@@ -61405,7 +63028,7 @@
                 src="game_images/expansion/sprites/monster/aeth/aeth_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="undeadaethernaut">
               Undead Aethernaut
             </td>
 
@@ -61536,7 +63159,7 @@
                 src="game_images/expansion/sprites/monster/aeth/aeth_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="aetheroddity">
               Aether Oddity
             </td>
 
@@ -61674,7 +63297,7 @@
                 src="game_images/expansion/sprites/monster/aeth/aeth_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="majortom">
               Major Tom
             </td>
 
@@ -61813,7 +63436,7 @@
                 src="game_images/expansion2/sprites/monster/greeny/greeny_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="devilshaircut">
               Devil's Haircut
             </td>
 
@@ -61944,7 +63567,7 @@
                 src="game_images/expansion2/sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="digglemage">
               Diggle Mage
             </td>
 
@@ -62078,7 +63701,7 @@
                 src="game_images/expansion2/sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="digglearchmage">
               Diggle Archmage
             </td>
 
@@ -62213,7 +63836,7 @@
                 src="game_images/expansion2/sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="diggleharbinger">
               Diggle Harbinger
             </td>
 
@@ -62344,7 +63967,7 @@
                 src="game_images/expansion2/sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="digglerocketeer">
               Diggle Rocketeer
             </td>
 
@@ -62466,7 +64089,7 @@
                 src="game_images/expansion2/sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="deepdigglechef">
               Deep Diggle Chef
             </td>
 
@@ -62589,7 +64212,7 @@
                 src="game_images/expansion2/sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="deepdigglesmith">
               Deep Diggle Smith
             </td>
 
@@ -62700,7 +64323,7 @@
                 src="game_images/expansion2/sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="deepfungusdiggle">
               Deep Fungus Diggle
             </td>
 
@@ -62823,7 +64446,7 @@
                 src="game_images/expansion2/sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="digglegeologist">
               Diggle Geologist
             </td>
 
@@ -62949,7 +64572,7 @@
                 src="game_images/expansion2/sprites/monster/diggle/diggle_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="roguedigglescientist">
               Rogue Diggle Scientist
             </td>
 
@@ -63094,7 +64717,7 @@
                 src="game_images/expansion2/sprites/hero/hero_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="poorlyclonedhero">
               Poorly Cloned Hero
             </td>
 
@@ -63221,7 +64844,7 @@
                 src="game_images/expansion2/sprites/hero/hero_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="villainousdoppleganger">
               Villainous Doppleganger
             </td>
 
@@ -63350,7 +64973,7 @@
                 src="game_images/expansion2/sprites/fhero/hero_run_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="poorlyclonedheroine">
               Poorly Cloned Heroine
             </td>
 
@@ -63480,7 +65103,7 @@
                 src="game_images/expansion2/sprites/fhero/hero_run_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="villainousdopplegangeress">
               Villainous Dopplegangeress
             </td>
 
@@ -63609,7 +65232,7 @@
                 src="game_images/expansion2/sprites/monster/raven/raven_fly_d_000.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="commoncaveraven">
               Common Cave Raven
             </td>
 
@@ -63724,7 +65347,7 @@
                 src="game_images/expansion2/sprites/monster/raven/raven_fly_d_000.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="existentialraven">
               Existential Raven
             </td>
 
@@ -63846,7 +65469,7 @@
                 src="game_images/expansion2/sprites/monster/raven/raven_fly_d_000.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="heckraven">
               Heckraven
             </td>
 
@@ -63977,7 +65600,7 @@
                 src="game_images/expansion2/sprites/monster/raven/raven_fly_d_000.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="abdeadcorvidmonarch">
               Abdead Corvid Monarch
             </td>
 
@@ -64118,7 +65741,7 @@
                 src="game_images/expansion2/sprites/monster/raven/raven_fly_d_000.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="deepraven">
               Deep Raven
             </td>
 
@@ -64256,7 +65879,7 @@
                 src="game_images/expansion2/sprites/monster/canisterA/canisterA0000.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="gascanister">
               Gas Canister
             </td>
 
@@ -64329,7 +65952,7 @@
                 src="game_images/expansion3/sprites/monster/rutabaga/rutabaga_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="murderousrutabaga">
               Murderous Rutabaga
             </td>
 
@@ -64442,7 +66065,7 @@
                 src="game_images/expansion3/sprites/monster/rutabaga/rutabaga_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="ancientrutabaga">
               Ancient Rutabaga
             </td>
 
@@ -64558,7 +66181,7 @@
                 src="game_images/expansion3/sprites/monster/rutabaga/rutabaga_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="mandragora">
               Mandragora
             </td>
 
@@ -64680,7 +66303,7 @@
                 src="game_images/expansion3/sprites/monster/rutabaga/rutabaga_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="therootram">
               The Root Ram
             </td>
 
@@ -64791,7 +66414,7 @@
                 src="game_images/expansion3/sprites/monster/crustaceanoid/crustaceanoid_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="crustaceanoidwarrior">
               Crustaceanoid Warrior
             </td>
 
@@ -64904,7 +66527,7 @@
                 src="game_images/expansion3/sprites/monster/crustaceanoid/crustaceanoid_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="veterancrustaceanoid">
               Veteran Crustaceanoid
             </td>
 
@@ -65018,7 +66641,7 @@
                 src="game_images/expansion3/sprites/monster/crustaceanoid/crustaceanoid_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="guerillacrustaceanoid">
               Guerilla Crustaceanoid
             </td>
 
@@ -65135,7 +66758,7 @@
                 src="game_images/expansion3/sprites/monster/crustaceanoid/crustaceanoid_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="thecrabking">
               The Crab King
             </td>
 
@@ -65249,7 +66872,7 @@
                 src="game_images/expansion3/sprites/monster/crustaceanoid/crustaceanoid_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="thecrabcomposer">
               The Crab Composer
             </td>
 
@@ -65369,7 +66992,7 @@
                 src="game_images/expansion3/sprites/monster/crustaceanoid/crustaceanoid_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="crabnir">
               Crabnir
             </td>
 
@@ -65487,7 +67110,7 @@
                 src="game_images/expansion3/sprites/monster/raven/raven_fly_d_000.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="muninn">
               Muninn
             </td>
 
@@ -65614,7 +67237,7 @@
                 src="game_images/expansion3/sprites/monster/raven/raven_fly_d_000.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="huginn">
               Huginn
             </td>
 
@@ -65683,7 +67306,7 @@
                 src="game_images/expansion3/sprites/monster/cloud_gremlin/cloud_gremlin_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="cloudgremlin">
               Cloud Gremlin
             </td>
 
@@ -65804,7 +67427,7 @@
                 src="game_images/expansion3/sprites/monster/cloud_gremlin/cloud_gremlin_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="gaseousgremlin">
               Gaseous Gremlin
             </td>
 
@@ -65921,7 +67544,7 @@
                 src="game_images/expansion3/sprites/monster/cloud_gremlin/cloud_gremlin_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="thorling">
               Thorling
             </td>
 
@@ -66035,7 +67658,7 @@
                 src="game_images/expansion3/sprites/monster/cloud_gremlin/cloud_gremlin_idle_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="teslashorror">
               Tesla's Horror
             </td>
 
@@ -66149,7 +67772,7 @@
                 src="game_images/expansion3/sprites/monster/samedi/samedi_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="samedi">
               Samedi
             </td>
 
@@ -66270,7 +67893,7 @@
                 src="game_images/expansion3/sprites/monster/samedi/samedi_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="thebaron">
               The Baron
             </td>
 
@@ -66390,7 +68013,7 @@
                 src="game_images/expansion3/sprites/monster/samedi/samedi_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="mercredi">
               Mercredi
             </td>
 
@@ -66509,7 +68132,7 @@
                 src="game_images/expansion3/sprites/monster/samedi/samedi_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="lundi">
               Lundi
             </td>
 
@@ -66628,7 +68251,7 @@
                 src="game_images/expansion3/sprites/monster/fruit_treant/fruit_treant_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="fruittreant">
               Fruit Treant
             </td>
 
@@ -66746,7 +68369,7 @@
                 src="game_images/expansion3/sprites/monster/fruit_treant/fruit_treant_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="luminescentfruittreant">
               Luminescent Fruit Treant
             </td>
 
@@ -66863,7 +68486,7 @@
                 src="game_images/expansion3/sprites/monster/fruit_treant/fruit_treant_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="fruittreantofknowledge">
               Fruit Treant of Knowledge
             </td>
 
@@ -66986,7 +68609,7 @@
                 src="game_images/expansion3/sprites/monster/fruit_treant/fruit_treant_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="thetreeofwoe">
               The Tree of Woe
             </td>
 
@@ -67109,7 +68732,7 @@
                 src="game_images/expansion3/sprites/monster/fruit_treant/fruit_treant_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="bananathehutt">
               Banana the Hutt
             </td>
 
@@ -67223,7 +68846,7 @@
                 src="game_images/expansion3/sprites/monster/samurai/Samurai_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="samuraibotmk.iii">
               Samurai-Bot Mk. III
             </td>
 
@@ -67349,7 +68972,7 @@
                 src="game_images/expansion3/sprites/monster/samurai/Samurai_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="daimyobotmkiv">
               Daimyo-Bot Mk IV
             </td>
 
@@ -67475,7 +69098,7 @@
                 src="game_images/expansion3/sprites/monster/samurai/Samurai_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="shogunbotmkv">
               Shogun-Bot Mk V
             </td>
 
@@ -67601,7 +69224,7 @@
                 src="game_images/expansion3/sprites/monster/samurai/Samurai_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="tokugawaroboyatsu">
               Tokugawa Roboyatsu
             </td>
 
@@ -67727,7 +69350,7 @@
                 src="game_images/expansion3/sprites/monster/ABBW/ABBW_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="amazonianbumblebeeperson">
               Amazonian Bumblebeeperson
             </td>
 
@@ -67840,7 +69463,7 @@
                 src="game_images/expansion3/sprites/monster/ABBW/ABBW_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="spellingbee">
               Spelling Bee
             </td>
 
@@ -67960,7 +69583,7 @@
                 src="game_images/expansion3/sprites/monster/ABBW/ABBW_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="royalbee">
               Royal Bee
             </td>
 
@@ -68080,7 +69703,7 @@
                 src="game_images/expansion3/sprites/monster/ABBW/ABBW_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="beearthur">
               Bee Arthur
             </td>
 
@@ -68194,7 +69817,7 @@
                 src="game_images/expansion3/sprites/monster/ABBW/ABBW_walk_d_00.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="thegreenhornet">
               The Green Hornet
             </td>
 
@@ -68314,7 +69937,7 @@
                 src="game_images/expansion3/sprites/hero/hero_run_d.spr.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="evilclone">
               Evil Clone
             </td>
 
@@ -68442,7 +70065,7 @@
                 src="game_images/expansion3/sprites/monster/vladiggle/vladiggle_run_d_0.png">
             </td>
 
-            <td class="name">
+            <td class="name" data-name="vladdigula">
               Vlad Digula
             </td>
 
@@ -68588,6 +70211,8 @@
 
           </tr>
           
+        </tbody>
+      </table>
     </div>
   </div>
   <script>
@@ -68630,10 +70255,20 @@
   var encrustTable = new List("encrustDB", options);
   encrustTable.sort("name", { order: "asc"});
 
+  options = {
+  valueNames: [
+    "name",
+    "type",
+  ]
+  };
+
+  var skillTable = new List("skillDB", options);
+
   $("#input-search").keyup(function() {
     var searchString = $(this).val();
     itemTable.search(searchString, [ "name" ]);
     encrustTable.search(searchString, [ "name" ]);
+    skillTable.search(searchString, [ "name" ]);
     monTable.search(searchString, [ "name" ]);
   });
 
